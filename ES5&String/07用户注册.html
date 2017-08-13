@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07用户注册</title>
+	<script>
+		window.onload = function(){
+			var username = document.getElementById('username');
+			var btnReg = document.getElementById('btnReg');
+
+			btnReg.onclick = function(){
+				var _username = username.value;
+
+				_username = _username.trim();
+
+				console.log(_username)
+			}
+		}
+	</script>
+</head>
+<body>
+	<label for="username">用户名：</label>
+	<input type="text" id="username" name="username">
+	<label for="psw">密码：</label>
+	<input type="password" id="psw" name="psw">
+	<button id="btnReg">注册</button>
+</body>
+</html>

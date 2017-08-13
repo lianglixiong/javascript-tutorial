@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08函数的作用域</title>
+	<script>
+		/*
+			作用域：变量的使用范围
+			*局部作用域
+				定义在局部作用域下的变量成为局部变量
+			*全局作用域
+				定义在全局作用域下的变量成为全局变量
+		 */
+		var num = 10;
+		function show(){
+			var str = 'html';
+
+			// str的使用范围在函数内部
+			// 函数内部成为str的作用域
+			console.log('函数内部作用域：',str);
+
+			// 在函数内部使用外部的变量
+			console.log('函数内部：',num);
+
+
+			// 定论1：定义在函数内的变量（局部变量）只能在函数内使用
+			// 定论2：定义在函数外的变量（全局变量）能在任意地方使用
+		}
+		show();
+
+		console.log('函数外部：',num);
+		// console.log(str);//str is not defined：str未定义
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01全局作用域</title>
+	<script>
+	// 全局变量
+	// 会成为window对象的属性
+	// 通过var在全局作用域下声明的变量用delete无法删除
+	var num = 10;
+
+	// 不用var声明的全局变量可以被delete删除
+	arr = [10,20,30];
+
+	// 删除普通对象的属性
+	// 使用delete关键字
+	var obj = {name:'laoxie',age:18};
+
+	console.log(obj);
+
+	delete obj.age;
+
+	console.log(obj);
+
+	window.onload = function(){
+		/*
+			把变量定义在函数体里，可以有效减少全局环境下的变量冲突，避免污染全局环境
+			建议：代码要写在函数内
+		 */
+		
+		var str = 'laoxie';
+
+		// 在函数内部不用var声明的变量会成为全局变量，即window对象的属性
+		age = 18;
+
+	}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

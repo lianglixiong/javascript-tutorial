@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05字符串模板</title>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var datalist = [{
+		    name:'iphone7 plugs',
+		    price:5899.00,
+		    color:'土豪金',
+		    imgurl:'img/ip7.jpg'
+		},{
+		    name:'Note7',
+		    price:3899.00,
+		    color:'黑色',
+		    imgurl:'img/note7.jpg'
+		},{
+		    name:'荣耀7',
+		    price:1999.00,
+		    color:'白色',
+		    imgurl:'img/honor7.jpg'
+		}];
+
+		let ul = document.createElement('ul');
+
+		ul.innerHTML = datalist.map(function(goods){
+			//return '<li><img src="'+goods.imgurl+'"><h4>'+goods.name+'</h4><p class="price">'+goods.price+'</p><p class="color">'+goods.color+'</p></li>';
+
+			return `<li>
+				<img src="${goods.imgurl}">
+				<h4>${goods.name}</h4>
+				<p class="price">${goods.price}</p>
+				<p class="color">${goods.color}</p>
+			</li>`;
+		});
+
+		document.querySelector('.datalist').appendChild(ul);
+
+	});
+		
+	</script>
+</head>
+<body>
+	<div class="datalist">
+		
+	</div>
+</body>
+</html>

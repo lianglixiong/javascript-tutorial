@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02自由落体(加速运动)</title>
+	<style>
+		body{background-color: #000;overflow:hidden;}
+		.basketball{width:160px;position: absolute;left:50%;top:0;margin-left: -80px;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var basketball = document.querySelector('.basketball');
+			var speed = 0;
+
+			var timer = setInterval(()=>{
+				var top = basketball.offsetTop;
+				speed +=2;
+
+				if(top >= window.innerHeight - basketball.offsetHeight){
+					clearInterval(timer);
+					top = window.innerHeight - basketball.offsetHeight - speed;
+				}
+				basketball.style.top = top + speed + 'px';
+			},20);
+
+		});
+	</script>
+</head>
+<body>
+	<img src="img/basketball.jpg" class="basketball">
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01单体模式</title>
+	<script>
+		var singleton = function(){
+		    if(!singleton.instance){
+		        singleton.instance = {
+		            name:'laoxie',
+		            age:18
+		        }
+		    }
+		    return singleton.instance;
+		}
+
+		var a = singleton();
+		var b = singleton();
+
+		console.log(a,b)
+
+		console.log(a===b);
+
+
+		// function person(name,age){
+		// 	var obj = {}
+		// 	obj.name = name;
+		// 	obj.age = age;
+
+		// 	return obj
+		// }
+
+		// var p1 = person('lx',18);
+		// var p2 = person('lx',18);
+
+		// console.log(p1 === p2)
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

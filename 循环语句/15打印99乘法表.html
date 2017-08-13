@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打印99乘法表</title>
+	<style>
+		#tt99 span{display:inline-block;margin:5px;width:80px;height:30px;line-height:30px;background-color:#efefef;text-align:center;}
+		#tt99 span:hover{background-color: #fc0;}
+	</style>
+	
+	
+</head>
+<body>
+	<div id="tt99"></div>
+	<script>
+		/*
+			打印99乘法表
+		 */
+		
+		var str = '';
+		
+		// 外循环：控制行
+		for(var i=1;i<=9;i++){
+			// 内循环：控制列
+			for(var j=1;j<=i;j++){
+				str += '<span>' + j + '&times;' + i + '=' + j*i + '</span>';
+			}
+			str += '<br>';
+		}
+
+		var tt99 = document.getElementById('tt99');
+		tt99.innerHTML = str;
+	</script>
+</body>
+</html>

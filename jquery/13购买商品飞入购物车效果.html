@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>复制到购物车</title>
+    <style>
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .cart-list {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        width: 200px;
+        /*height: 400px;*/
+        border: 1px solid #ddd;
+        /*overflow-y:auto;*/
+    }
+    
+    .cart-list h4 {
+        margin: 0;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .cart-list img {
+        width: 60px;
+    }
+
+    .cart-list li{position:relative;height:200px;}
+    .cart-list .btn-close{position:absolute;top:0;right:0;padding:5px;}
+    .cart-list .btn-close:hover{background-color:#f00;color:#fff;}
+    
+    .goods-list img {
+        width: 200px;
+    }
+    </style>
+   <script src="js/jquery-3.2.1.js"></script>
+   <script>
+       $(function(){
+            /*
+                购买商品飞入购物车的效果
+                    1）给按钮绑定点击事件
+                        1>复制当前商品图片(用于实现动画效果)
+                            把复制的图片写入页面，并设置样式
+                            动画效果
+                        2>复制当前商品所有信息(用于往购物车添加)
+                    2)删除购物车中的“添加到购物车”按钮
+                    3)在购物车列表中添加移除按钮
+                    	点击按钮时，删除购物车中对应的商品
+                    4)删除用于动画的图片
+             */
+            
+            // 1）给按钮绑定点击事件
+            var $goodsList = $('.goods-list');
+            var $carList = $('.cart-list ul');
+
+            $goodsList.on('click','button',function(){
+                var $currentLi = $(this).closest('li');
+
+                // 当前商品图片
+                var $img = $currentLi.children('img');
+
+                // 把复制的图片写入页面，并设置样式
+                var $cloneImg = $img.clone();
+                $cloneImg.css({
+                    position:'absolute',
+                    left:$img.offset().left,
+                    top:$img.offset().top,
+                    width:$img.outerWidth(),
+                    height:$img.outerHeight()
+                }).appendTo('body');
+
+
+                // 2>复制当前商品所有信息(用于往购物车添加)
+                // 删除无用的“添加到购物车”按钮
+                // 添加删除按钮
+                var $cloneLi = $currentLi.clone();
+                $cloneLi.find('button').parent().remove();
+                $('<span/>').addClass('btn-close').html('&times;').appendTo($cloneLi);
+
+                // 图片飞入动画效果
+                // 动画完成后，把复制li写入购物车列表
+                $cloneImg.animate({
+                    left:$carList.offset().left,
+                    top:$carList.offset().top + $carList.outerHeight(),
+                    width:10,
+                    height:10
+                },function(){
+                   $cloneLi.appendTo($carList);
+
+                   // 删除动画图片
+                   $cloneImg.remove();
+                });
+
+            });
+
+
+            // 删除购物车商品
+            $carList.on('click','.btn-close',function(){
+                var $currentLi = $(this).closest('li');
+                $currentLi.remove();
+            })
+       });
+   </script>
+</head>
+
+<body>
+    <div class="goods-list">
+        <h4>产品列表</h4>
+        <ul>
+            <li><img src="img/g1.jpg">
+                <p>
+                    <button>添加到购物车</button>
+                </p>
+                <p>亚瑟士ASICS跑步鞋2015春夏新款运动鞋男款避震跑鞋KAYANO T4H2N-9001 橙色/白色 42</p>
+            </li>
+            <li><img src="img/g2.jpg">
+                <p>
+                    <button>添加到购物车</button>
+                </p>
+                <p>亚瑟士ASICS运动鞋2015春夏新款跑步鞋女鞋稳定跑鞋KAYANO T4H7N-0701 黄色/白色 37.5</p>
+            </li>
+            <li><img src="img/g3.jpg">
+                <p>
+                    <button>添加到购物车</button>
+                </p>
+                <p>亚瑟士ASICS跑步鞋春夏透气稳定女款跑鞋 KAYANO T4N5N-3591 玫红色/黑色 37.5</p>
+            </li>
+            <li><img src="img/g4.jpg">
+                <p>
+                    <button>添加到购物车</button>
+                </p>
+                <p>亚瑟士ASICS高帮运动休闲鞋男鞋运动鞋DOUBLEH54XJ-5050 黑色/黑色 40.5</p>
+            </li>
+            <li><img src="img/g5.jpg">
+                <p>
+                    <button>添加到购物车</button>
+                </p>
+                <p>Onitsuka Tiger运动休闲鞋女COLORADO D4S6N-1850 珊瑚色/淡灰色 37.5</p>
+            </li>
+        </ul>
+    </div>
+    <div class="cart-list">
+        <h4>购物车列表</h4>
+        <ul>
+        </ul>
+    </div>
+</body>
+
+</html>

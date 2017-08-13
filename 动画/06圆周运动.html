@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06圆周运动</title>
+	<style>
+		.ball{position:absolute;top:0;left:0;width:30px;height:30px;border-radius:50%;background-color: #f00;}
+		.circle{position:absolute;width:400px;height:400px;border-radius: 50%;border:1px solid #f00;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var ball = document.querySelector('.ball');
+			var circle = document.querySelector('.circle');
+
+			// 小球的半径
+			var ball_r = ball.offsetWidth/2;
+
+			var center = {x:window.innerWidth/2,y:window.innerHeight/2};
+
+			// 指定圆的半径
+			var r = 200;
+
+			var deg = 0;
+			
+			// 把圆定位到页面中心位置
+			// ball.style.left = center.x + 'px';
+			// ball.style.top = center.y + 'px';
+
+			circle.style.left = center.x - circle.offsetWidth/2  + 'px';
+			circle.style.top = center.y - circle.offsetHeight/2 + 'px';
+
+			// 设置一个定时器，用于小球在圆周上运动
+			var timer = setInterval(()=>{
+				deg += 3;
+
+				// 计算弧度
+				var rad = deg*Math.PI/180;
+
+				// 计算小球走动时的圆心位置
+				var x = center.x + r*Math.cos(rad);
+				var y = center.y + r*Math.sin(rad);
+
+				// 计算left,top值
+				var left = x - ball_r;
+				var top = y - ball_r;
+
+
+				ball.style.left = left + 'px';
+				ball.style.top = top + 'px';
+			},30);
+		})
+	</script>
+</head>
+<body>
+	<div class="ball"></div>
+	<div class="circle"></div>
+</body>
+</html>

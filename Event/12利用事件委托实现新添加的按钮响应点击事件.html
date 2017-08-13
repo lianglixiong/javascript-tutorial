@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12利用事件委托实现新添加的按钮响应点击事件</title>
+	<script>
+		window.onload = function(){
+			var btnAdd = document.getElementById('btnAdd');
+			var items = btnAdd.nextElementSibling;
+			var btns = items.children;
+
+			//给按钮绑定事件，输出按钮的索引值
+			/*for(var i=0;i<btns.length;i++){
+				btns[i].idx = i;
+				btns[i].onclick = function(){
+					console.log(this.idx);
+				}
+			}*/
+			//利用事件委托实现
+			items.onclick = function(e){
+				e = e || window.event;
+				var target = e.target || e.srcElement;
+
+				// 判断是否点击了按钮
+				if(target.tagName.toLowerCase() === 'button'){
+					btns = items.children;
+					for(var i=0;i<btns.length;i++){
+
+						// 如何判断当前对象是否为事件源对象
+						if(btns[i] === target){
+							console.log(i);
+						}
+					}
+				}
+			}
+
+			// 添加按钮数量
+			btnAdd.onclick = function(){
+				var btn = document.createElement('button');
+				btn.innerText = '按钮';
+
+				items.appendChild(btn);
+			}
+
+			
+		}
+	</script>
+</head>
+<body>
+	<button id="btnAdd">添加</button>
+	<div class="items">
+		<button>按钮1</button>
+		<button>按钮2</button>
+	</div>
+</body>
+</html>

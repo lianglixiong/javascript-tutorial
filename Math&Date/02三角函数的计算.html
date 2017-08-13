@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02三角函数的计算</title>
+	<script>
+		/*
+			有一个直角三角形，其中一个角度为60°，相邻直角边长度为10
+			* 求斜边的长度
+				c = a/Math.cos(rad)
+		 */
+		
+		// 角度
+		var deg = 60;
+
+		// 相邻直角边长度
+		var a = 10;
+
+		// 把角度转成弧度
+		var rad = deg*Math.PI/180;
+
+		// 计算斜边
+		var c = a/Math.cos(rad);
+
+		console.log(c);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

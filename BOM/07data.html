@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07location</title>
+	<script>
+		var data = location.search.substring(1);
+		console.log(data)
+		var arr = data.split('&');
+
+		arr.forEach(function(item){
+			var temp = item.split('=');
+			document.write('<p>'+temp[0]+':'+decodeURI(temp[1])+'</p>');
+		});
+	</script>
+</head>
+<body>
+
+</body>
+</html>

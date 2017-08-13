@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>19轮播图效果</title>
+	<script>
+		window.onload = function(){
+			/*
+				轮播图：
+				原理：每隔一段时间切换一张图片
+				1）利用定时器setInterval每隔1000切换一张图片
+					图片的src属性
+				2）临界值处理
+					当图片切换到最后一张时，回到第一张
+				3）鼠标移入停止
+					clearInterval()
+			 */
+			var meinv = document.getElementById('meinv');
+
+			// 默认显示图片索引值
+			var index = 1;
+
+			var timer = setInterval(autoShow,2000);
+
+			// 3）鼠标移入停止
+			meinv.onmouseover = function(){
+				clearInterval(timer);
+			}
+
+			meinv.onmouseout = function(){
+				timer = setInterval(autoShow,2000);
+			}
+
+			function autoShow(){
+				index++;
+
+				if(index > 5){
+					index = 1;
+				}
+				meinv.src = 'img/g'+index+'.jpg';
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<img src="img/g1.jpg" id="meinv">
+</body>
+</html>

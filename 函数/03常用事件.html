@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03常用事件</title>
+	<style>
+		#box{width:300px;height:80px;background-color: #efefef;border:1px solid #ddd;}
+	</style>
+	
+</head>
+<body>
+	<div id="box"></div>
+	<button id="btn">按钮</button>
+	<script>
+		// 事件的触发都是一瞬间
+		// 把一个函数赋值给onclick属性
+		// 事件绑定：点击事件
+		var isShow = true;
+		btn.onclick = function(){
+			// console.log(999)
+
+			// 隐藏#box元素
+			// 给#box的style属性添加display:none;
+			if(isShow){
+				box.style.display = 'none';
+				isShow = false;
+			}else{
+				box.style.display = 'block';
+				isShow = true;
+			}
+			
+		}
+
+		// 双击事件
+		btn.ondblclick = function(){
+			console.log('双击666');
+		}
+
+		// 鼠标移入事件
+		box.onmouseover = function(){
+			// console.log('鼠标移入');
+			box.style.backgroundColor = '#fc0';
+		}
+
+		// 鼠标移出事件
+		box.onmouseout = function(){
+			// console.log('鼠标out');
+			box.style.backgroundColor = '#efefef';
+		}
+	</script>
+</body>
+</html>

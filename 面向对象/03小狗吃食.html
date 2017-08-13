@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03小狗吃食</title>
+	<script>
+		// 面向过程
+		function smell(){console.log('闻一闻')}
+		function taste(){console.log('舔一舔')}
+		function bite(){console.log('咬一咬')}
+		smell();
+		taste();
+		bite();
+
+
+		// 面向对象
+		var singleDog = {}
+		singleDog.smell = function(){console.log('闻一闻')};
+		singleDog.taste = function(){console.log('舔一舔')};
+		singleDog.bite = function(){console.log('咬一咬')};
+
+		// 指挥小狗
+		singleDog.smell();
+		singleDog.taste();
+		singleDog.bite();
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

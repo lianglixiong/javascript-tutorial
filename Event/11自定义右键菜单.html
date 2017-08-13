@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11自定义右键菜单</title>
+	<style>
+		html,body{overflow:hidden;}
+		ul{list-style: none;margin:0;padding:0;}
+		.contextMenu{display:none;position:absolute;top:0;left:0;width:200px;border:1px solid #ddd;}
+		.contextMenu li{position:relative;padding:0 10px;line-height:2;border-bottom:1px dotted #ddd;}
+		.contextMenu li span{position: absolute;right:0;padding:0 10px;color:#999;}
+	</style>
+	<script>
+		window.onload =function(){
+			var contextMenu = document.getElementsByClassName('contextMenu')[0];
+
+			/*// 给document绑定事件mouseup
+			document.onmouseup = function(e){
+				e = e || window.event;
+
+				if(e.button === 2){
+					contextMenu.style.left = e.clientX + 'px';
+					contextMenu.style.top = e.clientY + 'px';
+					contextMenu.style.display = 'block';
+					
+					//此处不能阻止右键菜单弹出
+					e.preventDefault();
+				}
+			}*/
+
+
+			document.oncontextmenu = function(e){
+				e = e || window.event;
+
+				// 元素在隐藏状态时,无法获取元素的宽高
+				// 如何调式问题
+				contextMenu.style.display = 'block';
+
+				// 边缘处理
+				var left = e.clientX;
+				if(left > window.innerWidth - contextMenu.offsetWidth){
+					left = left - contextMenu.offsetWidth;
+				}
+				contextMenu.style.left = left + 'px';
+				contextMenu.style.top = e.clientY + 'px';
+				
+				// 阻止默认行为兼容写法
+				if(e.preventDefault){
+					e.preventDefault();
+				}else{
+					e.returnValue = false;
+				}
+				
+			}
+
+
+			// 点击空白区域隐藏右键菜单
+			document.onmouseup = function(){
+				contextMenu.style.display = 'none';
+			}
+
+			// 在右键菜单内点击不隐藏
+			contextMenu.onmouseup = function(e){
+				e = e || window.event;
+
+				// 阻止默认行为兼容写法
+				if(e.stopPropagation){
+					e.stopPropagation();
+				}else{
+					e.cancelBubble = true;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="contextMenu">
+		<ul>
+			<li>复制<span>Ctrl+C</span></li>
+			<li>粘贴<span>Ctrl+V</span></li>
+			<li>剪切<span>Ctrl+X</span></li>
+			<li>全选<span>Ctrl+A</span></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07滚动轮播图</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		.carousel{position:relative;width:320px;height:320px;overflow:hidden;}
+		.carousel ul{position: absolute;left:0;top:0;}
+		.carousel img{display:block;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var carousel = document.querySelector('.carousel');
+			var list = carousel.children[0];
+			var firstImg = list.querySelector('img');
+
+			/*
+				index	top
+				0		0
+				1		-320
+				2		-640
+				3		-960
+				4		-1280
+				推导公式：top = -320*index
+			 */
+			
+			// 初始索引值
+			var index=0;
+
+			// 图片高度
+			var imgHeight;
+
+			// 图片个数
+			var len = list.children.length;
+
+			// 等图片加载完成后获取宽高
+			firstImg.onload = function(){
+				imgHeight = firstImg.offsetHeight;
+			}
+
+			
+			setInterval(()=>{
+				index++;
+
+				if(index>=len){
+					index = 0;
+				}
+
+				// 计算每次top值的变化
+				// 目标值
+				var target = -imgHeight*index;
+
+				// 匀速运动
+				var speed = 10;
+
+
+				// 滚动轮播图
+				// 
+				var timer = setInterval(()=>{
+
+					// 先获取当前top值
+					var currentTop = list.offsetTop;
+
+					if(index===0){
+						if(currentTop >= target){
+							clearInterval(timer);
+							currentTop = target - speed;
+						}
+						list.style.top = currentTop + speed + 'px';
+						return;
+					}
+
+					if(currentTop<= target){
+						clearInterval(timer);
+						currentTop = target + speed;
+					}
+
+					list.style.top = currentTop - speed + 'px';
+				},30)
+
+			},3000);
+
+		});
+	</script>
+</head>
+<body>
+	<div class="carousel">
+		<ul>
+			<li><img src="img/g1.jpg" alt=""></li>
+			<li><img src="img/g2.jpg" alt=""></li>
+			<li><img src="img/g3.jpg" alt=""></li>
+			<li><img src="img/g4.jpg" alt=""></li>
+			<li><img src="img/g5.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>

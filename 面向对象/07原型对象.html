@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>07原型对象</title>
+    <script>
+      //构造函数
+      function Person(){
+        this.name = 'laoxie';
+        this.age = 18;
+      }
+
+      // 原型对象
+      // 如何获取原型对象
+      // 1、通过构造函数
+      Person.prototype.add = function(){
+        console.log('add');
+      };
+
+      // 实例
+      var p1 = new Person();
+
+      console.log(p1);
+
+
+      // 2、通过实例获取原型对象
+      //私有：
+      //console.log(p1.__proto__);
+      //ES5标准方式：
+      //console.log(Object.getPrototypeOf(p1))
+
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>

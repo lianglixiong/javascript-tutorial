@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01匀速运动</title>
+	<!-- 外部样式 -->
+	<!-- <link rel="stylesheet" href=""> -->
+
+	<!-- 内部样式 -->
+	<style>
+		html{overflow:hidden;}
+		.bird{position: absolute;top:0;left:0;}
+	</style>
+
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			/*
+				匀速运动:速度保持不变的运动
+			 */
+			
+			var bird = document.querySelector('.bird');
+			var speed = 20;
+
+			var timer = setInterval(()=>{
+				var left = bird.offsetLeft;
+				// 到边沿停下
+				if(left>=window.innerWidth - bird.offsetWidth){
+					clearInterval(timer);
+
+					// 重置left值为边缘的值
+					left = window.innerWidth - bird.offsetWidth - speed;
+				}
+
+				// 匀速运动：在原来的基础上+speed
+				bird.style.left = left + speed + 'px';
+			},30);
+		});
+		
+
+	</script>
+</head>
+<body>
+	<!-- 内联/行内样式 -->
+	<img src="img/bird.gif" class="bird">
+</body>
+</html>

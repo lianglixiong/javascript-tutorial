@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16递归</title>
+	<script>
+		/*
+			函数可以自己调用自己, 成为函数的递归调用
+			* 递归调用会出现死循环
+			* 在递归调用中一定要有退出条件
+		 */
+		var num = 1;
+		function sum(){
+			num++;
+
+			if(num===100){
+				return;
+			}
+
+			console.log(num);
+
+			sum();
+		}
+
+		sum();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

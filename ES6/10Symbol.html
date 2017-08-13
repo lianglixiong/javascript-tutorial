@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10Symbol</title>
+	<script>
+		var s1 = Symbol();
+
+		// var res = s1 + 'html';
+		// console.log(res);
+
+		var obj = {
+			title:'管理系统',
+			data:['data1','data2'],
+			header:{},
+			footer:{}
+		}
+
+		obj.title = 'test';
+
+		obj[s1] = '独一无二';
+
+		// console.log(obj[s1]);
+
+		for(var attr in obj){
+			console.log(attr);
+		}
+
+
+		// Symbol静态方法
+		// Symbol.for()
+		// 用Symbol.for创建的Symbol类型数据会被登记
+		// symbol.keyFor()
+		
+		// 1、查找全局是否存在标记为lx的Symbol类型
+		// 2、如果已经存在，则获取
+		// 	  如果不存在，则创建
+		var s2 = Symbol.for('lx');
+		var s3 = Symbol.for('lx');
+
+		console.log(s2 === s3)
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax测试</title>
+	<script>
+
+		// 创建异步请求对象
+		var xhr = new XMLHttpRequest();
+
+		// 处理数据
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				var goodslist = JSON.parse(xhr.responseText);
+				console.log(goodslist);
+
+				var ul = document.createElement('ul');
+
+				ul.innerHTML = goodslist.map((goods)=>{
+					return `<li data-id="${goods.id}">
+						<img src="${goods.img}">
+						<h4>${goods.title}</h4>
+						<p class="price">${goods.price}</p>
+					</li>`;
+				}).join('');
+
+				document.querySelector('.datalist').appendChild(ul);
+			}
+		}
+
+		// 建立连接
+		xhr.open('get','http://localhost/ajax/api/json.php',true);
+
+
+		// 发送
+		xhr.send();
+
+	</script>
+</head>
+<body>
+	<h1>商品列表</h1>
+	<div class="datalist">
+		
+	</div>
+</body>
+</html>

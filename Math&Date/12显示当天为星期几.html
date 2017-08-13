@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05判断星期几</title>
+	<style>
+		img{display: block;}
+	</style>
+	<script>
+		window.onload = function(){
+			var pic = document.getElementById('pic');
+
+			// 获取当前时间
+			var now = new Date();
+
+			// 获取星期
+			var week = now.getDay();
+
+			pic.src = 'img/'+week+'.png';
+		}
+		
+	</script>
+</head>
+<body>
+	<img src="img/0.png" id="pic">
+	
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20递归实现斐波那契数列</title>
+	<script>
+	// window.onload = function(){
+		/*
+		斐波那契数列 ：
+		1	1	2	3	5	8	13	21	34	55	89	144
+
+		//求某一个月的兔子数量
+		f(n) = f(n-1) + f(n-2)
+
+		调用：f(3) //=> 2
+		 */
+		function fib(n){
+			// 退出递归
+			// 判断哪个月的值不需要计算
+			if(n<=2){
+				return 1;
+			}
+
+			return fib(n-1) + fib(n-2);
+			// return arugments.callee(n-1) + arugments.callee(n-2);
+		}
+
+		// window.fib = fib;
+	// }
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

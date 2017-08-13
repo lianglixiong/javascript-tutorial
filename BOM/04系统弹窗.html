@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04系统弹窗</title>
+	<script>
+		window.onload =  function(){
+			//警告框
+			// alert('亲，你想了解哪方面的内容？');
+
+			// 确认对话框
+			var btnDel = document.getElementById('btnDel');
+			btnDel.onclick = function(){
+				var res = confirm('你真的忍心离我而去吗？');
+				console.log(res)
+			}
+
+			// 
+			var myname = prompt('亲，你的真实名字是','游客');
+
+
+			console.log(myname);
+		}
+	</script>
+</head>
+<body>
+	<button id="btnDel">删除</button>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13分别求整型数组每5个数的平均值</title>
+	<script>
+		/*
+			定义一个含有30个整型元素的数组，按顺序分别赋予从2开始的偶数；然后按顺序每五个数求出一个平均值，放在另一个数组中并输出。试编程。
+		 */
+		var arr = [];
+		/*
+			for(var i=0,num=2;i<30;i++,num+=2){
+				arr[i] = num;
+			}
+		 */
+		for(var i=0;i<30;i++){
+			arr[i] = i*2+2;
+		}
+
+		console.log(arr);
+
+		// 按顺序分别求出每五个数求出一个平均值
+		// 并写入新的数组
+		var newArr = [];
+		
+		for(var j=0;j<arr.length;j+=5){
+			/*if((j+1)%5 === 0){
+				var total = arr[j] + arr[j-1] + arr[j-2] + arr[j-3] + arr[j-4];
+				newArr.push(total/5);
+
+			}*/
+			var total = 0;
+			for(var k=0;k<5;k++){
+				total += arr[j+k];
+			}
+
+			newArr.push(total/5);
+		}
+
+		console.log(newArr)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

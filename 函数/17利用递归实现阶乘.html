@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>17利用递归实现阶乘</title>
+	<script>
+		function factorial(num){
+			/* 
+			利用循环实现：
+			var res = 1;
+			for(var i=num;i>0;i--){
+				res *= i;
+			}
+
+			return res;*/
+
+			/*
+				利用递归
+				5! = 5 * 4 * 3 * 2 * 1
+				5! = 5 * 4!
+				4! = 4 * 3!
+				3! = 3 * 2!
+				2! = 2 * 1!
+
+				推导公式：fn(num) = num * fn(num-1)
+				退出条件：if(num===1) return 1;
+			 */
+			
+			// 退出条件
+			if(num <= 1){
+				return 1;
+			}
+			
+			return num * factorial(num-1);
+		}
+
+		factorial(5);//5*4*3*2*1 => 120
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

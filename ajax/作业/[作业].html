@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业讲解</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		a{text-decoration:none;}
+		.city-wrap { overflow-y: auto; }
+		.city-wrap h2 { margin: 0; padding: .5em; background: #ccc; color: #fff; }
+		.city-wrap ul { padding: 0; margin: 0; }
+		.city-wrap ul li { padding: 5px 0; border-top: 1px dotted #ddd; }
+		.city-wrap ul li:hover { background: #efefef; }
+		.city-wrap ul li > span { display: inline-block; padding: .5em; color: #26c8ac; }
+		.city-wrap a { display: inline-block; padding: .5em; color: #444; }
+		.city-wrap ul a:hover { color: #26c8ac; text-decoration: none; }
+		.city-wrap .hotCity a { width: 3.5em; text-align: center; }
+
+		.index-bar{background-color:#efefef;}
+		.index-bar a{width: 5.5em;}
+
+		#weather{border:1px solid #ddd;padding:10px;font-size:12px;}
+		#weather ul{padding:5px;overflow:hidden;}
+		#weather li{float:left;padding:5px;width:20%;height:200px;border-right:1px dotted #ddd;box-sizing:border-box;}
+		#weather li.last{border-right:none;float:right;}
+		#weather .date{padding-bottom:10px;margin-bottom:10px;text-align:center;font-weight:bold;border-bottom:1px dotted #ddd;}
+		
+		.type{height:70px;}
+		.qt{background:url(tianqi/1.png) no-repeat center;}
+		.zheny{background:url(tianqi/10.png) no-repeat center;}
+		.dy{background:url(tianqi/3.png) no-repeat center;}
+		.by{background:url(tianqi/12.png) no-repeat center;}
+		.zy{background:url(tianqi/10.png) no-repeat center;}
+		.xy{background:url(tianqi/9.png) no-repeat center;}
+		.yin{background:url(tianqi/4.png) no-repeat center;}
+	</style>
+
+</head>
+<body>
+	<div id="weather"></div>
+	<div class="city-wrap">
+		<div class="hotCity">
+			
+		</div>
+		<div class="indexCity">
+			
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11Set集合</title>
+	<script>
+		// 创建一个Set集合
+		// 自动去重
+		let imgs = new Set();
+
+		var str = new String("abc");
+
+	    imgs.add(1); 
+	    imgs.add(1);
+	    imgs.add(5);
+	    imgs.add("5"); 
+	    imgs.add(str); 
+	    imgs.add(str);
+
+		// console.log(imgs);
+
+		// console.log('keys:',imgs.keys());
+		// console.log('values:',imgs.values());
+
+		// for(var val of imgs.keys()){
+		// 	console.log(val);
+		// }
+
+
+		// for(var val of imgs.values()){
+		// 	console.log(val);
+		// }
+
+		for(var val of imgs.entries()){
+			console.log(val);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

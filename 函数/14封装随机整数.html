@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13封装生成随机颜色函数</title>
+	<!-- 引入外部js文件 -->
+	<script src="../common.js"></script>
+
+	<script>
+		window.onload = function(){
+			/*
+				函数执行完成后，
+				* 默认返回一个undefined
+				* return作用
+					* 终止函数的执行，return后的语句不会被执行
+					* return后如果有值，则把这个值返回到函数执行的地方
+			 */
+
+			//获取一个1到100的随机整数
+			var num = randomNum(1,100);
+
+			console.log('num:',num);
+
+			function randomNum(min,max){
+				// var res = parseInt(Math.random()*1000);
+
+				var res = parseInt(Math.random()*(max-min+1)) + min;
+				//		  parseInt(0.99999*(100-1+1))         + 1
+
+				return res;
+
+				console.log('计算结果：',res);
+			}
+
+
+			// 点击按钮随机改变body的背景颜色
+			var btn = document.getElementById('btn');
+
+			btn.onclick = function(){
+
+				document.body.style.backgroundColor = randomColor();
+			}
+		}
+		
+		
+	</script>
+</head>
+<body>
+	<button id="btn">随机背景颜色</button>
+</body>
+</html>

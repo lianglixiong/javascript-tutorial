@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07节点关系获取元素</title>
+	<style>
+		.box{width:100px;height:100px;background-color: #f00;}
+	</style>
+	<script>
+		window.onload = function(){
+			var box = document.getElementsByClassName('box')[0];
+
+			var btn = box.nextSibling;
+
+			// 通过nextSibling得到的不一定是元素节点
+			while(btn.nodeType != 1){
+				btn = btn.nextSibling;
+			}
+
+			console.log(document.body.childNodes);
+
+			var isShow = true;
+			btn.onclick = function(){
+				if(isShow){
+					box.style.display = 'none';
+					isShow = false;
+				}else{
+					box.style.display = 'block';
+					isShow = true;
+				}
+			}
+
+
+			var datalist = document.getElementsByClassName('datalist')[0];
+			// var lis = datalist.getElementsByTagName('li')
+			// var lis = datalist.childNodes;
+			var lis = getElement(datalist.childNodes);
+
+			// 封装一个删除非元素节点的函数
+			function getElement(nodes){
+				var res = [];
+
+				for(var i=0;i<nodes.length;i++){
+					if(nodes[i].nodeType === 1){
+						res.push(nodes[i]);
+					}
+				}
+
+				return res;
+			}
+
+			
+
+			console.log(lis)
+		}
+	</script>
+</head>
+<body>
+	<div class="box"></div>
+	<button>显示/隐藏</button>
+
+	<ul class="datalist">
+		<li>数据1</li>
+		<li>数据2</li>
+		<li>数据3</li>
+		<li>数据4</li>
+	</ul>
+</body>
+</html>

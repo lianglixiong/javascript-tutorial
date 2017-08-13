@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07字符串拼接</title>
+</head>
+<body>
+	<h1>06数字运算</h1>
+	<input type="text" id="num1">
+	<input type="text" id="num2">
+	<button onclick="add()">计算</button>
+	<script>
+		var num1 = document.getElementById('num1');
+		var num2 = document.getElementById('num2');
+		
+
+		// 计算函数
+		function add(){
+			// 这里的代码在函数调用的时候才执行
+
+			// 通过value属性得到的为字符串
+			// 字符串转数字：
+			// 	* Number
+			// 	* parseInt()：转换成整数
+			// 	* pasreFloat()：转换成浮点数
+			var _num1 = parseFloat(num1.value);//'190d'=>NaN
+			var _num2 = parseFloat(num2.value);
+
+			alert(_num1 + _num2);//NaN + 22
+		}
+	</script>
+</body>
+</html>

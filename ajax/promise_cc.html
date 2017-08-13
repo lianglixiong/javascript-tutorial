@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise传参</title>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			// var img = document.createElement('img')
+			/*var img = new Image();
+			img.src = 'img/0.jpg?v='+Date.now();
+
+			document.body.appendChild(img);
+
+			img.onload = function(){
+				console.log(img.offsetWidth,img.offsetHeight);
+			}*/
+
+			var promise = new Promise(function(resolve,reject){
+				var img = new Image();
+				img.src = 'img/0.jpg?v='+Date.now();
+
+				document.body.appendChild(img);
+
+				img.onload = function(){
+					// resolve/reject只能传递一个参数
+					resolve({width:img.offsetWidth,height:img.offsetHeight})
+				}
+			});
+
+
+			promise.then(function(obj){
+				console.log(obj);
+
+				// 给下一个then传递参数
+				return 100;
+			}).then(function(res){
+				console.log(res);
+
+				var p1 = new Promise((resolve,reject)=>{
+					setTimeout(()=>{
+						console.log('3s后执行');
+						resolve('成功');
+					},3000);
+
+					reject('失败');
+				});
+
+
+				// p1.then((data)=>{
+				// 
+				// })
+				// return一个promise对象，可以链式调用then方法
+				return p1;
+
+			}).then((data)=>{
+				console.log(data);
+			},(fail)=>{
+				console.log(fail);
+			})
+
+			// then(null,()=>{})
+			.catch(()=>{
+				console.log('catch');
+			});
+	
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03显示光标位置</title>
+	<style>
+		body{padding-bottom:2000px;}
+		.cursor{position:fixed;left:0;bottom:0;padding:0 10px;line-height:1.2;background-color: rgba(0,0,0,0.1);font-size:12px;}
+	</style>
+	<script>
+	window.onload = function(){
+		var cursor = document.getElementsByClassName('cursor')[0];
+		// 给document绑定事件
+		// 为了让触发事件的范围更大
+
+		// 显示光标位置
+		document.onmousemove = function(e){
+			// console.log(e.clientX,e.clientY)
+			cursor.innerHTML = '<p>client: ' + e.clientX + ',' + e.clientY + '</p><p>page: ' + e.pageX + ',' + e.pageY + '</p><p>screen: ' + e.screenX + ',' + e.screenY + '</p>';
+		}
+	}
+	</script>
+</head>
+<body>
+	<div class="cursor"></div>
+</body>
+</html>

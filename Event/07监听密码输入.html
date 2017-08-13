@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07监听密码输入</title>
+	<script>
+		window.onload = function(){
+			var qq = document.getElementById('qq');
+			var qqmm = document.getElementById('qqmm');
+			var output = document.getElementById('output');
+
+			// 监听密码输入
+			
+			qqmm.onkeypress = function(e){console.log(6666)
+				e = e  || window.event;
+				var keyCode = e.keyCode || e.which;
+
+				var mm = qqmm.value;
+				/*var str = '';
+				for(var i=0;i<mm.length;i++){
+					str += String.fromCharCode(keyCode);
+				}*/
+
+				output.innerHTML = mm;
+			}
+
+			qqmm.onkeyup = function(e){
+				if(e.keyCode === 8){
+					output.innerHTML = qqmm.value;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>监听密码输入</h1>
+	<p><label for="qq">QQ号：</label>
+	<input type="text" id="qq"></p>
+	<p>
+	<label for="qqmm">密码：</label>
+	<input type="password" id="qqmm"></p>
+	<div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取天气</title>
+	<style>
+		body{font-family:'微软雅黑';}
+		ul{list-style: none;padding:0;margin:0;}
+		.weather{border:1px solid #ddd;padding:10px;font-size:12px;}
+		.weather h1 small{display: block;font-size:16px;margin:5px 0;font-weight:normal;color:#c00;}
+		.weather ul{padding:5px;overflow:hidden;}
+		.weather li{float:left;padding:5px;width:143px;height:200px;border-right:1px dotted #ddd;}
+		.weather li.last{border-right:none;float:right;}
+		.weather .date{padding-bottom:10px;margin-bottom:10px;text-align:center;font-weight:bold;border-bottom:1px dotted #ddd;}
+		
+		.type{height:70px;}
+		.qt{background:url(tianqi/1.png) no-repeat center;}
+		.yt{background: url(tianqi/2.png) no-repeat center;}
+		.zhenyu{background:url(tianqi/10.png) no-repeat center;}
+		.duoyun{background:url(tianqi/3.png) no-repeat center;}
+		.by{background:url(tianqi/12.png) no-repeat center;}
+		.zy{background:url(tianqi/10.png) no-repeat center;}
+		.xy{background:url(tianqi/9.png) no-repeat center;}
+		.leiyu{background: url(tianqi/16.png) no-repeat center;}
+		.dayu{background: url(tianqi/11.png) no-repeat center;}
+
+		#bdmap{height:300px;overflow:auto;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=x4RLsqK9mFnB0Vf3QiNLvSMAVmuhWqPe"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			// 获取页面元素
+			var city = document.querySelector('#city');
+			var btn = city.nextElementSibling;
+			var weather = document.querySelector('.weather');
+
+
+			var url = 'http://wthrcdn.etouch.cn/weather_mini';
+
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4 && (xhr.status ===200 || xhr.status === 304)){
+					var res = JSON.parse(xhr.responseText)
+					console.log(res);
+
+					if(res.status != 1000){
+						return;
+					}
+
+					// 处理数据
+					var ul = document.createElement('ul');
+					ul.innerHTML = res.data.forecast.map(function(item){
+						return `<li>
+							<h4>${item.date}</h4>
+							<div class="type">${item.type}</div>
+							<div class="temp">${item.low}/${item.high}</div>
+						</li>`
+					}).join('');
+
+					weather.innerText = '';
+					weather.appendChild(ul);
+				}
+			}
+
+
+			// 获取当前IP
+			// 根据IP获取当前城市
+			// 根据城市自动获取天气和地图
+
+
+			// 创建一个promise对象
+			var promise = new Promise(function(resolve){
+				var xhr_ip = new XMLHttpRequest();
+				xhr_ip.onreadystatechange = function(){
+					if(xhr_ip.readyState === 4 && (xhr_ip.status ===200 || xhr_ip.status === 304)){
+
+						var ip = xhr_ip.responseText;
+
+						resolve(ip);
+					}
+				}
+				xhr_ip.open('get','api/get_ip.php',true);
+				xhr_ip.send();
+			});
+
+			promise.then(function(ip){
+				// 根据IP获取城市
+				var xhr_city = new XMLHttpRequest();
+				xhr_city.onreadystatechange = function(){
+					if(xhr_city.readyState === 4 && (xhr_city.status ===200 || xhr_city.status === 304)){
+						var _city = JSON.parse(xhr_city.responseText).city;
+
+						// 根据city获取天气
+						xhr.open('get',url+'?city='+_city,true);
+						xhr.send();
+
+						// 根据city获取地图
+						showMap(_city);
+					}
+				}
+				xhr_city.open('get','api/get_city.php?ip='+ip,true);
+				xhr_city.send();
+			})
+			
+			
+
+
+			// 点击按钮请求数据
+			btn.onclick = function(){
+				var _city = city.value;
+				xhr.open('get',url+'?city='+_city,true);
+				xhr.send();
+
+
+				showMap(_city)
+			}
+
+
+			function showMap(_city){
+				// 显示百度地图
+				// 创建Map实例
+				var map = new BMap.Map("bdmap");
+
+				// 初始化地图,设置中心点坐标和地图级别
+				map.centerAndZoom(_city, 15); 
+
+				//开启鼠标滚轮缩放
+				map.enableScrollWheelZoom(true); 
+
+				var stCtrl = new BMap.PanoramaControl(); //构造全景控件
+				stCtrl.setOffset(new BMap.Size(20, 20));
+				map.addControl(stCtrl);//添加全景控件 
+			}
+		})
+	</script>
+</head>
+<body>
+	<h1>天气预报</h1>
+	<input type="text" id="city"><button>天气预报</button>
+	<div class="weather"></div>
+	<div id="bdmap"></div>
+</body>
+</html>

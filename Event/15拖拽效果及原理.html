@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15拖拽效果及原理</title>
+	<style>
+		#box{position:absolute;top:0;left:0;width:100px;height:100px;background-color: #f00;}
+	</style>
+	<script>
+		window.onload =function(){
+			/*
+				拖拽效果
+				原理：按下鼠标并移动
+				* mousedown
+				* mousemove
+					* 改变top,left
+				* 两个事件同时发生
+				* 鼠标弹起后，清除mousemove事件
+			 */
+			var box = document.getElementById('box');
+
+
+			box.onmousedown = function(e){
+				// 移动前
+				var ox = e.offsetX;
+				var oy = e.offsetY;
+				// var ox = e.clientX - box.offsetLeft;
+				// var oy = e.clientY - box.offsetTop;
+
+				document.onmousemove = function(evt){
+					// 移动后
+					box.style.left = evt.clientX - ox + 'px';
+					box.style.top = evt.clientY - oy + 'px';
+
+					evt.preventDefault();
+				}
+			}
+
+			// 鼠标弹起后，清除mousemove事件
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		你好呀
+		<!-- <div class="title"></div>
+		<div class="content"></div> -->
+	</div>
+</body>
+</html>

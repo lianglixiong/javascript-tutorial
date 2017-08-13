@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cors</title>
+	<script>
+		/*
+			跨域解决方案：CORS
+			http://localhost/ajax/cors.html
+			http://localhost:2017/cors.php
+		*/
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4 && (xhr.status===200 || xhr.status===304)){
+				document.write(xhr.responseText);
+			}
+		}
+		xhr.open('get','http://localhost:2017/cors.php',true);
+		xhr.send();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

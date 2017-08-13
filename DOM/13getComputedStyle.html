@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13getComputedStyle</title>
+	<style>
+		#box{width:200px;height:100px;background: #f00;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		window.onload = function(){
+			var box = document.getElementById('box');
+
+			var bgcolor;
+
+			// 如何判断用户浏览器是否支持getComputedStyle
+			// 如何判断一个对象的属性是否存在
+			// var obj = {name:'xx',age} => obj.hobby//undefined
+			if(window.getComputedStyle){
+				// 标准浏览器
+				bgcolor = getComputedStyle(box)['background-color'];
+			}else{
+				//IE8-
+				bgcolor = box.currentStyle.backgroundColor
+			}
+			console.log(bgcolor);
+
+
+			console.log(getStyle(box,'font-size'));
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

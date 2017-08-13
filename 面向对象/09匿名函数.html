@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09匿名函数</title>
+	<script>
+		var sum = function(){
+
+		}
+		//sum()//
+
+		document.onclick = function(){};
+
+		// 匿名函数自执行
+		// 格式1：
+		(function(num){
+			console.log(666);
+			console.log(num)
+		})(20);
+
+		// 
+		(function(){
+			console.log(777)
+		}());
+
+		!function(){
+			console.log(888)
+		}();
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

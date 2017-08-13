@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>去除首尾空格</title>
+    <script>
+        window.onload = function(){
+            /*
+                去除首尾空格
+                * \s 一个空格
+                * {n,} 数量词，表示n个或n个以上
+                    * 1个或1个以上：+ <==> {1,}
+                    * 0个或0个以上：* <==> {0,}
+                    * 0个或1个：? <==>{0,1}
+                * ^ 表示开头
+                * $ 表示结尾
+                * | 或
+             */
+            var username = document.getElementById('username');
+            var btn = username.nextElementSibling;
+
+            btn.onclick = function(){
+                var _username = username.value;
+
+                // 表示一个空格：\s
+                // _username = _username.replace(/^\s{1,}|\s{1,}$/g,'');
+                _username = _username.replace(/^\s+|\s+$/g,'');
+
+                console.log(_username)
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="username">
+    <button>去除首尾空格</button>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05淡入淡出</title>
+	<style>
+		img{opacity:0.5;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var img = document.querySelector('img');
+
+			var timer
+
+			// 鼠标移入，透明改成1
+			img.onmouseenter = ()=>{
+				var speed = 0.1;
+
+				// 清除之前的定时器
+				clearInterval(timer);
+				timer = setInterval(()=>{
+					var currentOpacity = getComputedStyle(img).opacity*1;
+
+					if(currentOpacity>=1){
+						clearInterval(timer);
+						currentOpacity = 1-speed;
+					}
+
+					img.style.opacity = currentOpacity + speed;
+
+				},60);
+			}
+
+			img.onmouseleave = ()=>{
+				var speed = -0.1;
+
+				// 清除之前的定时器
+				clearInterval(timer);
+				timer = setInterval(()=>{
+					var currentOpacity = getComputedStyle(img).opacity*1;
+
+					if(currentOpacity<=0.5){
+						clearInterval(timer);
+						currentOpacity = 0.5-speed;
+					}
+
+					img.style.opacity = currentOpacity + speed;
+
+				},60);
+			}
+		});
+	</script>
+</head>
+<body>
+	<img src="img/g3.jpg">
+</body>
+</html>

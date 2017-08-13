@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09动画函数的封装和使用</title>
+	<style>
+		#box{position:absolute;top:50px;left:0;width:200px;height:100px;background: #f00;opacity:0.5;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var box = document.querySelector('#box');
+			var btn = document.querySelectorAll('button');
+
+			// 改变宽度
+			btn[0].onclick = function(){
+				animate(box,'width',400);
+			}
+
+			// 改变left
+			btn[1].onclick = function(){
+				animate(box,'left',200);
+			}
+
+
+			// 链式动画
+			// 高度动画完成后，执行top动画
+			btn[2].onclick = function(){
+
+				// animate(box,'height',200,function(){
+				// 	animate(box,'top',100);
+				// });
+
+				// json字符串
+
+				animate(box,{'height':200,width:300,opacity:1},function(){
+					console.log(666)
+					animate(box,{top:300});
+				});
+			}
+
+
+			// 鼠标移入移出
+			box.onmouseover = function(){
+				// animate(box,'width',400);
+				// animate(box,'opacity',1);
+
+				animate(box,{width:400,opacity:1});
+			}
+
+			box.onmouseout = function(){
+				// animate(box,'width',200);
+				// animate(box,'opacity',0.5);
+				animate(box,{width:200,opacity:0.5});
+			}
+		});
+	</script>
+</head>
+<body>
+	<button>宽度</button>
+	<button>left</button>
+	<button>链式动画</button>
+	<div id="box"></div>
+</body>
+</html>

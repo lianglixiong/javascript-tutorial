@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax测试</title>
+	<script>
+		// 在js编写ajax异步请求
+
+		// 1）创建ajax请求,返回一个异步请求对象
+		var xhr = new XMLHttpRequest();
+		console.log(xhr);
+
+		// 4）处理数据
+		// onreadystatechange
+		xhr.onreadystatechange = function(){
+			console.log(xhr.readyState);
+			if(xhr.readyState === 4){
+				var p = document.createElement('p')
+				p.innerHTML = xhr.responseText;
+
+				document.body.appendChild(p);
+			}
+		}
+
+		// 2）设置请求参数，建立与服务器连接
+		// open(请求类型,数据请求地址,是否异步) ; api地址
+		xhr.open('get','http://localhost/ajax/api/test.php',true);
+
+		// 3）发送请求
+		xhr.send();
+
+
+
+
+
+		/*// 同步
+		for(var i=0;i<100;i++){
+
+		}
+		console.log(666);
+
+
+		// 异步
+		setTimeout(function(){
+			console.log('aaa')
+		},3000);
+		console.log('end');*/
+
+	</script>
+</head>
+<body>
+	<h1>ajax测试</h1>
+</body>
+</html>

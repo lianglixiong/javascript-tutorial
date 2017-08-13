@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16逻辑运算</title>
+
+</head>
+<body>
+	<input type="text" id="year"><button onclick="check()">闰年判断</button>
+	<div id="output"></div>
+	<script>
+		/*
+			判断输入框输入的年份是否为闰年
+			* 能被4整除但不能被100整除，或者能被400整除的才叫闰年
+		 */
+		
+		// 获取元素
+		var year = document.getElementById('year');
+		var output = document.getElementById('output');
+
+		function check(){
+			var _year = year.value;
+
+			// 判断是否是闰年
+			// &&：两边条件同时满足才得到true,否则得到false
+			// true&&true => true;
+			// true&&false => false;
+			// ||：两边条件只要有一个满足就得到true
+			// true||true =>true
+			// true||false =>true
+			// false || false =>false
+			if((_year%4 === 0 && _year%100 != 0) || _year%400 === 0){
+				// alert('闰年');
+
+				// innerHTML
+				// 改变元素的内容，支持html
+				output.innerHTML = '<strong>闰年</strong>';
+			}else{
+				// alert('平年');
+				output.innerHTML = '平年';
+			}
+		}
+	</script>
+</body>
+</html>

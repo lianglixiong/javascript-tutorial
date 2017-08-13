@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>18进度条效果</title>
+	<style>
+		#loading{width:0;height:5px;background-color: #0f0;}
+	</style>
+	<script>
+		window.onload = function(){
+			var loading = document.getElementById('loading');
+
+			var width = 0;
+			var timer = setInterval(function(){
+				width +=2;
+
+				// 通过style属性设置宽度
+				loading.style.width = width + 'px';
+
+				if(width>=600){
+					clearInterval(timer);
+				}
+			},30);
+		}
+	</script>
+</head>
+<body>
+	<div id="loading"></div>
+</body>
+</html>

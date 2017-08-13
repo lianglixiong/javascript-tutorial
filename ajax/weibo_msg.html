@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>微博信息</title>
+	<style>
+		.datalist{margin:0 auto;line-height:2;}
+		.datalist li{position:relative;border-bottom:1px dotted #ddd;padding-right:100px;}
+		.datalist li span{position:absolute;right:0;top:0;margin:0 5px;padding:2px 5px 2px 20px;background:skyblue url(icon/com.svg) no-repeat 5px center;background-size:20px;border-radius: 5px;width:30px;text-align:center;color:#fff;}
+		.datalist li span.like{right:70px;background-image:url(icon/zan.svg);background-color:orange;}
+	</style>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var datalist = document.querySelector('.datalist');
+
+		// 创建异步请求对象
+		var xhr = new XMLHttpRequest();//readyState=0
+
+		// 处理数据
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4){
+				// ES5
+				var res = JSON.parse(xhr.responseText);
+
+				// var res = eval('('+xhr.responseText+')');
+				console.log(res);
+
+				var ul = document.createElement('ul');
+
+				ul.innerHTML = res.map(item=>{
+					return `
+						<li data-id="${item.id}">
+							<strong>${item.username}：</strong>
+							<div>${item.content}</div>
+							<span class="like">${item.likecnt}</span>
+							<span>${item.comtcnt}</span>
+						</li>
+					`
+				}).join('');
+
+
+				// 写入页面
+				datalist.appendChild(ul);
+			}
+		}
+
+		xhr.open('get','data/weibo.json?version='+new Date().getTime(),true);//readyState=1
+
+		xhr.send();//readyState=2
+
+
+		// 利用事件委托实现点赞效果
+		datalist.onclick = function(e){
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+
+			if(target.classList.contains('like')){
+				var currentLi = target.parentNode;
+				var id = currentLi.dataset.id;
+
+				var xhr = new XMLHttpRequest();
+
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState === 4){
+						var item = JSON.parse(xhr.responseText);
+
+						// 把最新的点赞数量写入页面
+						target.innerText = item.likecnt;
+					}
+				}
+
+				// get请求传递数据：在url后写入
+				xhr.open('get','api/weibo_like.php?id=' + id,true);
+				xhr.send();
+			}
+		}
+	});
+		
+	</script>
+</head>
+<body>
+	<h1>微博信息</h1>
+	<div class="datalist">
+		
+	</div>
+</body>
+</html>

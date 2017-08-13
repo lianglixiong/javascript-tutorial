@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16判断两个日期相差的天数</title>
+	<script>
+		/*
+			计算距离东奥会还差多少天
+			思路：
+			1）先换算成毫秒
+			2）两个时间相减
+			3）再换算成天数
+		 */
+		/*var now = new Date();
+
+		var end = new Date('2020-8-8');
+
+		// 计算差值(ms)
+		var offset = end.getTime() - now.getTime();*/
+
+		var offset = Date.parse('2020-8-8') - Date.now();
+
+		// 3）再换算成天数
+		var days = Math.floor(offset/1000/60/60/24);
+
+		console.log(days);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

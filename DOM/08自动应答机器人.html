@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08自动应答机器人</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		.msg-list{width:600px;margin:0 auto;}
+		.msg-list ul{padding:10px;min-height:200px;overflow:hidden;border:1px solid #ddd;}
+		.msg-list li{float:left;clear:both;margin:10px 0;padding:5px;line-height:2;border-radius:5px;background-color:#efefef;}
+		.msg-list li.active{float:right;background-color:#fc0;color:#fff;}
+		.msg-list textarea{display:block;min-height:50px;margin:10px 0;width:100%;box-sizing: border-box;}
+	</style>
+	<script>
+	window.onload = function(){
+
+		/*
+			自动应答机器人
+			1）创建自动回复信息
+				* 你好 ==> 他好我也好
+				* 你妹 ==> 不要骂人好吗
+				* 约吗 ==> 叔叔，我们不约
+				* 10年了还约吗 ==> 十年之前，我不认识你，你也不属于我，所以，别跟我谈感情，太伤钱
+				* 其他任意消息 ==> 你说什么？风太大，我听不见~~
+			2）给按钮绑定点击事件
+				* 把输入的消息写入页面
+				* 根据输入的信息延迟0.5s自动回复<相应信息>
+		 */
+		
+		// 获取元素
+		var autoApply = document.getElementById('autoApply');
+		// var msglist = autoApply.getElementsByTagName('ul')[0];
+		// var msglist = getElement(autoApply.childNodes)[0];
+		var msglist = autoApply.children[0];
+		var msg = autoApply.children[1];
+		var btn = autoApply.children[2];
+
+		// 1）创建自动回复信息
+		var question = ['你好','你妹','约吗','10年了还约吗'];
+		var answer = ['他好我也好','不要骂人好吗','叔叔，我们不约','十年之前，我不认识你，你也不属于我，所以，别跟我谈感情，太伤钱'];
+
+		// 给按钮绑定点击事件
+		btn.onclick = function(){
+			// 把输入的消息写入页面
+			var _msg = msg.value;
+
+			var qli = document.createElement('li');
+			qli.className = 'active';
+			qli.innerHTML = _msg;
+
+			msglist.appendChild(qli);
+
+			// 判断输入的信息是否存在question中
+			var idx = question.indexOf(_msg);
+
+			// 自动回复
+			var ali = document.createElement('li');
+			if(idx != -1){
+				ali.innerHTML = answer[idx];
+			}else{
+				ali.innerHTML = '你说什么？风太大，我听不见~~';
+			}
+			setTimeout(function(){
+				msglist.appendChild(ali);
+			},500);
+		}
+	}
+
+	</script>
+</head>
+<body>
+	<div id="autoApply" class="msg-list">
+		<ul>
+		</ul>
+		<textarea></textarea>
+		<button>提交</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>根据数据生成表单</title>
+    <script>
+        /*
+            根据数据生成表单
+                遍历数据，生成相应的表单控件
+                1、生成label
+                2、根据类型生成表单控件
+                    type==select ==> <select><option></option></select>
+                    type==textarea ==> <textarea/>
+                    type==checkbox,radio
+                    其他情况
+                3、写入页面
+         */
+        var data = [{
+            label: '用户名',
+            name: 'username',
+            type: 'text'
+        }, {
+            label: '密码',
+            name: 'psw',
+            type: 'password'
+        }, {
+            label: '年龄',
+            name: 'age',
+            type: 'text'
+        }, {
+            label: '学历',
+            name: 'degree',
+            type: 'select',
+            value: ['小学', '中学','大学','社会']
+        }, {
+            label: '性别',
+            name: 'gender',
+            type: 'select',
+            value: ['男', '女']   //==》['<option value="男">男</option>','<option value="女">女</option>'] ==> <option value="男">男</option><option value="女">女</option>
+        }, {
+            label: '爱好',
+            name: 'hobby',
+            type: 'checkbox',
+            value:['篮球','足球','羽毛球','爬山','购物','旅游','看美女']
+        }, {
+            label: '是否已婚',
+            name: 'married',
+            type: 'radio',
+            value:['已婚','未婚','保密']
+        }, {
+            label: '简历',
+            type:'textarea',
+            name: 'resume'
+        }];
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

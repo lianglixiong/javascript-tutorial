@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07location</title>
+	<script>
+	window.onload = function(){
+
+		//location.href = 'http://www.baidu.com'
+		// 页面间传递数据
+		var obj = {name:'laoxie',age:18,gender:'男'};
+
+		var data = '?';
+		for(var attr in obj){
+			data += attr + '=' + obj[attr] + '&'
+		}
+		data = data.slice(0,-1);
+		console.log(data);
+
+		var btnData = document.getElementById('btnData');
+
+		btnData.onclick = function(){
+			location.href = '07data.html' + data;
+		}
+
+
+		// 点击刷新
+		btnSx.onclick = function(){
+			location.reload()
+		}
+
+	}
+	</script>
+</head>
+<body>
+	<h1>本网页</h1>
+	<button id="btnData">传递数据</button>
+	<button id="btnSx">刷新</button>
+</body>
+</html>

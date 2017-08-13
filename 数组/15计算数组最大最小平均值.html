@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15计算数组最大最小平均值</title>
+	<script>
+		/*
+			分别计算出以下数组的最大值，最小值和平均值，并输出他们的索引
+			[10,2,8,55,32,18,9,11,30,16,19,20]
+
+			* 最大值：遍历获取最大值
+			* 最小值：遍历获取最小值
+			* 平均值：求和/数量
+		 */
+		var arr = [10,2,8,55,32,18,9,11,30,16,19,20];
+
+		// 先把数组第一项赋值给最大值和最小值
+		var maxIdx = 0;
+		var minIdx = 0;
+		var max = arr[0];
+		var min = arr[0];
+
+		var total = 0;
+
+		for(var i=0;i<arr.length;i++){
+			// 判断最大值
+			// 如果当前值比max大，把当前值赋给max
+			if(arr[i] > max){
+				max = arr[i];
+				maxIdx = i;
+			}
+
+			// 判断最小值
+			// 如果当前值比min小，把当前值赋给min
+			if(arr[i]<min){
+				min = arr[i];
+				minIdx = i;
+			}
+
+			total += arr[i];
+		}
+
+		// 平均值
+		average = total/arr.length;
+
+		document.write('<p>最大值：' + max,'， 对应的索引：' + maxIdx + '</p>');
+		document.write('<p>最小值：' + min,'， 对应的索引：' + minIdx + '</p>');
+		document.write('<p>平均值：' + average+'</p>');
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

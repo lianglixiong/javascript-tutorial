@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09事件冒泡</title>
+	<style>
+		#box{width:200px;height:100px;background-color: #f00;}
+	</style>
+	<script>
+	window.onload = function(){
+		document.onclick = function(e){
+			console.log('document')
+		}
+
+		window.onclick = function(){
+			console.log('window被点击')
+		}
+
+		document.documentElement.onclick = function(e){
+			e = e || window.event;
+			console.log('html被点击')
+
+			// 阻止事件冒泡
+			e.stopPropagation();
+		}
+
+		document.body.onclick = function(e){
+			e = e || window.event;
+			console.log('body被点击');
+
+
+		}
+
+		var box = document.getElementById('box');
+		box.onclick = function(){
+			console.log('box被点击')
+		}
+
+
+	}
+		
+	</script>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+</html>

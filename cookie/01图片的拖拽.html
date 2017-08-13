@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01图片的拖拽</title>
+	<style>
+		img{position: absolute;top:0;left:0;}
+	</style>
+	<script>
+		window.onload = function(){
+			var img = document.images[0];
+
+			img.onmousedown = function(e){
+				var ox = e.offsetX;
+				var oy = e.offsetY;
+
+				document.onmousemove = function(evt){
+					img.style.left = evt.clientX - ox + 'px';
+					img.style.top = evt.clientY - oy + 'px';
+
+					evt.preventDefault();
+				}
+			}
+
+			document.onmouseup = function(){
+				document.onmousemove = null;
+
+				// 鼠标弹起后，记录当前图片坐标
+				// 添加expires参数
+				var now = new Date();
+				now.setDate(now.getDate()+7);
+
+				document.cookie = 'left=' + img.offsetLeft + ';expires=' + now.toString();
+				document.cookie = 'top=' + img.offsetTop + ';expires=' + now.toString();
+			}
+
+			//页面打开或刷新后，读取cookie
+			//获取top,left，并设置css属性
+			var cookies = document.cookie;
+
+			// 先判断有无cookie
+			if(cookies){
+				var arr = cookies.split('; ');console.log(arr)
+				arr.forEach(function(item){
+					var temp = item.split('=');
+					if(temp[0] === 'left'){
+						img.style.left = temp[1] + 'px';
+					}
+					if(temp[0] === 'top'){
+						img.style.top = temp[1] + 'px';
+					}
+				})
+			}
+		}
+	</script>
+</head>
+<body>
+	<img src="img/g3.jpg">
+</body>
+</html>

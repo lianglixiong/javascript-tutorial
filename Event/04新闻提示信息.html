@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04新闻提示信息</title>
+	<style>
+		/*#box{width:0;height:0;border:30px solid transparent;border-bottom-color:#f60;}*/
+		.details{display:none;position:absolute;padding:10px;width:200px;border:1px solid #f60;background-color: #ffc;}
+		.details::before,.details::after{
+			content:'';
+			position:absolute;top:-20px;left:15px;
+			border:10px solid transparent;border-bottom-color:#f60;
+		}
+		.details::after{top:-18px;border-bottom-color:#ffc;}
+	</style>
+	<script>
+		window.onload = function(){
+			var newslist = document.getElementsByClassName('newslist')[0];
+			var links = newslist.getElementsByTagName('a');
+			var details = document.getElementsByClassName('details')[0];
+
+			// 遍历a标签，给每个a标签绑定点击事件
+			for(var i=0;i<links.length;i++){
+
+				// 鼠标移入
+				links[i].onmouseover = function(){
+					// 把当前a标签的title属性内容写入.details
+					// 并显示.details
+
+					details.innerHTML = this.title;
+					details.style.display = 'block';
+				}
+
+				// 鼠标移出
+				links[i].onmouseout = function(){
+					// 隐藏.details
+					details.style.display = 'none';
+				}
+
+
+				// 鼠标移动事件
+				links[i].onmousemove = function(e){
+					// 让.details跟随鼠标移动
+					details.style.left = e.clientX - 20 + 'px';
+					details.style.top = e.clientY + 40 + 'px';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>新闻提示信息</h1>
+	<ul class="newslist">
+		<li><a href="#" title="小明由于调戏女老师再次被滚粗教室">教室文化</a></li>
+		<li><a href="#" title="iPhone10发布,屏幕高度亮瞎了所有小伙伴">iphone10发布会</a></li>
+		<li><a href="#" title="为了弘扬乐于助人的精神，中国人大开会决定授予老王“中国好邻居”称号">关于老王</a></li>
+	</ul>
+	<div class="details"></div>
+	<!-- <div id="box"></div> -->
+</body>
+</html>

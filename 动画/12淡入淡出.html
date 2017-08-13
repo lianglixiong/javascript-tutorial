@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10水平滚动轮播图</title>
+	<style>
+		ul{list-style: none;margin:0;padding:0;}
+		.carousel{position:relative;width:810px;height:320px;overflow: hidden;}
+		.carousel ul{position:relative;width:810px;height:320px;overflow:hidden;}
+		.carousel li{position: absolute;left:0;top:0;height:320px;width:810px;opacity: 0;}
+		.carousel img{display: block;}
+
+		.carousel .page{position: absolute;left:50%;bottom:10px;margin-left:-100px;width:200px;text-align:center;}
+		.carousel .page span{display: inline-block;margin:0 5px;width:10px;height:10px;border:2px solid rgba(255,255,255,0.5);overflow:hidden;background-color: #fff;border-radius: 50%;text-indent:-2000em;box-shadow: 0 0 5px rgba(0,0,0,0.5)}
+		.carousel .page span.active{background-color: #f00;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var carousel = document.querySelector('.carousel');
+			var ul = carousel.children[0];
+			var list = ul.children;
+
+			// 初始索引值
+			var index = 0;
+			var lastIndex = 0;
+			
+			var len = list.length;
+
+			// 显示第一张图片
+			list[index].style.opacity = 1;
+
+			// 写入页码
+			var page = document.createElement('div');
+			page.classList.add('page');
+
+			for(var i=0;i<len;i++){
+				var span = document.createElement('span');
+				span.innerText = i+1;
+
+				// 给当前页码加高亮
+				if(i===index){
+					span.classList.add('active');
+				}
+				page.appendChild(span);
+			}
+
+			// 页码添加到页面
+			carousel.appendChild(page);
+
+			// 点击页码切换
+			page.onclick = function(e){
+				e = e || window.event;
+				var target = e.target || e.srcElement;
+
+				if(target.tagName.toLowerCase() === 'span'){
+					index = target.innerText - 1;
+
+					showPic();
+				}
+			}
+
+
+			var timer = setInterval(autoPlay,3000);
+
+
+			// 鼠标移入移出
+			carousel.onmouseenter = function(){
+				clearInterval(timer);
+			}
+
+			carousel.onmouseleave = function(){
+				timer = setInterval(autoPlay,3000);
+			}
+
+
+			function autoPlay(){
+				index++;
+
+				showPic();
+			}
+
+			function showPic(){
+				if(index>len-1){
+					index = 0;
+				}
+
+				page.children[lastIndex].classList.remove('active');
+				page.children[index].classList.add('active')
+
+
+
+				// 把当前li的透明度改成1
+				animate(list[index],{opacity:1});
+
+				// 把上一张透明度改成0
+				animate(list[lastIndex],{opacity:0});
+
+
+				// 更新lastIndex
+				lastIndex = index;
+
+			}
+		})
+	</script>
+</head>
+<body>
+	<div class="carousel">
+		<ul>
+			<li><img src="img/001.jpg" alt=""></li>
+			<li><img src="img/002.jpg" alt=""></li>
+			<li><img src="img/003.jpg" alt=""></li>
+			<li><img src="img/004.jpg" alt=""></li>
+		</ul>
+		<!-- <div class="page">
+			<span class="active">1</span>
+			<span>2</span>
+		</div> -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03jquery的方法</title>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+	$(()=>{
+		var btn = $('#btn');//jQuery('#box')
+
+		btn.on('click',function(){
+			if($('.content').is(':hidden')){
+				$('.content').show();
+			}else{
+				$('.content').hide();
+			}
+			
+		})
+	});
+		
+	</script>
+</head>
+<body>
+	<div class="content">
+		显示隐藏
+	</div>
+	<button id="btn">按钮</button>
+</body>
+</html>

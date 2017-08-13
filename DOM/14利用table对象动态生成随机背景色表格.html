@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14利用table对象动态生成随机背景色表格</title>
+	<script src="../common.js"></script>
+	<script>
+		window.onload = function(){
+			/*
+				* 删除行
+				* 添加行号
+				* 点击单元格添加高亮
+			 */
+			var row = document.getElementById('row');
+			var col = document.getElementById('col');
+			var btn = col.nextElementSibling;
+			var datalist = document.getElementsByClassName('datalist')[0];
+
+			btn.onclick = function(){
+				var _row = row.value;
+				var _col = col.value;
+
+				// 创建一个表格
+				var table = document.createElement('table');
+
+				for(var i=0;i<_row;i++){
+					var tr = table.insertRow(i);
+					tr.style.backgroundColor = randomColor();
+					for(var j=0;j<_col;j++){
+						var td = tr.insertCell(j);
+						td.innerText = '单元格' + (i+1) + (j+1)
+					}
+				}
+
+				datalist.innerHTML = '';
+				datalist.appendChild(table);
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>生成随机背景色表格</h1>
+	<label for="row">行</label>
+	<input type="text" id="row">
+	<label for="col">列</label>
+	<input type="text" id="col">
+	<button>生成表格</button>
+	<div class="datalist"></div>
+</body>
+</html>

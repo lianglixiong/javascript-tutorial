@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03抛物线运动</title>
+	<style>
+		body{background-color: #000;overflow:hidden;}
+		.basketball{width:160px;position: absolute;left:0;top:0;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var basketball = document.querySelector('.basketball');
+
+			// 垂直速度
+			var vspeed = 0;
+
+			// 水平速度
+			var hspeed = 30;
+
+			var timer = setInterval(()=>{
+				var top = basketball.offsetTop;
+				vspeed +=1;
+
+				if(top >= window.innerHeight - basketball.offsetHeight){
+					clearInterval(timer);
+					top = window.innerHeight - basketball.offsetHeight - vspeed;
+				}
+				basketball.style.top = top + vspeed + 'px';
+				basketball.style.left = basketball.offsetLeft + hspeed + 'px';
+			},30);
+
+		});
+	</script>
+</head>
+<body>
+	<img src="img/basketball.jpg" class="basketball">
+</body>
+</html>

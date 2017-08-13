@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06数组作为函数参数传递</title>
+	<script>
+		// 基本数据类型：
+		var num = 10;
+		function getItem(num){
+			// var num = 10;
+			num++;
+		}
+
+		getItem(num);
+
+		console.log(num);
+
+
+		// 引用数据类型
+		// 数据存放在堆内存
+		// 变量仅仅是一个快捷方式（指针）
+		var arr = [10,20,30];
+
+		function changeItem(_arr){
+			// var _arr = arr
+			// [10,20,30,40]
+			_arr.push(40);
+		}
+
+		changeItem(arr);
+
+		console.log(arr);
+
+
+		// 数组的复制
+		var str1 = 'laoxie';
+		var str2 = str1;
+		str2 = 'xiaoxie';
+
+		console.log(str1,str2);
+
+		var arr1 = [5,10,15];
+		var arr2 = arr1;
+		arr2.unshift(0);
+
+		console.log(arr1,arr2);
+
+		// 如何复制数组
+		// 遍历赋值
+		var arr = ['laoxie','xiaoxie','maxxie'];
+		var newarr = [];
+		for(var i=0;i<arr.length;i++){
+			newarr[i] = arr[i];
+		}
+		newarr.push('minxie');
+
+		console.log(arr);
+		console.log(newarr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

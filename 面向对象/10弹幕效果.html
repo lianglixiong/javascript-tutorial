@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10弹幕效果</title>
+	<style>
+	.container{width:800px;margin:0 auto;padding-bottom:10px;background-color:#dfdfdf;}
+	#barrage{position:relative;height:600px;margin-bottom:10px;background-color:#000;overflow:hidden;}
+	#barrage .bar-item{position:absolute;left:100%;white-space:nowrap;}
+	#msg{margin-left:10px;width:400px;height:30px;border:1px solid #999;border-right:none;box-sizing:border-box;vertical-align:middle;}
+	#msg+button{padding:0 10px;height:30px;vertical-align:middle;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		/*
+			弹幕
+				效果：
+					1）随机颜色，速度，字体大小，位置
+					2）从右往左移动
+				思路：
+					1）发送
+						1>绑定点击事件
+						2>发送消息，把消息当作一个对象
+					2）生成消息对象
+						初始化：确定颜色，速度，字体大小，位置
+					3）运动
+						从右往左移动
+		 */
+		
+		var container = document.querySelector('.container');
+		var barrage = container.querySelector('#barrage');
+		var msg = container.querySelector('#msg');
+		var btnSend = msg.nextElementSibling;
+		
+		
+		// 弹幕窗口
+		var win = {
+			// 描述属性
+			width:800,
+			height:600,
+
+			// 方法
+			//初始化
+			//1、生成html结构
+			//2、绑定事件
+			init:function(){
+				
+
+				btnSend.onclick = function(){
+					var _msg = msg.value;
+
+					var b = new Barrage(_msg);
+					b.init();
+					b.move();
+
+				}
+
+
+			},
+			send:function(){
+
+			}
+		}
+
+		win.init();
+
+
+		function Barrage(msg){
+			// 属性
+			this.color = randomColor();
+			this.fontSize = randomNum(12,36);
+			this.speed = randomNum(-20,-2);
+			this.top = randomNum(10,win.height-this.fontSize-10);
+			this.msg = msg;
+		}
+
+		// 方法
+		// 1、添加节点
+		// 2、绑定事件
+		Barrage.prototype.init = function(){
+			// 创建节点
+			var item = document.createElement('span');
+			item.classList.add('bar-item');
+			item.innerText = this.msg;
+
+			// 添加css属性
+			item.style.color = this.color;
+			item.style.fontSize = this.fontSize + 'px';
+			item.style.top = this.top + 'px';
+
+			// 添加到页面
+			barrage.appendChild(item);
+
+			// 通过this传递数据
+			this.ele = item;
+
+		}
+		Barrage.prototype.move = function(){
+			// this.ele
+			var timer = setInterval(()=>{
+				var left = this.ele.offsetLeft;
+
+				this.ele.style.left = left + this.speed + 'px';
+
+				if(left < -this.ele.offsetWidth){
+					clearInterval(timer);
+					this.remove();
+				}
+			},30);
+		}
+		Barrage.prototype.remove = function(){
+			this.ele.parentNode.removeChild(this.ele);
+		}
+	});
+		
+
+	</script>
+</head>
+<body>
+	<div class="container">
+		<div id="barrage"></div>
+		<input type="text" id="msg"><button>发送</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05call&apply</title>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			基本数据类型（值类型）
+				* Number
+				* String
+				* Boolean：true,false
+			引用数据类型
+				* Array
+				* Object
+				* Function
+				* RegExp
+				* ...
+			特殊数据类型
+				* NaN：NaN
+				* Null：null
+				* Undefined：undefined 
+		 */
+		
+		// 判断数据类型
+		typeof 10;//number
+		typeof 'lx';//string
+		typeof true;//boolean
+
+		typeof [1,2,3];//object
+		typeof {name:'xx'};//object
+		typeof null;//object
+
+
+		// var arr = ['aaa',1111];
+		// typeof typeof arr[1];//=>string
+
+
+		console.log(Array.prototype);//=> 有toString方法
+
+		var arr = [1,2,3];//=>array
+		var obj = {name:'laoxie',age:18};//=>object
+
+		// 封装方法
+		Object.prototype.toString.call(arr);
+
+
+		document.addEventListener('DOMContentLoaded',function(){
+			var btns = document.getElementsByTagName('button');
+
+			// btns.forEach(function(ele){
+			// 	console.log(ele);
+			// });
+
+			// 借用（重点）
+			Array.prototype.forEach.call(btns,function(ele,idx,arr){
+				console.log(ele,idx);
+			})
+
+			// 
+			console.log(btns.__proto__);
+		});
+	</script>
+</head>
+<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+</body>
+</html>

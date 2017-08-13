@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06dataset</title>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			/*
+				获取自定义属性
+				dataset：获取所有的自定属性值（data-*），
+				* 返回一个对象
+			 */
+			var datalist = document.querySelector('.datalist');
+			var firstChild = datalist.children[0];
+
+			// var guid = firstChild.getAttribute('data-guid');
+			var guid = firstChild.dataset.guid;
+			console.log(firstChild.dataset);
+
+
+		})
+	</script>
+</head>
+<body>
+	<!-- ul>li[data-guid=00$]*5>img[src=img/g$.jpg] -->
+	<ul class="datalist">
+		<li data-guid="001" data-idx="0" data-title="美女1"><img src="img/g1.jpg" alt=""></li>
+		<li data-guid="002"><img src="img/g2.jpg" alt=""></li>
+		<li data-guid="003"><img src="img/g3.jpg" alt=""></li>
+		<li data-guid="004"><img src="img/g4.jpg" alt=""></li>
+		<li data-guid="005"><img src="img/g5.jpg" alt=""></li>
+	</ul>
+</body>
+</html>

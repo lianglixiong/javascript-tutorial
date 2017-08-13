@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06数组的扩展</title>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+
+		var obj = {name:'lx',age:18,hobby:['篮球','羽毛球']};
+
+		// 复制对象方案1：for..in
+		var nobj = {};
+		for(var attr in obj){
+			nobj[attr] = obj[attr];
+		}
+
+
+		// 复制对象解决方案2：JSON
+		var nobj = JSON.parse(JSON.stringify(obj));
+
+
+		// 解决方案3：ES6的Object.assign()
+		// 合并对象
+		// 后边对象的属性会覆盖前面的同名属性
+		var nobj = Object.assign({name:'xxx'},obj,{name:'老谢',gender:'male'});
+
+		nobj.hobby.push('乒乓球');
+		console.log(nobj,obj);
+		
+	});
+		
+	</script>
+</head>
+<body>
+	<div class="datalist">
+		
+	</div>
+</body>
+</html>

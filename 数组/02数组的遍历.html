@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02数组的遍历</title>
+	<script>
+		// 求数组的和
+		var arr = [10,12,14,16,18,20];
+
+		// 存放结果
+		var res = 0;
+
+		// 循环数组（遍历数组）
+		for(var i=0;i<arr.length;i++){
+			// res = res + arr[i];
+			res += arr[i];
+		}
+
+		console.log('数组元素相加的结果：' + res);
+
+
+		// 利用遍历创建数组
+		var newarr = [];
+		for(var i=0;i<100;i++){
+			// newarr[i] = i+1
+			
+			if(i%2!=0){
+				// 追加
+				newarr.push(i)
+			}
+			
+		}
+		console.log(newarr);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

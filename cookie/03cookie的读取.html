@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03cookie的读取</title>
+	<script>
+	window.onload = function(){
+
+		/*
+			03cookie的读取
+			* 通过document.cookie获取所有的cookie
+			* 转成数组，写入页面
+		 */
+		var cookies = document.cookie;//myname=laoxie; age=18
+
+		console.log(cookies);
+		// document.write(cookies);
+		var arr = cookies.split('; ');//['myname=laoxie','age=18']
+		var ul = document.createElement('ul');
+		ul.innerHTML = arr.map(function(item){
+			var temp = item.split('=');
+			return '<li>'+temp[0]+':'+temp[1]+'</li>';
+		}).join('');
+
+		document.body.appendChild(ul);
+	}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

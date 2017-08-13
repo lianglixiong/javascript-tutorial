@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>15jquery-validate</title>
+    <style>
+        .error{color:#f00;}
+    </style>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="lib/jquery-validate/jquery.validate.js"></script>
+    <!-- 引入相关文件 -->
+    <script src="lib/jquery-validate/localization/messages_zh.js"></script>
+    <script>
+        $(function(){
+            $('form').validate({
+                // 验证规则
+                rules:{
+                    username:{
+                        required:true,
+                        rangelength:[6,12]
+                    },
+                    passowrd:{
+                        required:true,
+                        rangelength:[6,12]
+                    },
+                    email:{
+                        email:true
+                    },
+                    mobile:{
+                        number:true
+                    }
+                },
+
+                // 自定义提示
+                messages:{
+                    username:{
+                        required:'老谢说这是必填的'
+                    }
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <p><label for="username">用户名：</label><input type="text" name="username" id="username"></p>
+        <p><label for="passowrd">密码：</label><input type="password" name="passowrd" id="passowrd"></p>
+        <p><label for="email">email：</label><input type="email" name="email" id="email"></p>
+        <p><label for="mobile">tel：</label><input type="text" name="mobile" id="mobile"></p>
+        <button type="submit">提交</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,57 @@
+/*
+	* sass完全兼容css写法
+	* 多行注释：与css一致，编译是保留到css文件中
+	* 单行注释// 在编译时不会保留到css中
+ */
+
+//编译sass
+//* gulp-sass -> gulp -> npm -> nodejs
+
+
+// 全局变量
+// 变量不会编译
+$mainColor:#333;
+
+
+//重置样式
+ul{list-style: none;padding:0;margin:0;}
+body{
+	// 局部变量
+	// 只能在当前花括号内使用
+	$bodyColor:#999;
+
+	font-size:16px;background-color: #fff;color:$mainColor;
+	border-top:1px solid $bodyColor;
+}
+
+
+
+/*
+	商品列表
+ */
+// 嵌套
+.goods-list{
+	border:1px solid $mainColor;
+	ul{
+		// &表示父级选择器
+		&::after{content:'';display: block;clear:both;}
+		li{
+			float:left;width:200px;height:400px;border:1px solid #ddd;box-shadow: 0 0 5px rgba(0,0,0,.5);
+			a{display: block;color:#333;text-decoration: none;}
+			&:first-child{
+				a{
+					color:#f60;text-decoration: none;
+					&:hover{color:#ff0;}
+				}
+			}
+			&.commend{}
+
+		}
+	}
+	
+}
+.goods-list ul::after{content:'';display: block;clear:both;}
+.goods-list ul li{float:left;width:200px;height:300px;border:1px solid #ddd;box-shadow: 0 0 5px rgba(0,0,0,.5)}
+.goods-list ul li a{display: block;color:#333;text-decoration: none;}
+
+

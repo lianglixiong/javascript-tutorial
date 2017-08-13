@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03代理模式</title>
+	<style>
+		img{width:600px;}
+		img.loading{width:auto;}
+	</style>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+
+		/*
+			**传统图片预加载
+		 */
+		/*var preLoad = (function(){
+			// 创建商品图片
+			var goods = document.createElement('img');
+			document.body.appendChild(goods);
+
+			// 创建临时图片
+			var img = new Image();
+			img.onload = function(){
+				goods.className = '';
+				goods.src = this.src;
+			}
+
+			return function(url){
+				goods.src = 'http://img.lanrentuku.com/img/allimg/1212/5-121204193Q9-50.gif';
+				goods.className = 'loading';
+
+				img.src = url;
+			}
+		})();
+
+		preLoad('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496676823843&di=44d279dfa57310d0d5466f091badb939&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F8435e5dde71190ef18bebd78cc1b9d16fcfa60cb.jpg');*/
+
+
+
+		/*
+			**代理模式实现图片预加载
+		 */
+		// 本体函数
+		// 单纯实现添加图片效果
+		var preImg = (function(){
+			var goods = document.createElement('img');
+			document.body.appendChild(goods);
+
+			return function(url){
+				goods.src = url;
+			}
+		})();
+
+
+		// 代理函数
+		// 实现loading效果
+		var proxyImg = (function(){
+			var img = new Image();
+			img.onload = function(){
+				preImg(this.src);
+			}
+			return function(url){
+				// loading
+				preImg('http://img.lanrentuku.com/img/allimg/1212/5-121204193Q9-50.gif');
+
+				// 给临时图片设置src属性
+				img.src = url;
+			}
+		})();
+
+
+		proxyImg('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1496676823843&di=44d279dfa57310d0d5466f091badb939&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fzhidao%2Fpic%2Fitem%2F8435e5dde71190ef18bebd78cc1b9d16fcfa60cb.jpg');
+	})
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

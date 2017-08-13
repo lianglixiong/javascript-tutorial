@@ -1,0 +1,43 @@
+// 引入其他sass文件
+
+// 覆盖默认样式
+$mainColor:#666;
+
+$dir:top;
+
+@import 'var';
+
+
+
+.box{
+	color:$mainColor;
+
+	// 特殊位置使用变量
+	borer-#{$dir}:1px solid #ddd;
+}
+
+
+
+h1{font-size:30px;line-height:30px;margin:0;padding:0 10px;}
+.header{
+	// 继承
+	@extend h1;
+
+	font-size:24px;color:#f00;
+}
+
+.left{width:percentage(1/3)}
+
+
+$color:#f60;
+$width:200px;
+
+.hilight{color:lighten($color,20%);width:$width/3}
+
+@for $i from 1 through 6{
+	h#{$i}{font-size:30px/$i}
+}
+
+@for $i from 1 to 6{
+	div#{$i}{width:150px*$i}
+}

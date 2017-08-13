@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>成绩判定</title>
+
+</head>
+<body>
+	<input type="text" id="score"><button onclick="check()">判定</button>
+	<div id="output"></div>
+	<script>
+		/*
+			输入成绩，进行成绩判定(要求用if和switch两种写法)
+			* 大于85 优秀
+			* 大于等于75小于等于85 良好
+			* 大于等于60小于75 及格
+			* 小于60 不及格
+		 */
+		// 获取页面的元素
+		var score = document.getElementById('score');
+		var output = document.getElementById('output');
+
+		function check(){
+			var _score = score.value;
+			
+			switch(true){
+				case _score>85 && _score<=100:
+					output.innerHTML = '棒棒哒!';
+					break;
+				case _score>=75 && _score<=85:
+					output.innerHTML = '哎哟，不错哦！';
+					break;
+				case _score>=60 && _score<75:
+					output.innerHTML = '亲，要加油哦！';
+					break;
+				case _score<60 && _score>=0:
+					output.innerHTML = '亲，别气馁！';
+					break;
+				default:
+					output.innerHTML = '你咋不上天呢~~'
+			}
+		}
+	</script>
+</body>
+</html>

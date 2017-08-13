@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04获取页面元素</title>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		/*
+			获取页面元素
+			* document.getElementById()
+			* getElementsByTagName()
+			* getElementsByClassName()
+			* document.getElementsByName()
+			
+			ES5获取页面元素的方式
+			* querySelector(css选择器)
+			  获取匹配选择器的第一个元素节点，返回DOM节点
+			* querySelectorAll(selector)
+			  获取匹配选择器的所有元素，返回数组
+		 */
+		
+		var datalist = document.querySelector('#datalist');
+		var title = datalist.querySelectorAll('.title');
+
+		var links = document.querySelectorAll('#datalist ul a');
+		console.log(links);
+
+
+
+	});
+	/*document.onreadystatechange = function(){
+		
+		
+		if(document.readyState === 'interactive'){
+			
+		}
+		
+	}*/
+		
+	</script>
+</head>
+<body>
+	<div id="datalist">
+		<div class="title">
+		数据列表
+		<a href="#" class="more">更多</a>
+		</div>
+		<div class="title">子标题</div>
+		<ul>
+			<li>
+				<a href="#">
+					<img src="img/g1.jpg" alt="">
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/g2.jpg" alt="">
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="img/g3.jpg" alt="">
+				</a>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

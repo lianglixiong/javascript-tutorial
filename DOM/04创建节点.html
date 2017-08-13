@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04创建节点</title>
+	<script>
+		window.onload = function(){
+			/*
+				创建元素节点：document.createElement()
+			 */
+			var box = document.createElement('div');
+
+			// box.innerHTML = 'html5 1702';
+
+			// 先创建一个文本节点
+			var txt = document.createTextNode('laoxie');
+
+			// 把文本节点写入box节点
+			box.appendChild(txt);
+
+			// 把box节点插入到body节点
+			// parent.appendChild(node)
+			document.body.appendChild(box);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

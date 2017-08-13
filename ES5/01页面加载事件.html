@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01页面加载事件</title>
+	<script>
+		//页面《所有资源》加载完成后触发
+		//* 图片
+		//* 视频/语音等...
+		window.onload = function(){
+			var box = document.getElementById('box');
+			var img = document.images[0];
+
+			console.log('window onload',img.offsetWidth);
+		}
+
+		// 1）onreadystatechange
+		document.onreadystatechange = function(){
+			// 此处可以获取DOM节点
+			var box = document.getElementById('box');
+			var img = document.images[0];
+			console.log('readystatechange',img.offsetWidth);
+			
+			if(document.readyState === 'interactive'){
+				console.log('ready state interactive',img.offsetWidth);
+			}
+
+			if(document.readyState === 'complete'){
+				// 此处可以获取图片宽高（比windowonload速度快）
+				console.log('ready state complete',img.offsetWidth);
+			}
+		}
+
+
+		// DOMContentLoaded
+		// 只能使用事件监听绑定
+		document.addEventListener('DOMContentLoaded',function(){
+			var box = document.getElementById('box');
+			var img = document.images[0];
+			console.log('DOMContentLoaded',img.offsetWidth);
+		});
+	</script>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+	<img src="http://c.hiphotos.baidu.com/zhidao/pic/item/7acb0a46f21fbe09a1908c4f6a600c338644ad9b.jpg">
+</body>
+</html>

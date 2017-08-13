@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06扩展原生对象的方法</title>
+	<script>
+		// 扩展原生方法
+		// trim() IE9+
+
+		'  abc de   '.trim();
+
+		if(!String.prototype.trim){
+			String.prototype.trim = function(){
+				// return this.replace(/^\s+/,'').replace(/\s+$/,'');
+				return this.replace(/^\s+|\s+$/g,'');
+			}
+		}
+
+
+		// 字符串是基本数据类型，为什么能调用方法
+		var str = new String('abc');
+		str.slice();
+
+		'abc'.slice(0,-1);
+		/*
+			内部实现了以下操作
+			1）创建一个临时对象
+			var s = new String('abc');
+			2）利用临时对象调用方法,并返回
+			s.slice(0,-1);//=>ab
+			3）删除临时对象
+			delete s;
+		 */
+		
+	</script>
+</head>
+<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+</body>
+</html>

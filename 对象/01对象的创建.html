@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01对象的创建</title>
+	<script>
+		// var arr = [];
+		// arr[0] = 10;
+		// arr[1] = 20;
+		// var arr = new Array();
+
+		// 字面量
+		var obj = {};
+
+		// 添加属性
+		// 通过方括号语法添加
+		// 当属性名为一个变量时，必须使用方括号语法
+		obj['name'] = 'laoxie';
+		obj['age'] = 18;
+
+		// 通过点语法添加
+		// 给obj添加一个属性
+		obj.name = 'laoxie';
+		obj.age = 18;
+
+
+		var attr = 'gender';
+
+		// 给obj添加一个attr属性，属性值为‘男’
+		obj.attr = '男';
+
+		// 给obj添加一个gender属性，属性值为‘男’
+		obj[attr] = '男';
+
+		console.log(obj);
+
+		// 构造函数
+		var obj = new Object();
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

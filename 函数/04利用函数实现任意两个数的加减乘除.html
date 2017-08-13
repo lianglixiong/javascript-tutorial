@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04利用函数实现任意两个数的加减乘除</title>
+	
+</head>
+<body>
+	<input type="text" id="num1">
+	<input type="text" id="num2">
+	<button id="btnSum">加</button>
+	<button id="btnSub">减</button>
+	<button id="btnMul">乘</button>
+	<button id="btnDiv">除</button>
+	<div id="output"></div>
+	<script>
+		// 获取元素
+		var num1 = document.getElementById('num1');
+		var num2 = document.getElementById('num2');
+		var btnSum = document.getElementById('btnSum');
+		var btnSub = document.getElementById('btnSub');
+		var btnMul = document.getElementById('btnMul');
+		var btnDiv = document.getElementById('btnDiv');
+		var output = document.getElementById('output');
+
+		// 绑定事件
+		// 加法
+		btnSum.onclick = function(){
+			var _num1 = Number(num1.value);
+			var _num2 = Number(num2.value);
+
+			// 把计算结果写入#output
+			output.innerHTML = _num1 + _num2;
+		}
+
+		// 减法
+		btnSub.onclick = function(){
+			var _num1 = Number(num1.value);
+			var _num2 = Number(num2.value);
+
+			// 把计算结果写入#output
+			output.innerHTML = _num1 - _num2;
+		}
+
+		// 乘法
+		btnMul.onclick = function(){
+			var _num1 = Number(num1.value);
+			var _num2 = Number(num2.value);
+
+			// 把计算结果写入#output
+			output.innerHTML = _num1 * _num2;
+		}
+
+		// 除法
+		btnDiv.onclick = function(){
+			var _num1 = Number(num1.value);
+			var _num2 = Number(num2.value);
+
+			// 把计算结果写入#output
+			output.innerHTML = _num1 / _num2;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>19生成随机背景色表格</title>
+	<style>
+		#datalist{padding:20px 0;}
+		table{width:100%;border:1px solid #ddd;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:5px 10px;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+	window.onload = function(){
+		/*
+			封装生成表格函数，根据输入的行或列得到一个表格
+			思路：
+				1)声明一个函数createTable
+				2)获取输入的行_row&列_col的值
+					* 获取元素
+				3)生成表格的html代码
+					<table><tbody><tr><td></td></tr></table>
+				4)把代码写入#datalist
+					innerHTML
+		 */
+		
+		// 获取元素
+		var row = document.getElementById('row');
+		var col = document.getElementById('col');
+		var btnCreate = document.getElementById('btnCreate');
+		var datalist = document.getElementById('datalist');
+		
+		// 1)声明一个函数createTable
+		// 封装函数的原则：功能尽量单一化
+		function createTable(row,col){
+			var res = '<table><tbody>';
+
+			// 生成行
+			for(var i=1;i<=row;i++){
+				res += '<tr>';
+
+				// 生成列
+				for(var j=1;j<=col;j++){
+					var color = randomColor();
+					res += '<td style="background-color:' + color + '">单元格' + i + j + '</td>';
+				}
+
+				// 结束tr行标签
+				res += '</tr>';
+			}
+
+			// 结束表格标签
+			res += '</tbody></table>';
+
+			console.log(res);
+
+			// 利用return把函数内部的数据返回出来
+			return res;
+		}
+
+		// createTable(10,5);//
+
+		// 绑定点击事件
+		btnCreate.onclick = function(){
+			// 获取输入的行_row&列_col的值
+			var _row = row.value;
+			var _col = col.value;
+
+			var res = createTable(_row,_col);
+
+			// 写入#datalist
+			datalist.innerHTML = res;
+		}
+	}
+		
+	</script>
+</head>
+<body>
+	<h1>生成随机背景色表格</h1>
+	行：<input type="text" id="row">
+	列：<input type="text" id="col">
+	<button id="btnCreate">生成表格</button>
+	<div id="datalist"></div>
+</body>
+</html>

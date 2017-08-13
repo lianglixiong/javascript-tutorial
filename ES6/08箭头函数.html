@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08箭头函数</title>
+	<script>
+		// function sum(){}
+		
+		var sum = function(num1,num2){
+			// return 100;
+			num1++;
+			num2--;
+			return num1+num2;
+		}
+
+		// 箭头函数：
+		// 1)无参数时写法
+		var sum = ()=>100;
+
+
+		// 2）只有一个参数时
+		var sum = num=>100;
+
+		// 3）多个参数时
+		var sum = (num1,num2)=>num1+num2;
+
+		// 4）函数体内有多行代码时
+		var sum = (num1,num2)=>{
+			num1++;
+			num2--;
+
+			// 如果多行代码中需要return值，则显性返回一个值
+			return num1+num2;
+		}
+
+		// 5)返回一个对象
+		var sum = (num1,num2)=>({x:num1,y:num2});
+
+
+		// 函数默认值
+		var createPerson = function(name,age,gender){
+			gender = gender || '男';
+			var person = {
+				name:name,
+				age:age,
+				gender:gender
+			}
+
+			return person;
+		}
+
+		createPerson = (name,age,gender='男')=>({
+			name:name,
+			age:age,
+			gender:gender
+		});
+
+		createPerson('lx',18);
+
+
+		// 剩余参数
+		var func2 = (x, ...args) => { console.log(args) };
+		func2(1,2,3,10,20,30); // 输出 [2, 3]
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

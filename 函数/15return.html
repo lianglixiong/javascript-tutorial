@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15return</title>
+	<script>
+		/*
+			return的作用：
+			* 终止函数的执行,return后的代码不会执行
+			* return后如果有值，则把这个值返回到函数执行的地方
+				如果函数没有return,执行完后返回undefined
+		 */
+		
+		function show(){
+			var a = 10;
+			var b = 20;
+
+			return a + b;
+
+			a++;
+			b--;
+
+			var res = a + b;
+
+		}
+
+		var res = show();//undefined
+		console.log(res);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

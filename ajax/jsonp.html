@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jsonp原理</title>
+	<script>
+		/*
+			jsonp请求不是ajax请求
+		 */
+		
+		// 一定要是全局函数
+		function getWeather(data){
+			console.log(data);
+
+
+
+
+			// 得到数据后删除script，避免资源占用
+			document.head.removeChild(script);
+		}
+
+		var script = document.createElement('script');
+		script.src = 'http://localhost:2017/jsonp.php?callback=getWeather';
+
+		document.head.appendChild(script);
+	</script>
+	<!-- <script src="http://localhost:2017/js/myData.js"></script> -->
+	<!-- <script src="http://localhost:2017/jsonp.php?callback=getWeather"></script> -->
+</head>
+<body>
+	
+</body>
+</html>

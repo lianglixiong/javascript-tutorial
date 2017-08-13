@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13封装生成随机颜色函数</title>
+	<script src="../common.js"></script>
+	<script>
+	window.onload = function(){
+		/*
+			封装生成随机颜色函数
+			* yellow
+			* #ff0000;
+			* rgb(255,0,0)
+		 */
+		
+		function randomColor(){
+			var r = parseInt(Math.random()*256);
+			var g = parseInt(Math.random()*256);
+			var b = parseInt(Math.random()*256);
+
+			var rgb = 'rgb(' + r + ',' + g + ',' + b + ')';
+			console.log(rgb);
+
+			// 获取body元素的简化方式：
+			// document.body
+			// document.head
+			document.body.style.backgroundColor = rgb;
+		}
+
+		
+
+		randomColor();
+	}
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

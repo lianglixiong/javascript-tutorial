@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13事件传播</title>
+	<script>
+		window.onload =function(){
+			var div = document.getElementsByTagName('div')[0];
+
+			// 传统的事件绑定方式
+			// * 只能在冒泡阶段执行事件处理函数
+			// * 同名事件会被覆盖
+			/*div.onclick = function(){
+				console.log('div666');
+			}
+			div.onclick = function(){
+				console.log('div777')
+			}*/
+
+
+			// 另外一种事件绑定方式
+			// 事件监听
+			// * 格式：node.addEventListener(type,fn,是否捕获)
+			// * 多个同名事件不会被覆盖
+			// * 可以在捕获阶段执行事件处理函数
+			div.addEventListener('click',function(){
+				console.log('监听666');
+			},false);
+			div.addEventListener('click',function(){
+				console.log('监听777');
+			},false);
+			document.body.addEventListener('click',function(){
+				console.log('body被点击')
+			});
+
+			// 第三个参数为true
+			// 是否把事件处理函数放到捕获阶段执行
+			document.addEventListener('click',function(){
+				console.log('document被点击');
+			},true);
+			window.addEventListener('click',function(){
+				console.log('window被点击')
+			});
+
+		}
+	</script>
+</head>
+<body>
+	<div>
+		事件传播
+	</div>
+</body>
+</html>

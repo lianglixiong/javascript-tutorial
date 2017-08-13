@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04随机点名</title>
+	<script>
+	window.onload = function(){
+		/*
+			随机点名
+			思路：
+				随机索引值
+				1）获取页面元素
+				2）绑定点击事件
+					* 随机获取一个整数Math.random()
+					* 利用随机整数获取arr中的元素
+				3）把得到的名字写入#realName
+		 */
+		var arr = ['石维华','潘一峰','岑雨堂','蔡贤桂','姜浩','张君华','饶荣','谢中煌','徐敏敏','张高','何子扬','刘子杨','陆金锋','吴妙华','吴镇宇','吴光艳','吕祖瑶','周旋','区家如','万雄','崔江','吴倩','唐秋萍','崔俊杰','陈江川','严琪'];
+
+		// 1）获取页面元素
+		var realName = document.getElementById('realName');
+		var btn = document.getElementById('btn');
+
+		// 2）绑定点击事件
+		btn.onclick = function(){
+			// 随机索引值
+			// 0~arr.length-1
+			var index = parseInt(Math.random()*arr.length);
+
+
+			// 3）把得到的名字写入#realName
+			realName.value = arr[index];
+		}
+	}
+
+	</script>
+</head>
+<body>
+	<input type="text" id="realName"><button id="btn">随机点名</button>
+</body>
+</html>

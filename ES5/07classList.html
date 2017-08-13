@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07classList</title>
+	<style>
+		.box{width:200px;height:100px;}
+		.content{padding:15px;}
+		.bg-red{background-color: #f00;}
+		.border{border:5px solid #ddd;}
+		.title{font-size:20px;}
+
+		.color{color:#fc0;}
+		.dspn{display:none;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var box = document.querySelector('#box');
+			var btn = document.querySelector('#btn');
+
+
+			// 添加一个color类
+			// box.className = 'color';
+			console.log(box.classList.length);
+			box.classList.add('color');
+			box.classList.remove('bg-red');
+
+			// 点击显示隐藏
+			btn.onclick = function(){
+				/*if(box.classList.contains('dspn')){
+					box.classList.remove('dspn');
+				}else{
+					box.classList.add('dspn');
+				}*/
+				
+				box.classList.toggle('dspn');
+			}
+		});
+	</script>
+</head>
+<body>
+	<div id="box" class="box content bg-red border title">
+		classList的操作
+	</div>
+	<button id="btn">显示/隐藏</button>
+</body>
+</html>

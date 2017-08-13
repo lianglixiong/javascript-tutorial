@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>同步与异步</title>
+	<script>
+	
+		/*
+		//同步方案：
+		var xhr = new XMLHttpRequest();
+
+		var ip;
+
+		// 请求数据成功需要花费一定时间
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)){
+				var res = xhr.responseText;
+				console.log(res);
+
+				// console.log(document.body);
+				ip = res;
+
+			}
+		}
+
+		// 同步请求
+		xhr.open('get','api/get_ip.php',false);
+
+		xhr.send();
+
+
+		xhr_city = new XMLHttpRequest();
+		xhr_city.open('get','api/get_city.php?ip='+ip,true);
+		xhr_city.send();
+
+
+		console.log('end');*/
+
+
+		var promise = new promise(function(resolve,reject){//Pending
+			var xhr = new XMLHttpRequest();
+
+			// 请求数据成功需要花费一定时间
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 304)){
+					var res = xhr.responseText;
+					console.log(res);
+
+					// 把状态Pending=>Resolved
+					resolve(res);
+				}else{
+
+					// 把状态Pending=>Rejected
+					reject();
+				}
+			}
+
+		});
+
+		// 能把异步请求用同步的方式编写
+		// 只要状态变成Resolved，就执行then方法中的第一个函数
+		promise.then(
+		// 成功时执行
+		function(res){
+			var ip = res;
+			xhr_city = new XMLHttpRequest();
+			xhr_city.open('get','api/get_city.php?ip='+ip,true);
+			xhr_city.send();
+		},
+
+		// 失败时执行
+		function(){
+			consle.log('失败')
+		});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03获取文本节点</title>
+	<script>
+		window.onload = function(){
+			var box = document.getElementById('box');
+			var mybox = document.getElementsByTagName('div');
+
+			console.log(box)
+			console.log(mybox[0]);
+
+			var cn = box.childNodes;
+			var txt = cn[0];
+
+			console.log(txt.nodeValue);
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		html5 1702
+	</div>
+</body>
+</html>

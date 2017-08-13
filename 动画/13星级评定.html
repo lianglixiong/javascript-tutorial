@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>13星级评定</title>
+	 <style type="text/css">
+	    #star {
+	        padding: 0;
+	        margin: 0;
+	        list-style: none;
+	        width: 300px;
+	        height: 28px;
+	    }
+	    
+	    #star li {
+	        float: left;
+	        background: url(img/star.gif) no-repeat 0 0;
+	        width: 27px;
+	        height: 28px;
+	    }
+	    
+	    #star .active{background-position:0 -29px;}
+	    
+	    .default {}
+    </style>
+    <script>
+    	document.addEventListener('DOMContentLoaded',function(){
+    		var star = document.querySelector('#star');
+    		var info = document.querySelector('#info');
+    		var list = star.children;
+
+    		// 评分信息
+    		var msg = ['差评','不推荐','一般','推荐','强力推荐'];
+    		var idx = 0;
+    		var score = 0;
+
+    		// 鼠标移入
+    		star.onmouseover = function(e){
+    			e = e || window.event;
+    			var target = e.target || e.srcElement;
+
+    			if(target.tagName.toLowerCase() === 'li'){
+    				// 获取当前所在索引值
+    				
+    				for(var i=0;i<list.length;i++){
+    					if(list[i] === target){
+    						idx = i;
+    						break;
+    					}
+    				}
+
+    				// 光标前的li添加active,光标后的li移除active
+    				for(var i=0;i<list.length;i++){
+    					if(i<=idx){
+    						list[i].classList.add('active');
+    					}else{
+    						list[i].classList.remove('active');
+    					}
+    				}
+    				
+    			}
+    		}
+
+    		// 鼠标移开保留分值
+    		star.onmouseout = function(){
+    			for(var i=0;i<list.length;i++){
+    				if(i>score){
+    					list[i].classList.remove('active');
+    				}
+    			}
+    		}
+
+
+    		// 点击评分
+    		star.onclick = function(e){
+    			e = e || window.event;
+    			var target = e.target || e.srcElement;
+
+    			if(target.tagName.toLowerCase() === 'li'){
+    				for(var i=0;i<list.length;i++){
+    					if(list[i] === target){
+    						score = i;
+    						break;
+    					}
+    				}
+    				info.innerText = msg[score];
+    			}
+    			
+    		}
+
+    	});
+    </script>
+</head>
+<body>
+	<ul id="star">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div id="info"></div>
+</body>
+</html>

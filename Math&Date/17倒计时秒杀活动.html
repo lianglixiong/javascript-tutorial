@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>17倒计时秒杀活动</title>
+	<script>
+	window.onload = function(){
+		/*
+			思路：
+			1）设置秒杀活动的开始时间startTime
+			2）计算当前之间与startTime的时间差
+				* setInterval
+			3）计算出剩余xx天hh:mm:ss，并写入#timeLeft
+			4）到达秒杀时间后
+				* 把购买按钮变成可购买
+				* 隐藏倒计时
+				* 清除定时器
+		 */
+		var timeLeft = document.getElementById('timeLeft');
+		var btnBuy = document.getElementById('btnBuy');
+
+		// 1）设置秒杀活动的开始时间startTime
+		var startTime = Date.parse('2017-5-4 17:54:59');
+
+		// timer为定时器的id标识
+		var timer = setInterval(showTime,1000);
+		
+		showTime();
+
+		function showTime(){
+			console.log(666)
+			// 2）计算当前之间与startTime的时间差
+			var now = Date.now();
+
+			var offset = Math.floor((startTime - now)/1000);//65
+
+
+			// 计算剩余时间（天、时、分、秒）
+			var secLeft = offset%60;
+			var minLeft = Math.floor(offset/60)%60;
+			var hourLeft = Math.floor(offset/60/60)%24;
+			var days = Math.floor(offset/60/60/24);
+
+			// 补0操作
+			secLeft = secLeft<10 ? '0' + secLeft : secLeft;
+			minLeft = minLeft<10 ? '0' + minLeft : minLeft;
+			hourLeft = hourLeft<10 ? '0' + hourLeft : hourLeft;
+
+			// 3）计算出剩余xx天hh:mm:ss
+			// 65:0天00:01:05
+
+			var str = days + '天 ' + hourLeft + ':' + minLeft + ':' + secLeft;
+
+			// 并写入#timeLeft
+			timeLeft.innerHTML = '距离秒杀活动还差 ' + str;
+
+
+			// 4）到达秒杀时间后
+			if(offset<=0){
+
+				// * 把购买按钮变成可购买
+				btnBuy.src = 'img/btn_buy.jpg';
+				
+				// * 隐藏倒计时
+				timeLeft.style.display = 'none';
+
+				// 清除定时器
+				clearInterval(timer);
+			}
+
+		}
+	}
+	</script>
+</head>
+<body>
+	<h1>秒杀活动</h1>
+	<div id="timeLeft"></div>
+	<img src="img/btn_buy0.jpg" id="btnBuy">
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14jqueryUI的使用</title>
+    <!-- 3.引入样式 -->
+    <link rel="stylesheet" href="lib/jquery-ui-1.12.1/jquery-ui.css">
+
+    <style>
+        .container{width:800px;height:300px;border:1px solid #ddd;}
+        .box{width:100px;height:100px;background-color: #f00;}
+    </style>
+
+    <!-- 1.引入jquery -->
+    <script src="js/jquery-3.2.1.js"></script>
+    <!-- 2.引入插件 -->
+    <script src="lib/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function(){
+            $('.box').draggable({ containment: ".container" }).resizable();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+</body>
+</html>

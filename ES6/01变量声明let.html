@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01变量声明let</title>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var btns = document.querySelectorAll('button');
+
+		// var i = 0;
+		for(let i=0;i<btns.length;i++){
+			//每次循环都创建一个i变量
+			// btns[i].idx = i;
+			btns[i].onclick = function(){
+				// console.log(this.idx);
+				console.log(i);
+			}
+		}
+
+		// console.log(i);
+
+
+		// console.log(num);
+		// var num = 10;
+
+		// let变量声明不会提升
+		let num = 10;
+
+		// 块级作用域
+		{
+			// var res = num*2;
+			let res = num*2;
+
+			// let不允许相同作用域内多次声明同一变量
+			// let res = 10;
+
+			console.log('花括号内:', res);
+		}
+
+
+		console.log('res:',res);
+	})
+		
+	</script>
+</head>
+<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+</body>
+</html>

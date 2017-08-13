@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10动画效果</title>
+	<style>
+		.box{position:absolute;width:200px;height:100px;background-color: #f00;}
+	</style>
+	<script src="js/jquery-3.2.1.js"></script>
+
+	<script>
+		$(function(){
+			var $box = $('.box');
+			$('button').eq(0).click(function(){
+				/*if($box.is(':visible')){
+					// $box.hide(3000);
+
+					$box.slideUp()
+				}else{
+					// $box.show(300);
+					$box.slideDown()
+
+				}*/
+				$box.slideToggle('slow');
+			});
+			
+
+			// 动画队列
+			// 排队效果
+			$box.animate({width:600,height:200},3000,function(){
+				// $box2.animate({})
+			});
+
+			$box.delay(2000).animate({left:100});
+
+
+			$('#stop').click(function(){
+				$box.stop(false,true);
+			})
+			
+		});
+	</script>
+</head>
+<body>
+	<button>显示隐藏</button>
+	<button id="stop">停止</button>
+	<div class="box"></div>
+</body>
+</html>

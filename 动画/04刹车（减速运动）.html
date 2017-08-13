@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04刹车（减速运动）</title>
+	<style>
+		.car{position:absolute;top:200px;left:0;width:200px;}
+	</style>
+	<script>
+		/*
+			减速运动
+		 */
+		document.addEventListener('DOMContentLoaded',function(){
+			var car = document.querySelector('.car');
+			var btn = document.querySelector('button');
+
+			
+
+			btn.onclick = function(){
+				var speed = 100;
+
+				var timer = setInterval(()=>{
+					var left = car.offsetLeft;
+					speed -= 5;
+
+					if(speed<=0){
+						speed = 0;
+						clearInterval(timer);
+					}
+
+					car.style.left = left + speed + 'px';
+				},30);
+			}
+		})
+	</script>
+</head>
+<body>
+	<button>刹车演示</button>
+	<img src="img/car.jpg" class="car">
+</body>
+</html>

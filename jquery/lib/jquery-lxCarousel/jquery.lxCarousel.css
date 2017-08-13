@@ -1,0 +1,8 @@
+.lxCarousel{position:relative;width:810px;height:320px;overflow: hidden;}
+.lxCarousel ul{position:absolute;overflow:hidden;list-style: none;margin:0;padding:0;}
+.lxCarousel li{float:left;}
+.lxCarousel img{display: block;}
+
+.lxCarousel .page{position: absolute;left:50%;bottom:10px;margin-left:-100px;width:200px;text-align:center;}
+.lxCarousel .page span{display: inline-block;margin:0 5px;width:10px;height:10px;border:2px solid rgba(255,255,255,0.5);overflow:hidden;background-color: #fff;border-radius: 50%;text-indent:-2000em;box-shadow: 0 0 5px rgba(0,0,0,0.5)}
+.lxCarousel .page span.active{background-color: #f00;}

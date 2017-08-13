@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10元素的属性</title>
+	<script>
+		window.onload = function(){
+			//{value}
+			// var img = document.getElementsByTagName('img')[0];
+			var img = document.images[0]
+			var username = document.getElementById('username');
+			var output = document.getElementById('output');
+
+
+			// 添加标准属性
+			img.id = 'meinv';
+			img.alt = '俄罗斯美女';
+			
+
+			console.log(img.index);
+			username.name = 'username';
+			
+
+			// class
+			username.className = 'form-item';
+			username.value = ''
+
+			// innerHTML
+			output.innerHTML = '<strong class="title">小苹果</strong>';
+			output.innerText = '<strong class="title">小苹果</strong>';
+
+			output.outerHTML = '<h1>小苹果</h1>';
+
+
+			// 添加非标准属性
+			// img.index = 0;
+			// data-*:自定义属性
+			username.idx = 10;
+			img.setAttribute('data-index',10);
+			img.setAttribute('title','俄罗斯美女');
+
+			console.log(img.getAttribute('index'))
+		}
+	</script>
+</head>
+<body>
+	<img src="img/g3.jpg" data-index="1">
+	<input type="text" id="username">
+	<div id="output"></div>
+</body>
+</html>

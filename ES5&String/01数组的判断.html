@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01数组的判断</title>
+	<script>
+		var arr = [10,20,30];
+		var obj = {name:'xxx',age:18};
+		console.log(typeof arr,typeof obj);
+
+		// 用于判断是否是数组的方法
+		Array.isArray(arr);//true
+		Array.isArray(obj);//false
+
+		// indexOf&lastIndexOf
+		// 如果数组不存在查找的字符，则返回-1
+		arr.indexOf(30);
+		var arr2 = ['html','html5','css','css3','js','html5'];
+
+		if(arr2.indexOf('html5') != -1){
+			//存在
+		}
+
+
+		arr2.lastIndexOf('html5');//5
+		arr2.indexOf('html5');//1
+		arr2.indexOf('html5',3);//5
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

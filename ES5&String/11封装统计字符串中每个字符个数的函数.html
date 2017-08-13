@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11封装统计字符串中每个字符个数的函数</title>
+	<script>
+		/*
+			封装统计字符串中每个字符个数的函数
+			思路：利用对象属性来实现
+			var obj = {h:2}
+			obj.h =>2
+			obj.e =>undefined
+		 */
+		function count(str){
+			// 创建一个空对象，用于存放每一个字符出现的次数
+			var obj = {};
+
+			// 遍历字符
+			for(var i=0;i<str.length;i++){
+				var char = str[i];
+
+				// 判断字符是否已经存在obj中
+				// 如果不存在：当前字符数量为1
+				// 如果已经存在：在原来的基础上+1
+				if(obj[char] === undefined){
+					obj[char] = 1;
+				}else{
+					obj[char]++;
+				}
+			}
+
+			console.log(obj);
+		}
+
+		var str = 'hello,world';
+		count(str);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

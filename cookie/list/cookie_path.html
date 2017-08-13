@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie的路径</title>
+	<script>
+		// path参数值为默认为当前文件所在目录
+		document.cookie = 'city=广州';
+
+		// 共享其他目录下的cookie
+		// 解决方案：path=/
+		// 表示设置cookie的目录为服务器根目录
+		document.cookie = 'food=老婆饼;path=/';
+
+		console.log(document.cookie);
+	</script>
+</head>
+<body>
+</body>
+</html>

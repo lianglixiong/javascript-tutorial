@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise_all</title>
+	<script>
+		var p1 = new Promise((resolve,reject)=>{
+			var xhr1 = new XMLHttpRequest();
+			xhr1.onreadystatechange = function(){
+				if(xhr1.readyState === 4){
+					// console.log(xhr1.responseText);
+					resolve(xhr1.responseText);
+				}
+			}
+			xhr1.open('get','api/promise_1.php',true);
+			xhr1.send();
+		});
+		
+
+
+		var p2 = new Promise((resolve,reject)=>{
+			var xhr2 = new XMLHttpRequest();
+			xhr2.onreadystatechange = function(){
+				if(xhr2.readyState === 4){
+					//console.log(xhr2.responseText);
+					resolve(xhr2.responseText);
+				}
+			}
+			xhr2.open('get','api/promise_2.php',true);
+			xhr2.send();
+		});
+		
+
+		var p3 = new Promise((resolve,reject)=>{
+			var xhr3 = new XMLHttpRequest();
+			xhr3.onreadystatechange = function(){
+				if(xhr3.readyState === 4){
+					//console.log(xhr3.responseText);
+					resolve(xhr3.responseText);
+				}
+			}
+			xhr3.open('get','api/promise_3.php',true);
+			xhr3.send();
+		});
+		
+
+		// 把p1,p2,p3三个promise对象封装成一个promise对象
+		Promise.all([p1,p2,p3]).then((res)=>{
+			// res所有promise对象组合的数据
+			// 要求所有的promise对象状态都为Resolved，才会执行这里的代码
+
+			console.log(res);
+		});
+
+
+		Promise.race([p1,p2,p3]).then((res)=>{
+			// 谁快显示谁的数据
+			console.log(res);
+		});
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

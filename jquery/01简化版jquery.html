@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01简化版jquery</title>
+	<style>
+		div{margin:10px;width:200px;height:100px;background-color: #f00;}
+	</style>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+
+		/*
+			利用面向对象获取页面原生
+		 */
+		function Element(selector){
+			// 属性
+			// this.selector = selector;
+
+			this.init(selector);
+		}
+
+		// 方法
+		Element.prototype = {
+			// 初始化
+			// 获取元素
+			init:function(selector){
+				var nodes;
+				try{
+					nodes = document.querySelectorAll(selector);
+				}catch(err){
+
+				}
+
+				// 传递元素
+				// 把类数组转成数组
+				this.nodes = Array.prototype.slice.call(nodes,0);
+
+				return this;
+			},
+
+			// 显示
+			show:function(){
+				// Array.prototype.forEach.call(this.nodes);
+				this.nodes.forEach(function(ele){
+					ele.style.display = 'block';
+				});
+
+				return this;
+			},
+
+			// 隐藏
+			hide:function(){
+				this.nodes.forEach(function(ele){
+					ele.style.display = 'none';
+				});
+
+				return this;
+			},
+
+			// 事件绑定
+			on:function(type,handle){
+				this.nodes.forEach(function(ele){
+					ele['on'+type] = handle;
+				});
+
+				return this;
+			},
+
+			// 获取/设置样式
+			css:function(attr,val){
+				//只传一个参数：取值
+				if(val===undefined){
+					// 如果存在多个元素，只获取第一个元素的样式
+					return getComputedStyle(this.nodes[0])[attr];
+				}
+				// 赋值
+				else{
+					this.nodes.forEach(function(ele){
+						ele.style[attr] = val;
+					});
+				}
+				
+				return this;
+			},
+
+			// 获取元素属性
+			attr:function(attr,val){
+
+			}
+
+			// 动画
+			// animate:function(opt,callback){
+
+
+			// }
+		}
+
+		// 不写new关键字实现创建对象(重点)
+		// 代理
+		var $ = function(selector){
+			return new Element(selector);
+		}
+
+		$('#box').show().hide();
+
+		// 链式调用
+		var e = new Element('#box').show().hide().on('click',function(){
+			e.hide();
+		});
+
+		// 获取css样式
+		e.css('background-color');
+		e.css('background-color','yellow');
+
+		// 获取元素属性
+		e.attr('data-id');//=>g001
+
+
+		// 动画
+		// e.animate({width:300},function(){
+
+		// })
+
+		var e = new Element('div');
+	});
+	</script>
+</head>
+<body>
+	<div id="box" data-id="g001">asdfasdfasdf</div>
+	<div class="content"></div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02打印按钮的索引值</title>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var btns = document.querySelectorAll('button');
+
+			for(var i=0;i<btns.length;i++){
+				/*// btns[i].idx = i;
+				btns[i].onclick = function(){
+					console.log(i);
+					// console.log(this.idx);
+				}*/
+
+				// 利用闭包实现的打印索引值
+				btns[i].onclick = (function(idx){
+					
+					return function(){
+						console.log(idx);
+					}
+
+				})(i);
+			}
+		})
+	</script>
+</head>
+<body>
+	<button>按钮1</button>
+	<button>按钮2</button>
+	<button>按钮3</button>
+	<button>按钮4</button>
+	<button>按钮5</button>
+</body>
+</html>

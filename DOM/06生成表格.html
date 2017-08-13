@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06生成表格</title>
+	<style>
+		table{width:800px;border:1px solid #ddd;border-collapse: collapse;}
+		td{border:1px solid #ddd;padding:5px 10px;}
+	</style>
+	<script>
+		window.onload = function(){
+			var row = document.getElementById('row');
+			var col = document.getElementById('col');
+			var datalist = document.getElementsByClassName('datalist')[0];
+			var btnCreate = document.getElementsByTagName('button')[0];
+
+			btnCreate.onclick = function(){
+				var _row = row.value;
+				var _col = col.value;
+
+				// 创建一个table
+				var table = document.createElement('table');
+
+				// 外层循环控制行
+				for(var i=1;i<=_row;i++){
+					// 生成tr
+					var tr = document.createElement('tr');
+
+					// 内层循环控制列
+					for(var j=1;j<=_col;j++){
+						// 生成单元格
+						var td = document.createElement('td');
+						td.innerHTML = '单元格'+ i + j;
+						tr.appendChild(td);
+					}
+					var ltd = document.createElement('td');
+					var btnDel = document.createElement('button');
+					btnDel.innerHTML = '&times;';
+					ltd.appendChild(btnDel);
+					tr.appendChild(ltd);
+
+					// 把行写入table
+					table.appendChild(tr);
+				}
+
+				// 把table写入.datalist
+				// 添加前先清空datalist
+				datalist.innerHTML = '';
+				datalist.appendChild(table);
+
+				// 获取所有删除按钮
+				// 得到一个类数组
+				var btnDels = datalist.getElementsByTagName('button');
+				console.log(btnDels);
+
+				// 遍历所有按钮
+				// 只有节点才能绑定事件
+				for(var i=0;i<btnDels.length;i++){
+					btnDels[i].onclick = function(){
+						// 点击删除按钮时，删除当前tr
+						var currentTr = this.parentNode.parentNode;
+
+						// 通过父元素节点删除currentTr
+						currentTr.parentNode.removeChild(currentTr);
+
+						// 此处怎么获取所点击的button
+						// this:每次点击的按钮
+						console.log(this.parentNode)
+					}
+				}
+				
+			}
+
+
+		}
+	</script>
+</head>
+<body>
+	<h1>06生成表格</h1>
+	<label for="row">行：</label><input type="text" id="row">
+	<label for="col">列：</label><input type="text" id="col">
+	<button>生成表格</button>
+	<div class="datalist"></div>
+</body>
+</html>

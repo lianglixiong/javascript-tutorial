@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05过滤不文明用语</title>
+	<style>
+		ul{margin:0;padding:0;list-style: none;}
+		#msg{display:block;margin-top:20px;width:500px;height:80px;}
+		#msglist{width:500px;}
+		#msglist li{line-height:2;border-bottom:1px dotted #ddd;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				过滤不文明用语
+				思路：
+				1）获取页面元素
+				2）绑定点击事件
+					* 获取输入的信息
+					* 把输入的信息写入#msglist
+			 */
+			var msglist = document.getElementById('msglist');
+			var msg = document.getElementById('msg');
+			var btnSubmit = document.getElementById('btnSubmit');
+
+			// 创建一个数组，用语保存输入的信息
+			// ['你好','你好吗']
+			var arr_msg = [];
+
+			// 敏感字符
+			// 如何把字符串转成数组：split
+			var arr_mingan = '你大爷,奥巴马,金三胖,法轮功,你妹,shit,fuck,son of bitch'.split(',');
+
+			btnSubmit.onclick = function(){
+				var _msg = msg.value;
+
+				// 创建正则表达式
+				// var reg = /str/ig;
+
+
+				// 过滤不文明用语
+				arr_mingan.forEach(function(str){
+					// 以每个敏感字符创建一个正则表达式
+					// i为参数：表示忽略大小写
+					var reg = new RegExp(str,'ig');
+					_msg = _msg.replace(reg,'**');
+				});
+				
+
+				// 把输入的信息写入数组
+				arr_msg.push(_msg);
+
+				showMsg();
+
+				// 提交完成后清输入框
+				msg.value = ''
+			}
+
+
+			function showMsg(){
+				var html = arr_msg.map(function(msg){
+					return '<li>'+msg+'</li>';
+				}).join('');
+
+
+				// 写入#msglist
+				msglist.innerHTML = html;
+			}
+		}
+	</script>
+</head>
+<body>
+	<ul id="msglist">
+	</ul>
+	<textarea id="msg"></textarea>
+	<button id="btnSubmit">提交</button>
+</body>
+</html>

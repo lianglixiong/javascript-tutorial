@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04七天免登录</title>
+	<script>
+		window.onload = function(){
+			var msg = document.getElementById('msg');
+
+			// 读取cookie
+			var cookies = document.cookie;
+
+			if(cookies){
+				var arr = cookies.split('; ');
+
+				arr.forEach(function(item){
+					var temp = item.split('=');
+					if(temp[0] === 'username'){
+						msg.innerHTML = temp[1] + '，欢迎登录国家安全系统，<button>退出</button>'
+					}
+				});
+			}
+
+
+			// 删除cookie
+			// 利用设置有效时间来达到删除的效果
+			msg.onclick = function(e){
+				e = e || window.event;
+				var target = e.target || e.srcElement;
+
+				if(target.tagName.toLowerCase() === 'button'){
+					var now = new Date('2017-5-9');
+
+					document.cookie = 'username=null;expires=' + now.toUTCString();
+
+					location.href = '04七天免登录.html';
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="msg"></div>
+</body>
+</html>

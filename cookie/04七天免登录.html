@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04七天免登录</title>
+	<script>
+		window.onload = function(){
+			var username = document.getElementById('username');
+			var password = document.getElementById('password');
+			var btnLogin = document.getElementById('btnLogin');
+			var check = document.getElementById('check');
+
+			btnLogin.onclick = function(){
+				var _username = username.value;
+				var _psw = password.value;
+
+				var str1 = 'username=' + _username;
+				var str2 = 'password=' + _psw;
+				if(check.checked){
+					var now = new Date();
+					now.setDate(now.getDate() + 7);
+
+					// 有效期1分钟
+					// now.setMinutes(now.getMinutes()+1);
+
+					str1 += ';expires=' + now.toUTCString();
+					str2 += ';expires=' + now.toUTCString();
+				}
+
+				// 把用户名和密码存入cookie
+				document.cookie = str1;
+				document.cookie = str2;
+
+				location.href = '04welcome.html';
+			}
+
+
+			// 刷新页面判断登录状态
+			// 如果cookie中保存username和密码，直接跳转到欢迎页面
+			var cookies = document.cookie;
+
+			if(cookies){
+				var arr = cookies.split('; ');
+
+				arr.forEach(function(item){
+					var temp = item.split('=');
+					if(temp[0] === 'username'){
+						location.href = '04welcome.html';
+					}
+				});
+			}
+		}
+	</script>
+</head>
+<body>
+	<label for="username">用户名</label>
+	<input type="text" id="username" name="username">
+
+	<label for="password">用户名</label>
+	<input type="password" id="password" name="password">
+	<label><input type="checkbox" id="check">七天免登陆</label>
+	<button id="btnLogin">登录</button>
+</body>
+</html>

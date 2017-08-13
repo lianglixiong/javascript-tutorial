@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09滚动条滚动过的距离</title>
+	<style>
+		#box{width:200px;height:100px;overflow:auto;border:1px solid #ddd;}
+		#box div{width:600px;height:300px;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				document.documentElement.scrolTop
+				document.boby.scrollTop
+			*/
+			var box = document.getElementById('box');
+
+
+			// 给元素绑定滚动事件
+			box.onscroll = function(){
+				// 获取#box元素滚动条滚动过的距离
+				console.log(box.scrollLeft,box.scrollTop);
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05数组的方法</title>
+	<script>
+		/*
+			数组的方法
+			添加：
+				* push
+				* unshift
+				>添加的方法，返回数组长度
+			删除：
+				* pop 删除最后一个元素
+				* shift 删除第一个元素
+				>删除的方法，返回被删除的元素
+
+		 */
+		var arr = ['百合'];
+
+		// 往百合前添加宝强
+		arr.unshift('宝强');
+
+		// 往数组后追加
+		var len = arr.push('丁一珍','丁二珍');
+
+		console.log(arr);
+		console.log(len);
+
+		// 删除最后一个元素：'丁二珍'
+		var item = arr.pop();
+		console.log(arr,item);
+
+
+		// 删除任意一个数组元素
+		var arr = ['html','css','javascript','html5','css3','EMCAScript'];
+
+		// 删除css
+		arr.splice(1,2);
+
+		// 添加
+		// ['html','javascript','html5','css3','EMCAScript'];
+		arr.splice(1,2,'xhtml','photoshop');
+
+		console.log(arr);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11烟花效果</title>
+	<style type="text/css">
+		html,body{overflow:hidden;height:100%;}
+		body,div,p{margin:0;padding:0;}
+		body{background:#000;font:12px/1.5 arial;color:#7A7A7A;}
+		a{text-decoration:none;outline:none;}
+		#tips,#copyright{position:absolute;width:100%;height:50px;text-align:center;background:#171717;border:2px solid #484848;}
+		#tips{top:0;border-width:0 0 2px;}
+		#tips a{font:14px/30px arial;color:#FFF;background:#F06;display:inline-block;margin:10px 5px 0;padding:0 15px;border-radius:15px;}
+		#tips a.active{background:#FE0000;}
+		#copyright{bottom:0;line-height:50px;border-width:2px 0 0;}
+		#copyright a{color:#FFF;background:#7A7A7A;padding:2px 5px;border-radius:10px;}
+		#copyright a:hover{background:#F90;}
+		p{position:absolute;top:55px;width:100%;text-align:center;}
+		.fire {
+			width: 3px;
+			height: 30px;
+			background: white;
+			position: absolute;top:100%;
+		} 
+		.spark {
+			position: absolute;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+		}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+		/*
+			思路：
+			1）把天空当作对象
+			2）飞入阶段
+				把烟花当作对象
+			3）爆炸阶段
+				把焰火当作对象
+
+		 */
+		document.addEventListener('DOMContentLoaded',function(){
+			// 1）把页面当作对象
+
+			var sky = {
+				width:window.innerWidth,
+				height:window.innerHeight,
+
+				init:function(){
+					// 给document绑定点击事件
+					document.onclick = function(e){
+						e = e || window.event;
+
+						new Firework(e.clientX,e.clientY).init().fire();
+					}
+				}
+			}
+
+			sky.init();
+
+
+			// 烟花构造函数
+			function Firework(x,y){
+				// 属性
+				this.color = randomColor();
+				this.left = x;
+				this.top = y;
+			}
+
+			// 创建节点
+			// 绑定事件
+			Firework.prototype.init = function(){
+				var fire = document.createElement('div');
+				fire.className = 'fire';
+
+				// 设置css样式
+				fire.style.backgroundColor = this.color;
+				fire.style.left = this.left + 'px';
+
+				// 写入页面
+				document.body.appendChild(fire);
+
+				this.ele = fire;
+
+				// 在方法后返回this，为了实现链式调用
+				return this;
+			}
+
+			// 
+			Firework.prototype.fire = function(){
+
+				animate(this.ele,{top:this.top,height:3},function(){
+					this.boom();
+					this.remove();
+				}.bind(this));
+
+				return this;
+			}
+
+			Firework.prototype.boom = function(){
+				// 爆炸生成多少个焰火
+				for(var i=0;i<20;i++){
+					var deg = 360/20*i;
+					var s = new Spark(this.left,this.top,deg);
+					s.init();
+					s.move();
+				}
+				return this;
+			}
+
+			Firework.prototype.remove = function(){
+				this.ele.parentNode.removeChild(this.ele);
+				return this;
+			}
+
+
+			// 焰火构造函数
+			function Spark(x,y,deg){
+				// 随机颜色
+				this.color = randomColor();
+
+				// 爆炸飞出的角度
+				this.rad = deg*Math.PI/180;
+
+				// 爆炸中心点
+				this.x = x;
+				this.y = y;
+
+			}
+
+			Spark.prototype.r = 200;
+			Spark.prototype.init = function(){
+				var spark = document.createElement('div');
+				spark.className = 'spark';
+
+				// 设置初始top,left值
+				spark.style.backgroundColor = this.color;
+				spark.style.left = this.x + 'px';
+				spark.style.top = this.y + 'px';
+
+				// 写入页面
+				document.body.appendChild(spark);
+
+				this.ele = spark;
+				return this;
+			}
+			Spark.prototype.move = function(){
+				// 计算最终坐标
+				var targetLeft = Math.floor(this.r*Math.cos(this.rad) + this.x);
+				var targetTop = Math.floor(this.r*Math.sin(this.rad) + this.y);
+
+				animate(this.ele,{top:targetTop,left:targetLeft,opacity:0.1},function(){
+					this.remove();
+				}.bind(this));
+
+				return this;
+			}
+			Spark.prototype.remove = function(){
+				this.ele.parentNode.removeChild(this.ele);
+				return this;
+			}
+		});
+
+	</script>
+</head>
+<body>
+	<div id="tips"><a id="auto" href="#">自动放烟花</a></div>
+</body>
+</html>

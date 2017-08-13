@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12jquery中的事件</title>
+	<style>
+		table{border:1px solid #ddd;border-collapse: collapse;width:100%;}
+		td{border:1px solid #ddd;width:20%;line-height:2;}
+		td input{display:inline-block;width:100%;border:none;box-sizing: border-box;font-size:16px;outline: none;background-color: #ffc;}
+		td.focus{background:#ffc;}
+	</style>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		$(function(){
+			// 创建一个10行5列的表格
+			// 并写入.container
+
+			var $table = $('<table/>');
+
+			for(var i=1;i<=10;i++){
+				var $tr = $('<tr/>');
+
+				// 创建列
+				for(var j=1;j<=5;j++){
+					var $td = $('<td/>');
+					$td.html('单元格' + i + j);
+
+					// 写入tr
+					$td.appendTo($tr);
+				}
+
+				// 把行写入table
+				$table.append($tr);
+			}
+
+			$table.appendTo('.container');
+
+
+			// 实现可编辑表格
+			/*$('.container td').on('click',function(){
+				var $input = $('<input/>').attr({type:'text'}).val($(this).text());
+
+				$(this).empty().append($input);
+
+				$input.focus();
+
+				$input.on('click',function(e){
+					e.stopPropagation();
+				});
+				
+			});*/
+
+			// 事件委托
+			$('.container').on('click','td',function(){
+				console.log(this);
+
+				// 添加高亮
+				$(this).addClass('focus');
+
+				var $input = $('<input/>').attr({type:'text'}).val($(this).text());
+
+				$(this).empty().append($input);
+
+				$input.focus();
+				
+			}).on('click.maopao','input',function(e){
+				e.stopPropagation();
+			}).on('blur','input',function(e){
+				var $currentTd = $(this).parent();
+				$currentTd.text($(this).val());
+
+				// 取消高亮
+				$currentTd.removeClass('focus');
+			});
+
+
+			// 键盘方向键实现编辑
+
+
+
+			// 自定义事件
+			$('#btn').on('laoxie',function(){
+				alert('谁触发了老谢');
+			});
+
+			// 如何手动触发事件
+			// trigger/triggerHandler
+			$('#btn').trigger('laoxie');
+
+
+			// 事件命名空间
+			// 当需要移除事件时使用命名空间
+			$('.container').off('click.maopao');
+
+
+			// 同时绑定多个事件
+			$('#btn').on('keyup click mouseenter',function(){
+				
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		
+	</div>
+	<button id="btn">自定义事件</button>
+</body>
+</html>

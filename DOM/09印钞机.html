@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09印钞机</title>
+	<script>
+		window.onload = function(){
+			var money = document.getElementsByClassName('money')[0];
+			var btn = money.previousElementSibling;
+			var btnReplace = btn.previousElementSibling;
+
+			btn.onclick = function(){
+				// 复制节点
+				var cmoney = money.cloneNode(true);
+
+				// 写入body
+				document.body.appendChild(cmoney);
+
+				cmoney.onclick = function(){
+					var usd = document.createElement('div');
+					usd.className = 'money usd';
+					var img = document.createElement('img');
+					img.src = 'img/100usd.jpg';
+					usd.appendChild(img);
+
+					cmoney.parentNode.replaceChild(usd,cmoney);
+				}
+			}
+
+			btnReplace.onclick = function(){
+				var usd = document.createElement('div');
+				usd.className = 'money usd';
+				var img = document.createElement('img');
+				img.src = 'img/100usd.jpg';
+				usd.appendChild(img);
+
+				money.parentNode.replaceChild(usd,money);
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>印钞机</h1>
+	<button>替换美元</button>
+	<button>开始印钞</button>
+	<div class="money">
+		<img src="img/100rmb.jpg">
+	</div>
+</body>
+</html>

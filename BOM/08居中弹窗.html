@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08居中弹窗</title>
+	<style>
+		#popover{position:absolute;top:0;left:0;width:400px;height:200px;border:1px solid #ddd;}
+		#btnClose{position: absolute;right:0;top:0;padding:10px;}
+	</style>
+	<script>
+		window.onload = function(){
+			var popover = document.getElementById('popover');
+
+			setCenter();
+
+			// 窗口大小改变时触发
+			window.onresize = function(){
+				setCenter();
+			}
+
+			function setCenter(){
+				popover.style.left = (window.innerWidth-400)/2 + 'px';
+				popover.style.top = (window.innerHeight-200)/2 + 'px';
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="popover">
+		<span id="btnClose">&times;</span>
+	</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07原型式继承法</title>
+	<script>
+		function Person(name,age,gender){
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+		}
+
+		Person.prototype.coding = function(){
+			console.log('coding')
+		}
+		Person.prototype.eat = function(){
+			console.log('我是吃货');
+		}
+
+
+		function Student(name,age,gender){
+			// 借用构造函数法
+			// 继承属性
+			Person.call(this,name,age,gender);
+		}
+
+		// 原型式继承法
+		// 仅仅继承方法
+		Student.prototype = Object.create(Person.prototype);
+		// Student.prototype = inherit(Person.prototype);
+
+		var s1 = new Student();
+		console.log(s1);
+
+
+		// 寄生组合继承法
+		// 借用构造函数法+原型式继承法
+
+
+		// 原型式继承法原理
+		function inherit(o){
+			// 创建一个临时构造函数
+		    function F(){}
+
+		    // 把Person的原型对象赋值给临时构造函数的原型对象
+		    // 把临时构造函数的prototype指向Person的原型
+		    F.prototype = o;
+
+		    // 返回一个实例
+		    return new F();
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

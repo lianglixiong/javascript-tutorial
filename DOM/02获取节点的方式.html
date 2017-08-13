@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02获取节点的方式</title>
+	<script>
+		window.onload = function(){
+			/*
+				获取元素节点的方式
+				* 通过id获取：document.getElementById()
+					id的速度最快
+				* 通过标签名：getElementsByTagName()
+					* 得到的是一个数组
+					* 可以在任意的元素节点下调用次方法
+				* 通过类名：getElementsByClassName()
+					* 得到的是一个数组
+					* 可以在任意的元素节点下调用次方法
+				* 通过name属性：document.getElementsByName()
+					* 用于表单元素的获取
+			 */ 
+			var list = document.getElementById('list');
+			var h1 = document.getElementsByTagName('h1');
+			var link = list.getElementsByTagName('a');
+			var google = document.getElementsByClassName('google');
+
+			console.log(google)
+
+			/*
+				节点(nodeType)：
+				* 元素节点(1)
+				* 属性节点(2)（属性节点存在元素节点中）
+				* 文本节点(3)
+				
+
+				节点属性
+				* nodeType
+				* nodeName
+			 */
+			
+			console.log(list.nodeType);
+		}
+	</script>
+</head>
+<body>
+	<h1>DOM树结构</h1>
+	<div id="list">
+		<a href="#" class="google">Google</a>
+		<a href="#" id="baidu">百度</a>
+		<a href="#">Yahoo</a>
+	</div>
+</body>
+</html>

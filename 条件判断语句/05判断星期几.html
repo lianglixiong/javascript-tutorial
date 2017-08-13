@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05判断星期几</title>
+	<style>
+		img{display: block;}
+	</style>
+</head>
+<body>
+	<img src="img/0.png" id="pic">
+	<input type="text" id="week"><button onclick="showWeek()">今天是星期几</button>
+	<script>
+		var pic = document.getElementById('pic');
+		var week = document.getElementById('week');
+
+		// 显示表情图片函数
+		function showWeek(){
+			// 获取输入的值
+			var _week = week.value;//0-6
+
+			if(_week>=0 && _week<=6){
+				pic.src = 'img/'+_week+'.png';
+			}else{
+				alert('还星期八呢~~');
+			}
+			
+		}
+	</script>
+</body>
+</html>

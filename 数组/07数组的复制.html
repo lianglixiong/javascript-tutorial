@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07数组的复制</title>
+	<script>
+		var arr = [10,20,30];
+
+		var arr2 = arr;
+
+		// 复制数组
+		var arr3 = [];
+		for(var i=0;i<arr.length;i++){
+			// arr3[i] = arr[i];
+			arr3.push(arr[i]);
+		}
+
+		// 引用数据类型：判断是否同一个数据
+		console.log('arr===arr3:',arr === arr3);
+		console.log('arr===arr2:',arr === arr2);
+
+
+		// 基本数据类型判断值是否相等
+		var num = 10;
+		var num2 = 10;
+
+		
+		// 用slice方法实现数组复制
+		var arr = [10,20,2,3,33,44,55,12];
+		var newArr = arr.slice(0);
+		console.log(newArr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14生成5位数以内的正数</title>
+	<script>
+		/*
+			随机生成一个五位以内的数，然后输出该数共有多少位，每位分别是什么
+		 */
+		
+		var num = parseInt(Math.random()*100000);//1,12,123,1234,12345
+
+		var str = String(num);
+
+		console.log(str);
+
+		// 公有几位数
+		var len = str.length;
+
+		// 字符串可以像数组一样遍历
+		for(var i=0;i<len;i++){
+			console.log(str[i]);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

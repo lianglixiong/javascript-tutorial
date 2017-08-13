@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03根据数据生成html结构</title>
+	<style>
+		ul{list-style: none;}
+		#datalist ul{overflow:hidden;}
+		#datalist li{float:left;margin:0 10px;padding:10px;width:220px;height:350px;border:1px solid #ddd;}
+		#datalist li img{margin-top:20px;width:200px;}
+		.price{color:#f00;}
+	</style>
+	<script>
+	window.onload = function(){
+		/*
+		思路：
+				1）获取页面元素
+				2）拼接字符串
+					遍历数组生成多个li
+				3）写入#datalist
+		 */
+		var goodslist = [{
+		    name:'iphone7 plugs',
+		    price:5899.00,
+		    color:'土豪金',
+		    imgurl:'img/ip7.jpg'
+		},{
+		    name:'Note7',
+		    price:3899.00,
+		    color:'黑色',
+		    imgurl:'img/note7.jpg'
+		},{
+		    name:'荣耀7',
+		    price:1999.00,
+		    color:'白色',
+		    imgurl:'img/honor7.jpg'
+		},{
+		    name:'荣耀8',
+		    price:2499.00,
+		    color:'黑色',
+		    imgurl:'img/honor7.jpg'
+		}];
+
+
+		// 1）获取页面元素
+		var datalist = document.getElementById('datalist');
+
+		// 2）拼接字符串
+		var html = '<ul>'
+		for(var i=0;i<goodslist.length;i++){
+			// goodslist[i] =>{name:'荣耀7',price:1999.00,color:'白色',imgurl:'img/honor7.jpg'}
+
+			html += '<li>'
+			+ '<img src="' + goodslist[i].imgurl + '">'
+			+ '<h4>' + goodslist[i].name + '</h4>'
+			+ '<p class="price">' + goodslist[i].price + '</p>'
+			+ '<p class="color">' + goodslist[i].color + '</p>'
+			+ '</li>';
+		}
+
+		// 结束ul标签
+		html += '</ul>';
+
+		// 3）写入#datalist
+		datalist.innerHTML = html;
+	}
+	
+
+
+
+	</script>
+</head>
+<body>
+	<div id="datalist">
+		<!-- <ul>
+			<li>
+				<img src="">
+				<h4>xxx</h4>
+				<p class="price">1999</p>
+				<p class="color">白色</p>
+			</li>
+			<li>
+				<img src="">
+				<h4>xxx</h4>
+				<p class="price">1999</p>
+				<p class="color">白色</p>
+			</li>
+			<li>
+				<img src="">
+				<h4>xxx</h4>
+				<p class="price">1999</p>
+				<p class="color">白色</p>
+			</li>
+		</ul> -->
+	</div>
+</body>
+</html>

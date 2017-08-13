@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10高亮显示单元格</title>
+	<style>
+		table{min-width:600px;border:1px solid #ddd;}
+		td{border:1px solid #ddd;padding:5px 10px;}
+		.active{background-color: #ffc;}
+	</style>
+	<script>
+	window.onload = function(){
+		var datalist = document.getElementById('datalist');
+		var table = document.createElement('table');
+
+		for(var row=0;row<100;row++){
+			var tr = table.insertRow(row);
+			
+			for(var col=0;col<20;col++){
+				var td = tr.insertCell(0);
+				var txt = document.createTextNode('单元格' + (row+1) + (col+1));
+				td.appendChild(txt);
+			}
+
+			// 添加行号
+			var firstTd = tr.insertCell(0);
+			firstTd.innerText = row+1;
+		}
+
+		datalist.appendChild(table);
+
+		var tds = table.getElementsByTagName('td');
+
+		// 给每个td绑定事件，实现高亮效果
+		// 缺点：事件绑定数量过多，影响页面性能
+		/*for(var i=0;i<tds.length;i++){
+			// tds[i].setAttribute('data-idx',i);
+			// tds[i].idx = i;
+			tds[i].onclick = function(){
+				// 先清除所有高亮
+				for(var i=0;i<tds.length;i++){
+					tds[i].className = '';
+				}
+
+				// 先给当前添加高亮
+				this.className = 'active';
+			}
+		}*/
+
+		// 优化方案
+		// 事件委托：利用事件冒泡的原理,把事件绑定给父级元素
+		table.onclick = function(e){
+			e = e || window.event;
+
+			// 事件源对象
+			// 触发事件的元素
+			// 事件源对象在事件传播过程中不会改变
+			var target = e.target || e.srcElement;
+
+			console.log(target.tagName);
+
+			for(var i=0;i<tds.length;i++){
+				tds[i].className = '';
+			}
+
+			if(target.tagName.toLowerCase() === 'td'){
+				target.className = 'active';
+			}
+		}
+	}
+		
+	</script>
+</head>
+<body>
+	<div id="datalist">
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12tab标签切换</title>
+	<style>
+		.tab{width:500px;}
+		.tab .title{border-bottom:2px solid #ddd;overflow:hidden;}
+		.tab .title span{float:left;padding:0 15px;line-height:2;}
+		.tab .title span.active{background-color:#f60;color:#fff;}
+		.tab .content{padding:15px;min-height:100px;border:1px solid #ddd;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				1、把第一个tab加高亮，隐藏除第一个以外的content
+				2、鼠标点击tab，切换到相应的内容
+					* 给当前tab加高亮，并显示相应内容
+			 */
+			var tab = document.getElementsByClassName('tab')[0];
+			var title = tab.children[0].children;
+			var content = tab.children[1].children;
+
+			// 索引值，用与控制tab高亮和内容显示
+			var index = 0;
+
+			// 把第一个tab加高亮
+			title[index].className = 'active';
+
+			// 隐藏除第一个以外的content
+			// 遍历
+			for(var i=0;i<title.length;i++){
+				if(i===index){
+					continue;
+				}
+				content[i].style.display = 'none';
+			}
+
+			// 2、鼠标点击tab，切换到相应的内容
+			for(var i=0;i<title.length;i++){
+				title[i].setAttribute('data-idx',i);
+				title[i].onmouseover = function(){
+					// 此处的this表示被点击的span
+					index = this.getAttribute('data-idx');
+
+					// 清空之前的高亮，隐藏之前的内容
+					// 去除所有的高亮，隐藏所有的内容
+					for(var i=0;i<title.length;i++){
+						title[i].className = '';
+						content[i].style.display = 'none';
+					}
+
+					// 高亮当前，显示相应内容
+					this.className = 'active';
+					content[index].style.display = 'block';
+				}
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div class="tab">
+		<div class="title">
+			<span>Tab1</span>
+			<span>Tab2</span>
+			<span>Tab3</span>
+		</div>
+		<div class="content">
+			<div>内容1</div>
+			<div>内容2</div>
+			<div>内容3</div>
+		</div>
+	</div>
+</body>
+</html>

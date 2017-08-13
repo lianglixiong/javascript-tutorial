@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05jquery筛选</title>
+	<style>
+		table{width:80%;border-collapse: collapse;border:1px solid #ddd;}
+		td{border:1px solid #ddd;padding:5px 10px;}
+		.selected{background-color: #ffc;}
+	</style>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		$(function(){
+			//jquery对象/jquery实例
+			
+			var $table = $('table');
+			var $trs = $table.find('tr');
+
+			$('.first').on('click',function(){
+				$trs.eq(0).addClass('selected');
+			});
+		});
+	</script>
+</head>
+<body>
+	<button class="first">第一行</button>
+	<table>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+		<tr>
+			<td>单元格1</td>
+			<td>单元格2</td>
+			<td>单元格3</td>
+			<td>单元格4</td>
+			<td>单元格5</td>
+		</tr>
+	</table>
+</body>
+</html>

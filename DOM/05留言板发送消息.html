@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05留言板发送消息</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		#msglist li{position:relative;padding:10px;line-height:2;border-bottom:1px dotted #ddd;}
+		textarea{display:block;width:500px;height:100px;}
+		#msglist li span{position:absolute;top:10px;right:0;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				留言板发送消息
+				思路：
+				* 生成ul节点，并插入#msglist
+				* 给发送按钮绑定事件
+					* 获取输入信息
+					* 生成li节点
+					* 把li插入ul
+			 */
+			
+			// 获取元素
+			var msglist = document.getElementById('msglist');
+			var msg = document.getElementById('msg');
+			var btnSend = document.getElementsByTagName('button')[0];
+
+			// * 生成ul节点，并插入#msglist
+			var ul = document.createElement('ul');
+			msglist.appendChild(ul);
+
+			// 给发送按钮绑定事件
+			btnSend.onclick = function(){
+				// * 获取输入信息
+				var _msg = msg.value;
+				
+				// * 生成li节点
+				var li = document.createElement('li');
+				// li.innerHTML = _msg;
+				var txt = document.createTextNode(_msg);
+				li.appendChild(txt);
+
+				// 添加时间
+				var time = document.createElement('span');
+				time.innerHTML = new Date().toLocaleDateString();
+				li.appendChild(time);
+
+				// * 把li插入ul
+				// ul.appendChild(li);
+				console.log(ul.firstChild)
+
+				ul.insertBefore(li,ul.firstChild)
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>留言板发送消息</h1>
+	<div id="msglist"></div>
+	<textarea id="msg"></textarea>
+	<button>提交</button>
+</body>
+</html>

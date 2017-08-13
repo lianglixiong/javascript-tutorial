@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14兼容事件监听</title>
+	<script src="../common.js"></script>
+	<script>
+		window.onload = function(){
+			var btn = document.getElementById('btn');
+
+			// addEvent(btn,'click',function(e){
+			// 	console.log(e);
+			// 	console.log(this.innerText)
+			// });
+
+			// 传统绑定事件
+			btn.onmouseup = function(){
+				console.log('mouseup666');
+			}
+
+			// 传统绑定事件的清除
+			btn.onmouseup = null;
+
+			function clickHandler(){
+				console.log('事件监听click');
+			}
+
+			btn.addEventListener('click',clickHandler,true)
+
+			// 移除
+			btn.removeEventListener('click',clickHandler,true)
+		}
+	</script>
+</head>
+<body>
+	<button id="btn">按钮</button>
+</body>
+</html>

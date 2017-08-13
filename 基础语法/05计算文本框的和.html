@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>05计算文本框的和</title>
+		<script>
+		/*
+			计算文本框的和
+				1）获取输入框的值
+					* 在js中获取页面元素
+					document.getElementById()
+				2）点击按钮时计算
+		 */
+		
+			
+
+			// 声明函数
+			// 用关键字：function
+			// 格式：function 函数名(){}
+			function sum(){
+				// 1）获取输入框元素
+				var num1 = document.getElementById('num1');
+				var num2 = document.getElementById('num2');
+				
+				// 2）获取输入框的值
+				// 通过value属性得到的值为：字符串
+				// '10' + '20' = '1020' 拼接
+				// 所以需要把字符串转成数字：Number
+				var _num1 = Number(num1.value);
+				var _num2 = Number(num2.value);
+
+
+				alert(_num1 + _num2);
+
+			}
+
+
+			// 函数的执行：
+			// 格式：函数名()
+			//sum();
+
+		</script>
+	</head>
+	<body>
+		<input type="text" id="num1">
+		<input type="text" id="num2">
+		<button onclick="sum()">计算加法</button>
+	</body>
+</html>

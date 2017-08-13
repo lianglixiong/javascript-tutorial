@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01变量声明let</title>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		/*
+			解构
+		 */
+		
+		// 同时声明多个变量
+		// var num = 10,
+		// str = 'html',
+		// isHard = true;
+
+		// 数组解构：
+		var [a,b,c,d] = [1,2,3];//相当于：var a=1,b=2,c=3,d
+		console.log(a,b,c,d)
+
+
+		// 对象解构：
+		// var {name,age,gender} = {name:'laoxie',age:18,gender:'男'};
+		var {name:myName,age:myAge} = {name:'laoxie',age:18,gender:'男'};
+		console.log(myName,myAge);
+
+		//指定默认值
+		let {num=666,str='***'} = {name:'laoxie',age:18,gender:'男',str:'我叫xxx'}
+		console.log(num,str);
+
+	});
+		
+	</script>
+</head>
+<body>
+</body>
+</html>

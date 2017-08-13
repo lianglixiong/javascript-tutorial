@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>17放大镜插件</title>
+	<link rel="stylesheet" href="lib/jquery-gdszoom/jquery.gdszoom.css">
+	<style>
+		/*body{padding-left:600px;}*/
+		.smallList img{width:80px;}
+		.gds-bigzoom img{min-width: 1000px;}
+	</style>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="lib/jquery-gdszoom/jquery.gdszoom.js"></script>
+	<script>
+		$(function(){
+			$('.goods').gdszoom({
+				width:400,height:300,position:'bottom'
+			});
+
+			$('.smallList img').click(function(){
+				$('.goods img').attr({
+					'src':this.src,
+					'data-big':this.src
+				});
+			})
+		});
+	</script>
+</head>
+<body>
+	<div class="goods">
+		<img src="img/car_min.png" data-big="img/car.jpg">
+	</div>
+	<div class="smallList">
+		<img src="img/g1.jpg" alt="">
+		<img src="img/g2.jpg" alt="">
+		<img src="img/g3.jpg" alt="">
+		<img src="img/g4.jpg" alt="">
+		<img src="img/g5.jpg" alt="">
+	</div>
+</body>
+</html>

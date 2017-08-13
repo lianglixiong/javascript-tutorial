@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02单体模式-弹窗</title>
+	<style>
+		.popover{width:100px;height:50px;border:1px solid #ddd;}
+	</style>
+	<script>
+	document.addEventListener('DOMContentLoaded',function(){
+		var btn = document.querySelector('button');
+		btn.onclick = function(){
+			new Popover();
+		}
+
+		/*function Popover(){
+			this.init();
+		}
+
+		Popover.prototype.init = function(){
+			var pop = document.createElement('div');
+			pop.className = 'popover';
+
+			document.body.appendChild(pop)
+		}*/
+
+		function Popover(){
+			this.init();
+		}
+
+		Popover.prototype.init = function(){
+			if(!Popover.show){
+				var pop = document.createElement('div');
+				pop.className = 'popover';
+
+				document.body.appendChild(pop);
+
+				Popover.show = true;
+			}
+			
+		}
+	});
+		
+
+	</script>
+</head>
+<body>
+	<button>弹窗</button>
+</body>
+</html>

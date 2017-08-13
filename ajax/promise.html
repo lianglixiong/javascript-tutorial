@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>promise</title>
+	<script>
+		// setTimeout(function(){
+		// 	document.write('hello promise');
+		// },2000);
+
+		// console.log('end');
+
+		var promise = new Promise(function(resolve,reject){
+			setTimeout(function(){
+				document.write('hello promise');
+
+				resolve();
+			},2000);
+		});
+
+		promise.then(function(){
+			console.log('end');
+		});
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

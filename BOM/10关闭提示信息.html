@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10关闭提示信息</title>
+	<script>
+		window.onbeforeunload = function(){
+			console.log(666)
+
+			return '你真的忍心离开吗'
+		}
+	</script>
+</head>
+<body>
+	<h1>关闭浏览器提示信息</h1>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断用户名是否已被注册</title>
+	<style>
+		.success{color:#0c0;border:1px solid #0c0;}
+		.error{color:#f00;border:1px solid #f00;}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var username = document.querySelector('#username');
+			var btnReg = document.querySelector('button');
+
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState === 4 && xhr.status === 200){
+					if(xhr.responseText==='yes'){
+						// alert('恭喜你，能注册')
+						username.className = 'success';
+					}else{
+						// alert('你注册的用户名太受欢迎了，换一个吧');
+						username.className = 'error';
+					}
+				}
+			}
+
+			btnReg.onclick = function(){
+
+				xhr.open('post','api/reg.php',true);
+
+				// 设置请求头
+				// 必须要写在open方法之后
+				// 要让后端能接收到post请求，必须设置content-type请求头为application/x-www-form-urlencoded
+				xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+
+				xhr.send('username='+username.value);
+			}
+
+
+			// 封装
+			// ajax({
+			// 	url:'api/reg.php',
+			// 	type:'post',
+			// 	async:true,
+			// 	data:{username:username.value},
+			// 	success:function(data){
+			// 		if(data==='yes'){
+			// 			// alert('恭喜你，能注册')
+			// 			username.className = 'success';
+			// 		}else{
+			// 			// alert('你注册的用户名太受欢迎了，换一个吧');
+			// 			username.className = 'error';
+			// 		}
+			// 	}
+			// })
+
+			
+		});
+	</script>
+</head>
+<body>
+	<h1>判断用户名是否已被注册</h1>
+	<p>
+		<label for="username">用户名：</label>
+		<input type="text" id="username" name="username">
+	</p>
+	<p>
+		<label for="password">密码：</label>
+		<input type="password" id="password" name="password">
+	</p>
+	<button>注册</button>
+</body>
+</html>

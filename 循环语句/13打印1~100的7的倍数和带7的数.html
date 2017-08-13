@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打印1~100的7的倍数和带7的数</title>
+	<script>
+		/*
+			打印1~100的7的倍数和带7的数。
+			1）获取个位
+			2）十位数
+		 */
+		for(var num=1;num<=100;num++){
+			// 获取个位
+			var g = num%10;
+			var s = parseInt(num/10);
+			if(num%7===0 || g===7 || s===7){
+				document.write(num + ', ');
+			}
+		}
+	</script>
+	
+</head>
+<body>
+	
+</body>
+</html>

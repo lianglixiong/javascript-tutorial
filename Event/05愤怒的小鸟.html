@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05愤怒的小鸟</title>
+	<style>
+		html,body{height:100%;overflow:hidden;}
+		img{position:absolute;left:0;top:0;width:200px;}
+		.right{transform:rotateY(180deg);}
+		.up{transform:rotateZ(90deg);}
+		.down{transform:rotateZ(-90deg);}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				* 按住键盘方向键
+					给document绑定onkeydown键盘事件
+					* 上 :小鸟往上跑
+					* 下 :小鸟往下跑
+					* 左 :小鸟往左跑
+					* 右 :小鸟往右跑
+			 */
+			var bird = document.images[0];
+
+			// 水平垂直速度
+			var hspeed = 10;
+			var vspeed = 10;
+
+			document.onkeydown = function(e){
+				console.log(e.keyCode,e.which);
+
+				/*var keyCode;
+				if(e.keyCode){
+					keyCode = e.keyCode;
+				}else{
+					keyCode = e.which;
+				}*/
+
+				// 兼容性写法（兼容IE8-）
+				e = e || window.event;
+
+				var keyCode = e.keyCode || e.which;
+
+				var left = bird.offsetLeft;
+				var top = bird.offsetTop;
+				
+				switch(keyCode){
+					// left
+					case 37:
+						left -= 10;
+						bird.className = '';
+						break;
+
+					// up
+					case 38:
+						top -= 10;
+						bird.className = 'up';
+						break;
+
+					// right
+					case 39:
+						left += 10;
+						bird.className = 'right';
+						break;
+
+					// down
+					case 40:
+						top += 10;
+						bird.className = 'down';
+						break;
+				}
+
+				// 穿墙术
+				// 水平方向
+				if(left > window.innerWidth){
+					left = -bird.offsetWidth;
+				}else if(left < -bird.offsetWidth){
+					left = window.innerWidth;
+				}
+
+				// 垂直方法
+				if(top >= window.innerHeight){
+					top = -bird.offsetHeight;
+				}else if(top < -bird.offsetHeight){
+					top = window.innerHeight;
+				}
+
+				bird.style.left = left + 'px';
+				bird.style.top = top + 'px';
+			}
+		}
+	</script>
+</head>
+<body>
+	<img src="img/bird.jpg">
+</body>
+</html>

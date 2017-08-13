@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12计算不定数量数值的和</title>
+	<script>
+	/*
+		封装一个函数，实现不定数量的数值求和
+		sum(20,30);=>50
+		sum(1,2,3);=>6;
+		sum(1,2,3,4,5);=>15
+	 */
+	
+	function sum(){
+		// arguments
+		// [10,20,30,40,50,60]
+		// 通过arguments获取某个实参：arguments[0]
+		// 索引（下标）：从0开始
+
+		var total = 0;
+
+		for(var i=0;i<arguments.length;i++){
+			total += arguments[i];
+		}
+		
+		console.log(total);
+	}
+	</script>
+	
+</head>
+<body>
+	
+</body>
+</html>

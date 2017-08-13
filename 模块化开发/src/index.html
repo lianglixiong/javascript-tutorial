@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="css/home.css">
+	<!-- 传统引入js方式 -->
+	<!-- <script src="lib/jquery-3.2.1.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/home.js"></script> -->
+
+	<!-- 
+		模块化开发：requirejs 
+		baseUrl：基础路径
+			无data-main属性：baseUrl=>当前html所在的路径
+			有data-main属性：baseUrl=>data-main文件所在的路径
+
+	-->
+	<script src="js/require.js" data-main="js/home.js"></script>
+</head>
+<body>
+	<header>
+		欢迎来到xxx，请<a href="#">登录</a> or <a href="#">注册</a>
+	</header>
+	<h1>首页</h1>
+	<nav>
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="#">列表</a></li>
+			<li><a href="#">详情</a></li>
+			<li><a href="#">购物车</a></li>
+		</ul>
+	</nav>
+
+</body>
+</html>

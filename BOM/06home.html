@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06history</title>
+	<style>
+		#right{position: absolute;right:8px;}
+	</style>
+	<script>
+		window.onload = function(){
+			var btnLeft = document.getElementById('left');
+			var btnRight = document.getElementById('right');
+
+			// 绑定事件实现前进后退
+			btnLeft.onclick = function(){
+				history.back();
+			}
+
+			btnRight.onclick = function(){
+				history.forward();
+			}
+		}
+	</script>
+</head>
+<body>
+	<header>
+		<button id="left">&lt;</button>
+		<button id="right">&gt;</button>
+	</header>
+	<div class="container">
+		<a href="06history.html">主页</a>
+		<a href="06list.html">列表</a>
+	</div>
+</body>
+</html>

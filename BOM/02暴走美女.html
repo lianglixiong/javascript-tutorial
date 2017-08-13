@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02暴走美女</title>
+	<style>
+		img{position:absolute;left:0;top:0;width:100px;border-radius:50%;}
+	</style>
+	<script>
+		window.onload = function(){
+			var meinv = document.getElementById('meinv');
+
+			var left = 0;
+			var timer = setInterval(function(){
+				left += 5;
+
+				if(left >= window.innerWidth-100){
+					clearInterval(timer);
+					left = window.innerWidth-100;
+				}
+
+				meinv.style.left = left + 'px';
+			},30);
+			
+		}
+	</script>
+</head>
+<body>
+	<img src="img/g3.jpg" id="meinv">
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04原型链</title>
+	<script>
+		function Person(name,age,gender){
+			this.name = name;
+			this.age = age;
+			this.gender = gender
+		}
+
+		Person.prototype.coding = function(){
+			console.log('我在撸代码，我为自己代言');
+		}
+
+		Person.prototype.eat = function(){
+			console.log('天王盖地虎，小鸡炖蘑菇');
+		}
+
+		var p = new Person();
+		p.coding();//ok
+		p.toString();
+
+
+		// 学生
+		function Student(name,age,gender){
+			// 继承属性
+			// 借用构造函数法
+			// 把Person中的this指向这里的this
+			Person.call(this,name,age,gender);
+			// Person.apply(this,arguments);
+
+
+			
+
+
+
+		}
+
+		// 原型链继承法
+		// 只能继承方法
+		Student.prototype = new Person();
+
+		var s1 = new Student('刘备',50,'男');
+		console.log(s1)
+
+		var s2 = new Student('关羽',40,'男');
+		console.log(s2)
+
+		s1.coding();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

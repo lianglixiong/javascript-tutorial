@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01闭包</title>
+	<script>
+		// 闭包
+		// bb:闭包函数
+		function aa(){
+		    var num=100;
+		    console.log('aa中访问num：',num);
+
+		    return function bb(){
+		    	num--;
+		        console.log("bb中访问num：",num);
+		    }
+
+		    // return bb;
+		}
+
+		var fn = aa();
+		
+		fn();//99
+		fn();//98
+		fn();//97
+		fn();//96
+
+		//bb(); //无法直接访问函数内部的函数
+
+		function show(){
+			var num=10;
+			num++;
+			console.log(num);
+		}
+
+		show();
+		show();
+		show();
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

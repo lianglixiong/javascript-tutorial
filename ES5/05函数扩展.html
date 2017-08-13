@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05函数扩展</title>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var output = document.querySelector('#output');
+
+			/*
+				函数扩展
+				格式：fn.bind(obj)
+				* 用于将当前函数和指定对象绑定，返回一个新的函数
+				* 把函数fn内的this指向obj
+			 */
+			// 通过querySelectorAll得到的类数组可以使用forEach
+			var btns = document.querySelectorAll('.btn');
+
+			for(var i=0;i<btns.length;i++){
+				/*btns[i].onclick = function(){
+					// 原指向：这里的this指向button
+					// 调用bind后：这里的this指向window
+					console.log(this);
+				}.bind(window);
+*/
+				btns[i].onclick = function(){
+					//这里的this指向按钮
+					setTimeout(function(){
+						// 这里的this呢？
+						console.log(this);
+						output.innerHTML = '你点击了' + this.innerHTML;
+					}.bind(this),1000);
+				};
+			}
+
+
+			
+		});
+	</script>
+</head>
+<body>
+	<button class="btn">按钮1</button>
+	<button class="btn">按钮2</button>
+	<button class="btn">按钮3</button>
+	<div id="output"></div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11盒模型属性</title>
+	<style>
+		#box{padding:20px;width:100px;height:100px;border:10px solid #ddd;background-color: #f00;}
+	</style>
+	<script>
+		window.onload = function(){
+			var box = document.getElementById('box');
+
+			// 在js中如何获取元素的宽高
+			// * getComputedStyle()：获取计算后的样式
+			// * offsetWidth：获取元素自边框以内的宽度
+			console.log(box.style.width);
+			console.log(getComputedStyle(box).fontSize);
+			console.log(getComputedStyle(box)['background-color']);
+
+			// var currentWidth = parseInt(getComputedStyle(box).width);
+			// box.style.width = currentWidth + 50 + 'px';
+
+			console.log(box.offsetWidth);
+			console.log(box.offsetLeft);
+		}
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

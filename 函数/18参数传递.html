@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>18参数传递</title>
+	<script>
+		var num = 10;
+
+		function sum(num){
+			// var num = 100;
+
+			num++;
+
+			console.log('内部：',num);//11
+		}
+
+		console.log('外部：', num);//10
+
+		// sum(100);
+
+		// 基本数据类型：值传递
+		sum(num);
+
+
+		// 传递函数
+		function showMsg(){
+			document.write('天王盖地虎，小鸡炖蘑菇');
+		}
+
+		function create(name,age,fn){
+			console.log('我叫' + name + ',今年' + age + '岁');
+
+			// fn为函数
+			// 调用：fn();
+			// console.log(typeof fn)
+			fn();
+		}
+
+		// create('王铁锤',40);
+
+		create('王铁锤',40,showMsg);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04判断当前月份天数</title>
+	
+</head>
+<body>
+	<input type="text" id="month"><button onclick="showDays()">查看天数</button>
+	<div id="output"></div>
+	<script>
+		var month = document.getElementById('month');
+		var output = document.getElementById('output');
+
+		function showDays(){
+			//获取输入的月份
+			var _month = Number(month.value);
+
+			/*
+				case穿透：
+				当符合条件时，会从符合条件的那一条case语句开始，依次顺序执行
+			 */
+			switch(_month){
+				//有31天的月份
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:
+					output.innerHTML = _month + '月份有31天';
+					break;
+				case 2:
+					output.innerHTML = _month + '月份有28天';
+					break;
+
+				// 30天的月份
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					output.innerHTML = _month + '月份有30天';
+					break;
+
+				// 以上case条件都不满足的情况下会执行defalut下面的语句
+				default:
+					output.innerHTML = '你输入的月份' + _month + '不存在';
+			}
+		}
+	</script>
+</body>
+</html>

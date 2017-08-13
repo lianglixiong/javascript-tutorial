@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11封装map方法</title>
+	<script>
+		/*
+			编写一个map(arr)函数，把数组中的每一个数字都增加20%，并返回新的数组
+		 */
+		var arr = [2,8,5,10,23,33,12];
+
+		function map(arr){
+			var res = [];
+
+			// 遍历数组
+			// 把每一项数字增加20%
+			// 然后写入新的数组
+
+			for(var i=0;i<arr.length;i++){
+				res[i] = Number((arr[i]*1.2).toFixed(2));
+			}
+
+			return res;
+		}
+
+		console.log(map(arr));//[2.4,9.6...]
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

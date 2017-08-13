@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10水平滚动轮播图</title>
+	<link rel="stylesheet" href="lib/jquery-lxCarousel/jquery.lxCarousel.css">
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="lib/jquery-lxCarousel/jquery.lxCarousel.js"></script>
+	<script>
+		$(function(){
+			$('.carousel').lxCarousel({
+				imgs:['img/001.jpg','img/002.jpg','img/003.jpg','img/004.jpg'],
+				// width:810,
+				// height:320,
+				autoPlay:false,
+				index:3,
+			}).css('background-color','#f00');
+		});
+	</script>
+</head>
+<body>
+	<div class="carousel">
+		<!-- <ul>
+			<li><img src="img/001.jpg" alt=""></li>
+			<li><img src="img/002.jpg" alt=""></li>
+			<li><img src="img/003.jpg" alt=""></li>
+			<li><img src="img/004.jpg" alt=""></li>
+		</ul>
+		<div class="page">
+			<span class="active">1</span>
+			<span>2</span>
+		</div> -->
+	</div>
+	<div class="carousel"></div>
+	<div class="carousel"></div>
+</body>
+</html>

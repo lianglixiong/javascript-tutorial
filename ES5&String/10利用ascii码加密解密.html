@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09ascii码</title>
+	<script>
+		window.onload = function(){
+			var psw = document.getElementById('psw');
+			var btnEncode = document.getElementById('btnEncode');
+			var btnDecode = document.getElementById('btnDecode');
+			var output = document.getElementById('output');
+
+			// 加密
+			btnEncode.onclick = function(){
+				var str = psw.value;
+
+				var res = '';
+				for(var i=0;i<str.length;i++){
+					res += str.charCodeAt(i) + ',';
+				}
+
+				output.innerHTML = res.slice(0,-1);
+			}
+
+			// 解密
+			btnDecode.onclick = function(){
+				var str = output.innerHTML;
+
+				// 拆分成数组
+				var arr = str.split(',');
+				var res = '';
+				arr.forEach(function(code){
+					res += String.fromCharCode(code);
+				});
+
+				output.innerHTML = res;
+			}
+		}
+	</script>
+</head>
+<body>
+	<label for="psw">密码</label>
+	<input type="text" id="psw" name="psw">
+	<button id="btnEncode">加密</button>
+	<button id="btnDecode">解密</button>
+	<div id="output"></div>
+</body>
+</html>

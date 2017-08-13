@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08jquery方法中的函数参数</title>
+	<script src="js/jquery-3.2.1.js"></script>
+
+	<script>
+		$(function(){
+			$('img').attr('src',function(idx,oldVal){
+				// return 'img/g'+ (idx+1) +'.jpg';
+				return oldVal.replace('img/','img/g');
+			});
+
+
+			
+
+		});
+	</script>
+</head>
+<body>
+	<img src="img/1.jpg" alt="">
+	<img src="img/20.jpg" alt="">
+	<img src="img/3.jpg" alt="">
+	<img src="img/41.jpg" alt="">
+	<img src="img/5.jpg" alt="">
+	<img src="img/6.jpg" alt="">
+	<img src="img/7.jpg" alt="">
+	<img src="img/82.jpg" alt="">
+	<img src="img/9.jpg" alt="">
+	<img src="img/10.jpg" alt="">
+</body>
+</html>

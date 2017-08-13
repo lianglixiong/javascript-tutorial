@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03tab标签切换</title>
+	<style>
+		.tab{width:800px;margin:0 auto;}
+		.tab .title{border-bottom:2px solid #ddd;overflow:hidden;}
+		.tab .title span{float:left;padding:0 15px;border-right:1px solid #eee;line-height: 2;background-color: #f5f5f5;}
+		.tab .title span.active{background-color: #fc0;}
+		.tab .content{border:1px solid #ddd;padding:15px;min-height: 100px}
+	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			var tab = document.querySelector('.tab');
+			var titles = tab.querySelector('.title').children;
+			var contents = tab.querySelector('.content').children;
+
+			var index = 0;
+
+			// 高亮显示第一个tab
+			// 隐藏除第一个以外的content
+			for(var i=0;i<titles.length;i++){
+				contents[i].style.display = 'none';
+
+				if(i===index){
+					titles[i].classList.add('active');
+					contents[i].style.display = 'block';
+				}
+
+				// 绑定事件
+				titles[i].onclick = (function(idx){
+
+					return function(){
+						// 先去掉所有高亮，再添加当前高亮
+						// 先隐藏所有content,再显示当前content
+						for(var i=0;i<titles.length;i++){
+							contents[i].style.display = 'none';
+							titles[i].classList.remove('active');
+						}
+
+						titles[idx].classList.add('active');
+						contents[idx].style.display = 'block';
+
+					}
+				})(i);
+
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<div class="tab">
+		<div class="title">
+			<span>tab1</span>
+			<span>tab2</span>
+			<span>tab3</span>
+		</div>
+		<div class="content">
+			<div>content1</div>
+			<div>content2</div>
+			<div>content3</div>
+		</div>
+	</div>
+</body>
+</html>

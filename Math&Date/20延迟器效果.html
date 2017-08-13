@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>20延迟器效果</title>
+	<script>
+	window.onload = function(){
+		var meinv = document.getElementById('meinv');
+
+		var timer;
+		meinv.onmouseout = function(){
+			timer = setTimeout(function(){
+				meinv.style.display = 'none';
+			},1000);
+		}
+
+		meinv.onmouseover = function(){
+			clearTimeout(timer);
+		}
+	}
+	</script>
+</head>
+<body>
+	<img src="img/g3.jpg" id="meinv">
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02对象遍历</title>
+	<script>
+		var obj = {
+			name:'王宝强',
+			hobby:'你'
+		}
+
+		// 同名属性会被覆盖
+		obj.name = '王大锤';
+		obj.gender = '男';
+		obj.age = 40;
+
+		console.log(obj);
+
+		// 对象的读取格式
+		// 对象.属性名
+		// 对象['属性名']
+		// **如果属性名不存在，得到undefined
+
+
+		// 对象的遍历
+		// for..in
+		for(var attr in obj){
+			// 这里的attr为每一个属性名
+			// 每次遍历复制不同的属性
+			console.log(attr);
+
+			// 如何得到属性值？
+			console.log(obj[attr])
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

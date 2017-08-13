@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10跳出循环</title>
+	<script>
+
+		// continue:跳过本次循环，继续下一次循环
+		var total = 0;
+		for(var i=1;i<=10;i++){
+			if(i===5){
+				continue;
+			}
+			total += i;
+		}
+		console.log('continue:',total);
+
+
+		// break:退出当前整个循环
+		var total = 0;
+		for(var i=1;i<=10;i++){
+			if(i===5){
+				break;
+			}
+			total += i;
+		}
+		console.log('break:',total);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

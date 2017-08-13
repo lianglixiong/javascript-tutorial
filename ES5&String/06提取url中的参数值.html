@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06提取url中的参数值</title>
+	<script>
+		/*
+			https://www.baidu.com/s?name=avery&age=20&sex=male, 取出name, age和sex的值
+
+			思路：
+			1）先提取name=avery&age=20&sex=male
+			2）以&拆分成数组['name=avery','age=20','sex=male']
+			3）遍历数组，以=拆分
+		 */
+		var str = 'https://www.baidu.com/s?name=avery&age=20&sex=male';
+
+		// 1）先提取name=avery&age=20&sex=male
+		
+		// 先获取?所在的索引值
+		var idx = str.indexOf('?');
+
+		// 截取字符串
+		// var params = str.slice(idx+1);
+		// var params = str.substring(idx+1);
+		var params = str.substr(idx+1);
+		
+		// 以&拆分成数组
+		var arr = params.split('&');
+
+		// 3）遍历数组，以=拆分
+		arr.forEach(function(item){
+			var temp = item.split('=');
+			console.log(temp[0] + ':' + temp[1]);
+
+		})
+		console.log(arr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<style>
+		#carList li{position:relative;padding-bottom:15px;margin-bottom:15px;border-bottom:1px solid #ddd;}
+		#carList img{display:block;width:100px;}
+		#carList li .btn-close{position:absolute;top:0;right:0;padding:0 5px;cursor:default;}
+		#carList li .btn-close:hover{background-color:#f00;color:#fff;}
+		.subPrice{padding:5px 20px;color:#f00;font-weight:bold;text-align:right;}
+		#carList .price{color:#f00;}
+		.price::before{
+			content:'￥';
+			font-size:11px;
+		}
+		#carList .price span{font-size:11px;}
+	</style>
+	<script src="../common.js"></script>
+	<script>
+	window.onload = function(){
+		var carList = document.getElementById('carList');
+		var btnClear = document.getElementById('btnClear');
+		var subPrice = document.getElementsByClassName('subPrice')[0];
+
+		// 获取cookie商品信息
+		var goodslist = getCookie('goodslist');
+
+		// 把json字符串转换成数组/对象
+		// JSON.parse(json)
+		goodslist = goodslist ? JSON.parse(goodslist) : [];
+
+		render();
+
+		function render(){
+			// 总价
+			var totalPrice = 0;
+
+			var ul = document.createElement('ul');
+
+			ul.innerHTML = goodslist.map(function(goods){
+				// 计算总价
+				totalPrice += goods.price*goods.qty;
+
+				return '<li data-guid="'+goods.guid+'"><img src="'+goods.imgurl+'"><h4>'+goods.name+'</h4><p class="price">'+goods.price+'&times;'+goods.qty+'</p><span class="btn-close">&times;</span></li>'
+			}).join('');
+
+			carList.innerHTML = '';
+			carList.appendChild(ul);
+			subPrice.innerText = totalPrice.toFixed(2);
+		}
+
+
+		// 清空购物车
+		btnClear.onclick = function(e){
+			removeCookie('goodslist');
+
+			// 清空DOM节点
+			carList.innerHTML = '';
+			subPrice.innerHTML = '';
+
+			e.preventDefault();
+		}
+
+		// 删除单个商品
+		carList.onclick = function(e){
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+
+			if(target.className === 'btn-close'){
+				var currentLi = target.parentNode;
+				var guid = currentLi.getAttribute('data-guid');
+
+				for(var i=0;i<goodslist.length;i++){
+					if(goodslist[i].guid === guid){
+
+						// 删除数组中对应的商品
+						goodslist.splice(i,1);
+
+						// 重新写入cookie
+						setCookie('goodslist',JSON.stringify(goodslist));
+
+						break;
+					}
+				}
+
+
+				// 删除DOM节点
+				// removeChild
+				// currentLi.parentNode.removeChild(currentLi);
+				render();
+			}
+		}
+	}
+		
+	</script>
+</head>
+<body>
+	<h1>购物车</h1>
+	<div id="carList">
+		
+	</div>
+	<div class="subPrice"></div>
+	<a href="#" id="btnClear">清空购物车</a>
+</body>
+</html>

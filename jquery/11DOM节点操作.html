@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11DOM节点操作</title>
+	<style>
+		.container{border:1px solid #ddd;padding:20px;position: relative;}
+	</style>
+	<script src="js/jquery-3.2.1.js"></script>
+	<script>
+		$(function(){
+			// 创建一个输入框
+			var $username = $('<input/>').attr({type:'text',name:'username',id:'username'});
+
+			// 写入页面
+			$('body').append($username);
+			$username.appendTo('body');
+
+			// 页面已存在元素调用append(appendTo),prepend(prependTo),after(insertAfter),before(insertBefore)
+			// 会移动位置
+			$('#btn').appendTo('body');
+
+			// 删除元素
+			// $('.content').remove();
+
+
+			// 清空内容
+			// innerHTML,innerText
+			$('.content').html('<strong>内容</strong>');
+			console.log($('.content').text());
+		});
+	</script>
+</head>
+<body>
+	<div class="container">
+		<button id="btn">按钮</button>
+		<div class="content"></div>
+	</div>
+</body>
+</html>

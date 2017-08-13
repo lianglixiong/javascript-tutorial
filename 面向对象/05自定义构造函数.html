@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05自定义构造函数</title>
+	<script>
+		var ojb = {};
+		var obj = new Object();
+		//Number,String,Array,RegExp,Date,Function....
+
+		// 如何创建一个构造函数
+		// 约定：首字母大写
+		function Person(){
+			/*// new构造函数过程分析
+			
+			// 1)创建一个对象
+			var obj = {}
+
+			// 2)将构造函数的this指向这个对象
+			// this指向obj
+
+			//3)执行构造函数中的代码
+			console.log(666);
+
+			// 4）返回创建的对象（默认）
+			return obj*/
+		}
+
+		// 跟普通函数唯一的区别：调用方式
+
+		// 普通函数调用
+		var res1 = Person();
+
+		// 构造函数调用
+		// 通过new构造函数得到的对象称之为：实例
+		var res2 = new Person();
+
+		console.log(res1);
+		console.log(res2);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

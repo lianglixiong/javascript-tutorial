@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01常用事件</title>
+	<script>
+		window.onload = function(){
+			/*
+				事件的触发都是一瞬间
+				* 
+			 */
+			var btn = document.getElementById('btn');
+			var username = document.getElementById('username');
+
+			btn.onclick = function(){
+				console.log('click');
+			}
+
+			btn.onmousedown = function(){
+				console.log('mousedown');
+			}
+
+			btn.onmouseup = function(){
+				console.log('mouseup');
+			}
+
+			btn.ondblclick = function(){
+				console.log('dblclick');
+			}
+
+			// 右键菜单弹开瞬间触发
+			btn.oncontextmenu = function(){
+				console.log('右键菜单')
+			}
+
+
+			// 表单事件
+			username.onchange = function(){
+				console.log('change')
+			}
+
+			username.oninput = function(){
+				console.log('input')
+			}
+		}
+
+	</script>
+</head>
+<body>
+	<button id="btn">按钮</button>
+	用户名：<input type="text" id="username">
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>12放大镜</title>
+	<style>
+    .bigPic img{width:300px;}
+	.zoom{position:relative;}
+	.zoom .minzoom{display:none;position: absolute;left:0;top:0;width:30px;height:30px;border:1px solid #fc0;background-color:#ff0;background-color: rgba(255,255,0,.3);filter:alpha(Opacity=30);}
+	.bigzoom{display:none;position: absolute;width:200px;height:300px;overflow:hidden;}
+	.bigzoom img{position: absolute;left:0;top:0;}
+    </style>
+	<script>
+		document.addEventListener('DOMContentLoaded',function(){
+			function Zoom({selector,width=300,height=300,gap=15}){
+				// 小图
+				this.selector = selector;
+
+				// 大图显示区域的宽高
+				this.width = width;
+				this.height = height;
+
+				// 大图与小图间距
+				this.gap = gap;
+			}
+
+			Zoom.prototype.init = function(){
+				var myZoom = document.querySelector(this.selector);
+				var minPic = myZoom.children[0];
+
+
+				// 创建放大镜
+				var minZoom = document.createElement('span');
+				minZoom.className = 'minzoom';
+				myZoom.appendChild(minZoom);
+
+
+				// 创建大图
+				var bigZoom = document.createElement('div');
+				bigZoom.className = 'bigzoom';
+				var bigPic = document.createElement('img');
+				bigPic.src = minPic.dataset.big;
+				bigZoom.appendChild(bigPic);
+
+				// 把大图写入body
+				document.body.appendChild(bigZoom);
+
+				// 传递参数
+				this.bigZoom = bigZoom;
+				this.minZoom = minZoom;
+
+
+				// 事件绑定
+				myZoom.onmouseenter = function(){
+					this.show();
+				}.bind(this);
+
+				myZoom.onmouseleave = function(){
+					this.hide()
+				}.bind(this);
+
+			}
+
+			Zoom.prototype.show = function(){
+				this.minZoom.style.display = 'block';
+				this.bigZoom.style.display = 'block';
+			}
+			Zoom.prototype.hide = function(){
+				this.minZoom.style.display = 'none';
+				this.bigZoom.style.display = 'none';
+			}
+
+
+			new Zoom({selector:'.zoom'}).init();
+		});
+	</script>
+</head>
+<body>
+	<div class="zoom">
+		<img src="img/car_min.png" data-big="img/car.jpg">
+	</div>
+</body>
+</html>

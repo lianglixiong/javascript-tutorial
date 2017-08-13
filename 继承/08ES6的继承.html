@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08ES6的继承</title>
+	<script>
+		class Person{
+			// 构造函数
+			constructor(name,age,gender) {
+		        this.name = name;
+		        this.age = age;
+		        this.gender = gender;
+		    }
+
+
+		    // 原型对象的方法
+		    eat(){
+		    	console.log(`我是${this.name},我是吃货`)
+		    }
+		}
+
+
+		var p1 = new Person('laoxie',18,'male');
+		p1.eat();
+
+
+		// ES6的继承
+		class Student extends Person{
+			 constructor(name, age, gender) {
+		        //this.gender = gender; // 报错
+		        super(name, age, gender);
+
+		        this.hobby = ['弄发型']; // 正确
+		    }
+
+		    static coding(){
+		    	// 静态方法中this指向类本身
+		    	console.log(`我是${this.name},今年${this.age},我爱撸代码`)
+		    }
+		}
+
+		var s1 = new Student('三胖',30,'male');
+		s1.eat();
+
+
+		// ES6的编译
+		// babel
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

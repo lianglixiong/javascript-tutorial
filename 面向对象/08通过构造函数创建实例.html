@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08通过构造函数创建实例</title>
+	<script>
+
+		function Person(name,age,gender){
+			// 这里的this指向实例
+			// 属性
+			this.name = name;
+			this.age = age;
+			this.gender = gender;
+
+			
+		}
+
+		// 方法写在原型对象中
+		Person.prototype.coding = function(){
+			// 这里的this指向谁？
+			console.log(`我是${this.name}，今年${this.age}，${this.gender}，喜欢撸代码！`);
+		}
+		Person.prototype.sleep = function(){}
+		Person.prototype.eat = function(){}
+		Person.prototype.run = function(){}
+		Person.prototype.sing = function(){}
+		Person.prototype.dancing = function(){}
+
+
+		var p1 = new Person('laoxie',18,'男');
+		var p2 = new Person('老蓝',26,'男');
+		var p3 = new Person('lemon',19,'女');
+
+		// 通过实例获取原型对象
+		// p1.__proto__
+		// Object.getPrototypeOf(p1);
+
+		console.log(p1,p2,p3);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

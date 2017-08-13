@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03JSON</title>
+	<script>
+		var obj = {
+			name:'lx',//真名
+			age:18,//年龄
+			hobby:['羽毛球','桌球','撸代码'],
+		};
+
+		// 对象转json字符串
+		console.log(JSON.stringify(obj));
+
+		// 把json字符串转成对象/数组
+		console.log(JSON.parse('[{"name":"lx","age":18}]'));
+
+
+		// 复制对象obj方式1
+		var newObj = {};
+		for(var attr in obj){
+			newObj[attr] = obj[attr];
+		}
+
+		// 复制对象方式2
+		var newObj = JSON.parse(JSON.stringify(obj));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

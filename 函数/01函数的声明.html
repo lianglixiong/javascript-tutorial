@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01函数的声明</title>
+	<script>
+		/*
+			1、声明提前
+				* 保存函数
+				* 保存变量名
+			2、逐行执行代码
+		 */
+		// 手动执行函数
+		sum();
+
+		// 声明函数方式1：声明式
+		// 函数声明会提前
+		function sum(){
+			var num1 = 10;
+			var num2 = 20;
+			console.log(num1 + num2);
+		}
+
+		
+
+		//sum2();//sum2 is not a function
+		// 声明函数方式2：赋值式
+		var sum2 = function(){
+			console.log('赋值式')
+		}
+
+
+		// 声明函数方式3：构造函数(不推荐)
+		var sum3 = new Function('num1','num2','return num1+num2');
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

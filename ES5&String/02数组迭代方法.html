@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>02数组迭代方法</title>
+	<script>
+		var movielist = ['速度与激情8','生化危机7','记忆大师','战狼2','西游记'];
+
+		// 遍历
+		// for(var i=0;i<arr.length;i++){
+		// 	arr[i]
+		// }
+
+		// 循环数组
+		movielist.forEach(function(item){
+			console.log(item);
+		});
+
+		var arr2 = [10,20,3,4,50,12];
+		// var newArr = [];
+		// for(var i=0;i<arr2.length;i++){
+		// 	newArr[i] = arr2[i]*1.2
+		// }
+		var res = arr2.map(function(item,idx,arr){
+			return item*1.2
+		});
+
+		console.log(res);
+
+
+		// 找出以下数组中所有小于10的元素并组成一个新的数组
+		// 利用filer实现过滤
+		var arr = [10,15,2,32,5,4,20,8,48,54,6];
+		var res = arr.filter(function(num){
+			return num<10;
+		})
+
+		console.log(res);
+
+
+		// every/some(了解)
+		var arr = [10,2,4,59,12];
+		var res = arr.every(function(num){
+			return num>10;
+		});
+		console.log(res);//false
+
+		var res = arr.some(function(num){
+			return num > 10
+		});
+		console.log(res);//true
+
+		// 计算数组的和
+		// 利用reduce/reduceRight
+		var arr = [10,15,2,32,5,4,20,8,48,54,6];
+		console.log('------------------------')
+		var res = arr.reduce(function(prev,cur,index,array){
+			console.log(prev,cur,index);
+			return prev+cur;
+		},0);
+		console.log('数组的和：',res)
+	</script>
+</head>
+<body>
+	<ul id="movieList"></ul>
+
+	<script>
+		// 把数据变成html结构
+		// 利用map方法实现
+		var movieList = document.getElementById('movieList');
+
+		var res = movielist.map(function(item){
+			return '<li>'+item+'</li>';
+		}).join('');
+
+		movieList.innerHTML = res;
+
+		console.log(res);
+	</script>
+</body>
+</html>

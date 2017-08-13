@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08数组的排序</title>
+	<script>
+		var arr = [10,23,5,6,7,9,8,33];
+
+		var newArr = arr.sort(function(num1,num2){
+			// 排列规则：取决于我们return什么值
+			// 当return一个正数时：说明num1>num2
+			// 当return一个负数时：说明num1<num2
+			// 当return一个0时：   说明num1=num2
+			return num1-num2;
+
+			/*if(num1>num2){
+				return 1;
+			}else if(num1<num2){
+				return -1;
+			}else{
+				return 0;
+			}*/
+		});
+		console.log(newArr);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

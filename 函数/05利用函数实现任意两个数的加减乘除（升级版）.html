@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04利用函数实现任意两个数的加减乘除（升级版）</title>
+	
+</head>
+<body>
+	<input type="text" id="num1">
+	<select id="ysf">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="x">×</option>
+		<option value="/">÷</option>
+	</select>
+	<input type="text" id="num2">
+	<button id="btnCalc">计算</button>
+	<div id="output"></div>
+	<script>
+		// 获取元素
+		var num1 = document.getElementById('num1');
+		var num2 = document.getElementById('num2');
+		var ysf = document.getElementById('ysf');
+		var btnCalc = document.getElementById('btnCalc');
+		var output = document.getElementById('output');
+
+		// 绑定事件
+		btnCalc.onclick = calc;
+
+		function calc(){
+			var _num1 = Number(num1.value);
+			var _num2 = Number(num2.value);
+			var _ysf = ysf.value;
+
+			// 存放结果
+			var res;
+
+			switch(_ysf){
+				case '+':
+					res = _num1 + _num2;
+					break;
+				case '-':
+					res = _num1 - _num2;
+					break;
+				case 'x':
+					res = _num1 * _num2;
+					break;
+				case '/':
+					res = _num1 / _num2;
+					break;
+			}
+
+			// 把计算结果写入#output
+			output.innerHTML = _num1 + _ysf + _num2 + '=' + res;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11时间的创建</title>
+	<script>
+		// 得到当前代码运行时的时间
+		// now包含所有时间的信息
+		// 年、月、日、时、分、秒、毫秒、星期
+		var now = new Date();
+
+		var year = now.getFullYear();
+
+		// 月份：0-11的数
+		var month = now.getMonth();
+
+		// 日：
+		var date = now.getDate();
+
+		// 小时：
+		var hour = now.getHours();
+
+		// 分：
+		var min = now.getMinutes();
+
+		// 秒：
+		var sec = now .getSeconds();
+
+		// 星期
+		var week = now.getDay();
+		console.log(year,month,date,hour,min,sec);
+		console.log('星期：' + week);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

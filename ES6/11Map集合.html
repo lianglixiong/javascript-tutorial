@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11Map集合</title>
+	<script>
+		// var arr = [];
+		// var obj = {}
+
+		// Map
+		// 映射：名/值，键/值
+
+		// 先创建一个Map集合
+		let map = new Map();
+
+
+		map.set("S0", "张三"); 
+		map.set("S1", "李四"); 
+		map.set("S2", "王五");
+		console.log(map);
+
+		// 单个数据获取
+		map.get('s1');//李四
+
+
+		// 遍历Map集合数据
+		for(var val of map){
+			console.log(val);//map数据
+		}
+
+
+		for(var [name,val] of map){
+			console.log(name,val);//name:map类型的键，val：map类型的值
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

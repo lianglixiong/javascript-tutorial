@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>16拖拽轨迹回放</title>
+	<style>
+		.pop{position:absolute;padding:5px;width:300px;height:120px;border:1px solid #ddd;}
+		.pop .title{padding-left:10px;border-bottom:2px solid #ddd;line-height:2;}
+		.pop .content{padding:15px;}
+		.pop .btnClose{position:absolute;right:5px;top:5px;padding:8px;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				轨迹回放效果
+				* 拖拽效果
+					* 拖拽过程中记录.pop移动过的位置到一个数组arr_pos
+				* 回放
+					* 
+					* 遍历arr_pos数组，把top,left设置到.pop中
+			 */
+			var pop = document.getElementsByClassName('pop')[0];
+			var title = pop.children[0];
+			var btnClose = pop.getElementsByClassName('btnClose')[0];
+			var btnBack = pop.getElementsByClassName('btnBack')[0];
+
+			// 记录弹窗的位置信息
+			var arr_pos = [];
+
+			// 拖拽效果
+			title.onmousedown = function(e){
+				e = e || window.event;
+				// 先记录点击位置到.pop左上角的距离
+				var ox = e.clientX - pop.offsetLeft;
+				var oy = e.clientY - pop.offsetTop;
+
+				document.onmousemove = function(evt){
+					evt = evt || window.event;
+
+					var left = evt.clientX - ox;
+					var top = evt.clientY - oy;
+
+					pop.style.left = left + 'px';
+					pop.style.top = top + 'px';
+
+					// 记录弹窗位置信息
+					arr_pos.push({left:left,top:top});
+
+					if(evt.preventDefault){
+						evt.preventDefault();
+					}else{
+						evt.returnValue = false;
+					}
+					
+				}
+
+
+				// 鼠标弹起，清除mousemove事件
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+
+
+				// 回放
+				btnBack.onclick = function(){
+					/* 
+					//不行
+					for(var i=arr_pos.length-1;i>=0;i--){
+						setTimeout(function(){
+							pop.style.left = arr_pos[i].left + 'px';
+							pop.style.top = arr_pos[i].top + 'px';
+						},30);
+					}*/
+
+					var i = arr_pos.length-1;
+					var timer = setInterval(function(){
+						i--;
+						pop.style.left = arr_pos[i].left + 'px';
+						pop.style.top = arr_pos[i].top + 'px';
+
+						if( i<= 0){
+							clearInterval(timer);
+							arr_pos = [];
+						}
+					},30);
+				}
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="pop">
+		<div class="title">弹窗标题</div>
+		<div class="content">
+			弹窗位置<a href="#" class="btnBack">回放</a>
+		</div>
+		<span class="btnClose">&times;</span>
+	</div>
+</body>
+</html>

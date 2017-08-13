@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09箭头函数this</title>
+	<script>
+		// this:window
+		document.addEventListener('DOMContentLoaded',function(){
+			// this:document
+			var btn = document.querySelector('button');
+
+			btn.onclick = function(){
+				// 这里的this指向btn
+
+				// setTimeout(function(){
+				// 	// 这里的this指向window
+				// 	console.log(this);
+				// }.bind(this),1000);
+
+				// ES6
+				// 箭头函数没有它自己的this值
+				setTimeout(()=>{
+					console.log(this);
+				},1000);
+			}
+		});
+	</script>
+</head>
+<body>
+	<button>按钮</button>
+</body>
+</html>

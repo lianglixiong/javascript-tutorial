@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06构造函数中的this</title>
+	
+</head>
+<body>
+	<button id="btn" title="按钮标题">按钮</button>
+	<script>
+		function Person(){
+			// this指向内部创建的对象
+			console.log(this);
+		}
+
+		// 普通函数执行时：
+		// this指向调用函数的对象
+		// Person();//=>window
+
+
+		// 构造函数方式执行时：
+		// this指向实例
+		var p1 = new Person();
+
+
+		// 面试题1：
+		/*var title = '全局标题';
+
+		var obj = {
+			title:'对象标题',
+			show:function(){
+				console.log(this.title);
+			}
+		}
+
+		obj.show();//=>'对象标题'
+
+		var myShow = obj.show;
+		myShow();//=>'全局标题'*/
+
+
+		// 面试题二：
+		var title = '全局标题';
+		function get(){
+			console.log(this.title);
+		}
+		var obj = {
+			title:'对象标题',
+			get:get
+		}
+
+
+		get();//=>全局标题
+		obj.get();//=>对象标题
+		btn.onclick = get;//=>按钮标题
+		new get();//=>undefined
+
+	</script>
+</body>
+</html>

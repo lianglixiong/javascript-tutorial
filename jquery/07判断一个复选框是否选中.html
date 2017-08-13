@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06无限极菜单</title>
+	<style>
+	a{color:#333;text-decoration: none;}
+	a:hover{color:#f00;}
+	ul ul{display:none;}
+	.nav{width:200px;}
+	.nav ul{padding:0;margin:0;line-height:2;list-style: none;}
+	.nav li{position:relative;}
+	.nav li > span{position:absolute;right:10px;top:50%;margin-top:-16px;color:#999;}
+	.nav li:hover > span{color:#f00;}
+	.nav > ul > li{border:1px solid #fff;}
+	.nav > ul > li > a{display:block;padding:5px;background-color:#efefef;}
+
+	/*子菜单*/
+	.nav > ul ul{position: absolute;left:200px;top:0;width:200px;border:1px solid #ddd;background-color: #fff;}
+	.nav > ul ul li{border-bottom:1px solid #ddd;}
+	.nav > ul ul li:hover{background-color:#efefef;}
+	</style>
+	<script src="js/jquery-3.2.1.js"></script>
+
+	<script>
+		$(function(){
+			/*
+				* prop()
+					布尔类型属性：disabled,checked,selected,readonly,autofocus,required,autoplay...
+				* attr()
+					setAttribute/getAttribute
+			 */
+			var $btn = $('button');
+			var $checkbox = $(':checkbox');//$('[type=checkbox]'),$('input')
+			console.log($checkbox);
+
+
+			// 改变按钮状态
+			// console.log($checkbox.prop('checked'))
+			if(!$checkbox[0].checked){
+				$btn.prop('disabled',true);
+			}
+
+			$checkbox.on('click',function(){
+				if(this.checked){
+					$btn.prop('disabled',false);
+					// $btn.removeProp('disabled');
+				}else{
+					$btn.prop('disabled',true);
+				}
+			});
+
+
+			// 给button添加title属性
+			// $btn.attr('title','注册前必须同意协议').attr('type','submit');
+			$btn.attr({title:'注册前必须同意协议',type:'submit'});
+
+		});
+	</script>
+</head>
+<body>
+	<p><input type="checkbox">协议</p>
+	<button>注册</button>
+</body>
+</html>
